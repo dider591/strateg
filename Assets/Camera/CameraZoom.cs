@@ -16,13 +16,12 @@ public class CameraZoom : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(1) && _isZoom == true)
+        if (Input.GetMouseButtonUp(0))
         {
-            Debug.Log("Max");
             _camera.fieldOfView = _maxValue;
             _isZoom = false;
         }
-        if (Input.GetMouseButtonDown(1) && _isZoom == false)
+        if (Input.GetMouseButtonDown(1))
         {
             _camera.fieldOfView = _minValue;
             _isZoom = true;
