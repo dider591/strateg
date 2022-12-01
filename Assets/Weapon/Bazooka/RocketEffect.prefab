@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6420236422069608126}
   - component: {fileID: 6969511178145479145}
+  - component: {fileID: -6610964625868304932}
   m_Layer: 0
   m_Name: RocketEffect
   m_TagString: Untagged
@@ -44,6 +45,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20fd29c1f3b457746b9a48a98a96d491, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!136 &-6610964625868304932
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3556681395464015397}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 2.098518
+  m_Height: 4.197036
+  m_Direction: 1
+  m_Center: {x: 0, y: -0.2825389, z: 0.03713751}
 --- !u!1001 &5345050516332283153
 PrefabInstance:
   m_ObjectHideFlags: 0

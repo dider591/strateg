@@ -8,10 +8,10 @@ public class Soldier : MonoBehaviour
     [SerializeField] private float _health;
     [SerializeField] private OverviewZone _overviewZone;
     [SerializeField] private SoldierStateMashine _stateMashine;
+    [SerializeField] private Ragdoll _ragdoll;
 
     private Soldier _target;
     private Vector3 _startPoint;
-    private Rigidbody _rigidbody;
     public Soldier Target => _target;
     public Vector3 StartPoint => _startPoint;
 
@@ -19,7 +19,6 @@ public class Soldier : MonoBehaviour
 
     private void OnEnable()
     {
-        _rigidbody = GetComponent<Rigidbody>();
         _startPoint = transform.position;
         _overviewZone.SawEnemy += OnSawEnemy;
     }
@@ -62,7 +61,7 @@ public class Soldier : MonoBehaviour
 
     public void OnHit()
     {
-        _rigidbody.AddForce(Vector3.up * 1600f);
-        _rigidbody.AddTorque(800f, 0f, 0f);
+        Instantiate(_ragdoll, transform.position, transform.rotation);
+        Destroy(gameObject);
     }
 }
