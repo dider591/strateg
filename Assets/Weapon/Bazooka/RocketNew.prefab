@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 5
-  _shoootEffect: {fileID: 6969511178145479145, guid: 86082da95d3f02f4780d4d8a79784c7a, type: 3}
+  _explosion: {fileID: -9105811596838308180, guid: a7c694f0877ea874fa57e033221095c3, type: 3}
 --- !u!136 &821189926632129100
 CapsuleCollider:
   m_ObjectHideFlags: 0

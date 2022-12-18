@@ -4,27 +4,33 @@ using UnityEngine;
 
 public class Ragdoll : MonoBehaviour
 {
-    private Rigidbody _rigidbody;
-    private float _randomForse;
-    private Vector3 _randomTorque;
-    private Vector3 _angleRandom;
+    [SerializeField] private Rigidbody[] _allBones;
 
-    private void Start()
+    private void Awake()
     {
-        _rigidbody = GetComponent<Rigidbody>();
-        _randomForse = Random.Range(200f, 300f);
-        _randomTorque = new Vector3(0, 0, Random.Range(100f, 200f));
-        _angleRandom = new Vector3(1f, Random.Range(2f, 3f), 0.5f);
+        foreach (var bones in _allBones)
+        {
+            //bones.AddForce(0.1f, 0f, 0f);
+            bones.isKinematic = true;
+        }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void Update()
     {
-        if (other.TryGetComponent<Effect>(out Effect effect))
+        if (Input.GetKeyDown(KeyCode.Z))
         {
-            //_rigidbody.AddForce(Vector3.up *_randomForse, ForceMode.Impulse);
-            _rigidbody.AddTorque(_randomTorque);
-            _rigidbody.AddForce(Vector3.up * _randomForse);
-            //_rigidbody.AddTorque(0f, 800f, 0f);
+            OnDied();
         }
+    }
+
+    public void OnDied()
+    {    
+        foreach (var bones in _allBones)
+        {
+            bones.AddForce(5f, 0f, 0f);
+            bones.isKinematic = false;
+        }
+
+        // Destroy(gameObject, 4f);
     }
 }

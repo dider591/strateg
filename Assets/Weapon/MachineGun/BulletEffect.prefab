@@ -9,8 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6583198223103783984}
-  - component: {fileID: 8213126685130455931}
-  - component: {fileID: -3245840810884196237}
+  - component: {fileID: -2510965481924590696}
   m_Layer: 0
   m_Name: BulletEffect
   m_TagString: Untagged
@@ -33,7 +32,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8213126685130455931
+--- !u!114 &-2510965481924590696
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,23 +41,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 8188341591708419220}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20fd29c1f3b457746b9a48a98a96d491, type: 3}
+  m_Script: {fileID: 11500000, guid: f809e241a3c84614eb9446676f2eb7a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!136 &-3245840810884196237
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8188341591708419220}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  _damage: 3
+  _radius: 0.2
+  _forse: 100
+  _modifier: 0.1
 --- !u!1001 &8164317705401490656
 PrefabInstance:
   m_ObjectHideFlags: 0
