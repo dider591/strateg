@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class MachineGun : Weapon
 {
-    public override void Shoot()
+    public override void Shoot(Vector3 shootPoint)
     {
+        LookAim(shootPoint);
         StartCoroutine(Shooting());
     }
 

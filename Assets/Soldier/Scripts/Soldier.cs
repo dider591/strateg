@@ -1,68 +1,37 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-[RequireComponent(typeof(Rigidbody))]
-[RequireComponent(typeof(Animator))]
-public class Soldier : MonoBehaviour
+[RequireComponent(typeof(Ragdoll))]
+
+public abstract class Soldier : MonoBehaviour
 {
+    [SerializeField] protected float _radius;
+    [SerializeField] private HelicopterRagdoll _helicopterRagdoll;
     [SerializeField] private float _health;
-    //[SerializeField] private OverviewZone _overviewZone;
-    //[SerializeField] private SoldierStateMashine _stateMashine;
-    [SerializeField] private Rigidbody[] _allBones;
-    //[SerializeField] private Ragdoll _ragdoll;
+    [SerializeField] private Bone[] _bones;
 
+    protected Soldier _target;
 
-    private Rigidbody _rigidbody;
-    private Soldier _target;
+    private Ragdoll _ragdoll;
     private Vector3 _startPoint;
-    private Animator _animator;
+    private Collider _collider;
+
+
     public Soldier Target => _target;
     public Vector3 StartPoint => _startPoint;
 
     public event UnityAction Dying;
 
-    private void Awake()
-    {
-        foreach (var bones in _allBones)
-        {
-            bones.isKinematic = true;
-        }
-    }
-
     private void OnEnable()
     {
-        _animator = GetComponent<Animator>();
-        _rigidbody = GetComponent<Rigidbody>();
-        _startPoint = transform.position;
-        //_overviewZone.SawEnemy += OnSawEnemy;
-    }
+        _collider = GetComponent<Collider>();
+        _ragdoll = GetComponent<Ragdoll>();
 
-    //private void Update()
-    //{
-    //    if (Target != null)
-    //    {
-    //        _stateMashine.enabled = true;
-    //    }
-    //    if (Target == null && (transform.position.x == StartPoint.x && transform.position.z == StartPoint.z))
-    //    {
-    //        _stateMashine.enabled = false;
-    //    }
-    //}
-
-    //private void OnDisable()
-    //{
-    //    _overviewZone.SawEnemy -= OnSawEnemy;
-    //}
-
-    public void TakeDamage(int damage)
-    {
-        _health -= damage;
-
-        if (_health <= 0)
+        foreach (var bone in _bones)
         {
-            OnDied();
-            Dying?.Invoke();
+            bone.TakingDamage += TakeDamage;
         }
     }
 
@@ -74,13 +43,44 @@ public class Soldier : MonoBehaviour
         }
     }
 
+    private void OnDisable()
+    {
+        foreach (var bone in _bones)
+        {
+            bone.TakingDamage -= TakeDamage;
+        }
+    }
+
+    private void Update()
+    {
+        if (_target == null)
+        {
+            SearchTarget();
+        }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        _health -= damage;
+
+        if (_health <= 0)
+        {
+            Dying?.Invoke();
+            OnDied();
+        }
+    }
+
     public void OnDied()
     {
-       // _rigidbody.AddForce(5f, 0, 0);
+        _ragdoll.ActivateRagdoll();
+        Destroy(gameObject, 10f);
+    }
 
-        foreach (var bones in _allBones)
-        {
-            bones.isKinematic = false;
-        }
+    public abstract void SearchTarget();
+
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawSphere(transform.position, _radius);
     }
 }

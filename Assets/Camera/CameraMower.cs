@@ -1,31 +1,25 @@
 using UnityEngine;
 using DG.Tweening;
 
+[RequireComponent(typeof(Animator))]
 public class CameraMower : MonoBehaviour
 {
     [SerializeField] private float _speed;
     [SerializeField] private Vector3[] _wayPoints;
-    [SerializeField] private float _duration;
 
-    private bool isToPoint = false;
+    private Animator _animator;
+
+    private void Start()
+    {
+        _animator = GetComponent<Animator>();
+        _animator.Play("CameraMove");
+    }
 
     private void Update()
     {
-        MoweToPoint();
-
-        if (isToPoint)
+        if (transform.position == _wayPoints[0])
         {
             MoweCircle();
-        }
-    }
-
-    private void MoweToPoint()
-    {
-        transform.DOPath(_wayPoints, _duration, PathType.CatmullRom);
-
-        if (transform.position == _wayPoints[_wayPoints.Length - 1])
-        {
-            isToPoint = true;
         }
     }
 

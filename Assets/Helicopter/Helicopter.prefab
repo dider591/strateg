@@ -100,7 +100,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d70f353e5950074cb22a22eca6906e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _smokeFall: {fileID: 6573240166455018224}
   _smokeAndFire: {fileID: 5456747182467463292}
   _helicopterRagdoll: {fileID: 8209988128180608336, guid: d11ce7cf83185cf49a1c040528fc44f3, type: 3}
 --- !u!1 &2013972324374050569
@@ -745,15 +744,11 @@ PrefabInstance:
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -9105811596838308180, guid: 9e1515735810aac4f8e66f4d531c7782, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9e1515735810aac4f8e66f4d531c7782, type: 3}
 --- !u!4 &6573240166470218326 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 404992, guid: 9e1515735810aac4f8e66f4d531c7782, type: 3}
-  m_PrefabInstance: {fileID: 6573240166470605910}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &6573240166455018224 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 19848870, guid: 9e1515735810aac4f8e66f4d531c7782, type: 3}
   m_PrefabInstance: {fileID: 6573240166470605910}
   m_PrefabAsset: {fileID: 0}

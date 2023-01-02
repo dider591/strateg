@@ -4,14 +4,21 @@ using UnityEngine;
 
 public abstract class Weapon : MonoBehaviour
 {
-    [SerializeField] private Player _player;
     [SerializeField] protected int CountBullet;
     [SerializeField] protected Ammunition Bullet;
 
+    protected Vector3 _shootPoint;
+
     private void Update()
     {
-        transform.LookAt(_player.Point);
+        LookAim(_shootPoint);
     }
 
-    public abstract void Shoot();
+    protected void LookAim(Vector3 point)
+    {
+        _shootPoint = point;
+        transform.LookAt(point);
+    }
+
+    public abstract void Shoot(Vector3 shootPoint);
 }

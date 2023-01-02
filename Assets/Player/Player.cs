@@ -6,7 +6,6 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private Weapon _bazooka;
     [SerializeField] private Weapon _machineGun;
-    public Vector3 Point => hit.point;
     public Weapon CurrentWeapon => _currentWeapon;
 
     private Weapon _currentWeapon;
@@ -19,12 +18,12 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            _bazooka.Shoot();
+            _bazooka.Shoot(hit.point);
             Debug.Log("Работает Базука");
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
-            _machineGun.Shoot();
+            _machineGun.Shoot(hit.point);
             Debug.Log("Работает Пулемет");
         }
     }

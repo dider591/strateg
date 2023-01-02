@@ -7,7 +7,6 @@ public class Helicopter : MonoBehaviour
     [SerializeField] private HelicopterRagdoll _helicopterRagdoll;
 
     private bool _isAdded = false;
-    private float _duration = 1f;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -21,7 +20,7 @@ public class Helicopter : MonoBehaviour
             if (!_isAdded)
             {
                 _isAdded = true;
-                Invoke(nameof(Instantiator), _duration);
+                Instantiator();
             }
         }
     }

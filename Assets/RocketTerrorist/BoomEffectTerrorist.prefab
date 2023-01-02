@@ -19176,7 +19176,6 @@ GameObject:
   - component: {fileID: 198717222519016466}
   - component: {fileID: 199636884561175452}
   - component: {fileID: 108282213168382370}
-  - component: {fileID: 114478972701343580}
   - component: {fileID: 82626404940362848}
   m_Layer: 0
   m_Name: BoomEffectTerrorist
@@ -19193,8 +19192,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1324124168371050}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.59, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 4491756292684472}
   - {fileID: 4078504401268042}
@@ -24038,20 +24037,6 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!114 &114478972701343580
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1324124168371050}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f54e17d705a2894d88787e24190ebfa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  life: 0.4
-  killAfterLife: 1
 --- !u!82 &82626404940362848
 AudioSource:
   m_ObjectHideFlags: 0
@@ -24064,7 +24049,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 92d3259b6a9732e4ba3fb95331b2c95d, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.85
+  m_Volume: 0.19
   m_Pitch: 1.2
   Loop: 0
   Mute: 0
