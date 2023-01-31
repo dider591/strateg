@@ -102,7 +102,7 @@ GameObject:
   - component: {fileID: 7674149561089413423}
   - component: {fileID: 8262803800675732343}
   - component: {fileID: 556270036839863581}
-  - component: {fileID: 2613934295333840120}
+  - component: {fileID: 1948203102776561503}
   m_Layer: 3
   m_Name: mixamorig:RightLeg
   m_TagString: Untagged
@@ -151,7 +151,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -201,7 +201,7 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &2613934295333840120
+--- !u!114 &1948203102776561503
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -380,7 +380,7 @@ GameObject:
   - component: {fileID: 8413678257414210824}
   - component: {fileID: 8290513587069816607}
   - component: {fileID: 8992656432497633535}
-  - component: {fileID: 5941684370918846156}
+  - component: {fileID: 1313924727269512505}
   m_Layer: 3
   m_Name: mixamorig:RightUpLeg
   m_TagString: Untagged
@@ -429,7 +429,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -479,7 +479,7 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &5941684370918846156
+--- !u!114 &1313924727269512505
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -839,7 +839,7 @@ GameObject:
   - component: {fileID: 5503529574839626150}
   - component: {fileID: 2192699249240657015}
   - component: {fileID: 7241514107065268172}
-  - component: {fileID: 3262612903851819574}
+  - component: {fileID: 5141559084152454425}
   m_Layer: 3
   m_Name: mixamorig:Head
   m_TagString: Untagged
@@ -890,7 +890,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -940,7 +940,7 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &3262612903851819574
+--- !u!114 &5141559084152454425
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1149,7 +1149,7 @@ GameObject:
   - component: {fileID: 3543877475365768226}
   - component: {fileID: 8850035953170838463}
   - component: {fileID: 3849137802220598249}
-  - component: {fileID: 7969554398943803320}
+  - component: {fileID: 7700528059284000252}
   m_Layer: 3
   m_Name: mixamorig:Spine1
   m_TagString: Untagged
@@ -1197,7 +1197,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -1247,7 +1247,7 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &7969554398943803320
+--- !u!114 &7700528059284000252
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1382,7 +1382,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -1494,8 +1494,8 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 17d1d864c484bd04e8682d6e4d018529, type: 2}
-  - {fileID: 4452280977002723392, guid: b89ad1ae7e5120c4e8e10bf522eb0d7e, type: 3}
+  - {fileID: 2100000, guid: 97461c1100248bb4c85ee7eedab9b770, type: 2}
+  - {fileID: 2100000, guid: 97461c1100248bb4c85ee7eedab9b770, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1547,7 +1547,7 @@ GameObject:
   - component: {fileID: 7084899844197435877}
   - component: {fileID: 5280527732663345657}
   - component: {fileID: 327535567393854211}
-  - component: {fileID: 459281283820910012}
+  - component: {fileID: 1122846106800781716}
   m_Layer: 3
   m_Name: mixamorig:RightForeArm
   m_TagString: Untagged
@@ -1596,7 +1596,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -1646,7 +1646,7 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &459281283820910012
+--- !u!114 &1122846106800781716
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1764,7 +1764,7 @@ GameObject:
   - component: {fileID: 6664795061768569738}
   - component: {fileID: 3498923966197435599}
   - component: {fileID: 2911085933054501092}
-  - component: {fileID: 2075222866535446009}
+  - component: {fileID: 8961614640574354523}
   m_Layer: 3
   m_Name: mixamorig:RightArm
   m_TagString: Untagged
@@ -1813,7 +1813,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -1863,7 +1863,7 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &2075222866535446009
+--- !u!114 &8961614640574354523
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1885,8 +1885,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4882298283303280404}
   - component: {fileID: 757878315285055693}
-  - component: {fileID: 6819575982207615153}
-  - component: {fileID: 6134610043988038149}
+  - component: {fileID: 7772473083933686535}
+  - component: {fileID: 8279662477794439990}
   m_Layer: 3
   m_Name: RagDollRussia
   m_TagString: Untagged
@@ -1922,62 +1922,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82deb791649597745935a1fb279a381a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _allBones:
-  - {fileID: 6853437295870556227}
-  - {fileID: 4292146876974130051}
-  - {fileID: 1544987171725113374}
-  - {fileID: 8290513587069816607}
-  - {fileID: 8262803800675732343}
-  - {fileID: 8850035953170838463}
-  - {fileID: 7334639813028589485}
-  - {fileID: 1873251253225203690}
-  - {fileID: 2192699249240657015}
-  - {fileID: 3498923966197435599}
-  - {fileID: 5280527732663345657}
---- !u!95 &6819575982207615153
-Animator:
-  serializedVersion: 3
+--- !u!54 &7772473083933686535
+Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5227193483788993966}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &6134610043988038149
-MonoBehaviour:
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!136 &8279662477794439990
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5227193483788993966}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91a4c859e8f8d344c9aad885b8928781, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _health: 10
-  _bones:
-  - {fileID: 2528807082100321687}
-  - {fileID: 1993323554197354335}
-  - {fileID: 4596528548562874282}
-  - {fileID: 5941684370918846156}
-  - {fileID: 2613934295333840120}
-  - {fileID: 7969554398943803320}
-  - {fileID: 2715765233951575000}
-  - {fileID: 6317168460403925256}
-  - {fileID: 3262612903851819574}
-  - {fileID: 2075222866535446009}
-  - {fileID: 459281283820910012}
+  m_Radius: 0.03059874
+  m_Height: 0.15559348
+  m_Direction: 1
+  m_Center: {x: 0.004792737, y: 0.22437094, z: 0}
 --- !u!1 &5342887566617072010
 GameObject:
   m_ObjectHideFlags: 0
@@ -2019,7 +1993,7 @@ GameObject:
   - component: {fileID: 1121742273072398208}
   - component: {fileID: 4093711618416407940}
   - component: {fileID: 6853437295870556227}
-  - component: {fileID: 2528807082100321687}
+  - component: {fileID: 5806227383320468068}
   m_Layer: 3
   m_Name: mixamorig:Hips
   m_TagString: Untagged
@@ -2069,11 +2043,11 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &2528807082100321687
+--- !u!114 &5806227383320468068
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2135,7 +2109,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 13e1a794a173f3b468523c2d933b6614, type: 2}
+  - {fileID: 2100000, guid: 97461c1100248bb4c85ee7eedab9b770, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2669,7 +2643,7 @@ GameObject:
   - component: {fileID: 8695761357528475974}
   - component: {fileID: 1544987171725113374}
   - component: {fileID: 1463019755184777643}
-  - component: {fileID: 4596528548562874282}
+  - component: {fileID: 3852588034645933996}
   m_Layer: 3
   m_Name: mixamorig:LeftLeg
   m_TagString: Untagged
@@ -2718,7 +2692,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -2768,7 +2742,7 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &4596528548562874282
+--- !u!114 &3852588034645933996
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2823,7 +2797,7 @@ GameObject:
   - component: {fileID: 3575935650436785448}
   - component: {fileID: 4292146876974130051}
   - component: {fileID: 1682546546471608391}
-  - component: {fileID: 1993323554197354335}
+  - component: {fileID: 6232706216328131106}
   m_Layer: 3
   m_Name: mixamorig:LeftUpLeg
   m_TagString: Untagged
@@ -2872,7 +2846,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -2922,7 +2896,7 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &1993323554197354335
+--- !u!114 &6232706216328131106
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3026,7 +3000,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0

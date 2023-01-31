@@ -1,55 +1,21 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-
-[RequireComponent(typeof(Ragdoll))]
 
 public abstract class Soldier : MonoBehaviour
 {
     [SerializeField] protected float _radius;
-    [SerializeField] private HelicopterRagdoll _helicopterRagdoll;
-    [SerializeField] private float _health;
-    [SerializeField] private Bone[] _bones;
+    [SerializeField] private int _health;
+    [SerializeField] private Ragdoll _ragdoll;
 
-    protected Soldier _target;
+    protected Target _target;
+    private Vector3 _crashPoint;
+    private float _randomStepPoint = 0.5f;
 
-    private Ragdoll _ragdoll;
-    private Vector3 _startPoint;
-    private Collider _collider;
-
-
-    public Soldier Target => _target;
-    public Vector3 StartPoint => _startPoint;
+    public Target Target => _target;
+    public int Health => _health;
+    public Vector3 CrashPoint => _crashPoint;
 
     public event UnityAction Dying;
-
-    private void OnEnable()
-    {
-        _collider = GetComponent<Collider>();
-        _ragdoll = GetComponent<Ragdoll>();
-
-        foreach (var bone in _bones)
-        {
-            bone.TakingDamage += TakeDamage;
-        }
-    }
-
-    public void OnSawEnemy(Soldier target)
-    {
-        if (Target == null)
-        {
-            _target = target;
-        }
-    }
-
-    private void OnDisable()
-    {
-        foreach (var bone in _bones)
-        {
-            bone.TakingDamage -= TakeDamage;
-        }
-    }
 
     private void Update()
     {
@@ -61,6 +27,7 @@ public abstract class Soldier : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        Debug.Log("Soldier");
         _health -= damage;
 
         if (_health <= 0)
@@ -72,15 +39,19 @@ public abstract class Soldier : MonoBehaviour
 
     public void OnDied()
     {
-        _ragdoll.ActivateRagdoll();
-        Destroy(gameObject, 10f);
+        //_ragdoll.ActivateRagdoll();
+        Instantiate(_ragdoll, transform.position, transform.rotation);
+        Destroy(gameObject);
+    }
+
+    public void SetCrashPoint(Vector3 point)
+    {
+        float pointX = Random.Range(point.x - _randomStepPoint, point.x + _randomStepPoint);
+        float pointZ = Random.Range(point.z - _randomStepPoint, point.z + _randomStepPoint);
+        Vector3 correctPoint = new Vector3(pointX, point.y, pointZ);
+
+        _crashPoint = correctPoint;
     }
 
     public abstract void SearchTarget();
-
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawSphere(transform.position, _radius);
-    }
 }

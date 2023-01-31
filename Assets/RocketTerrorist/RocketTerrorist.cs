@@ -39,7 +39,7 @@ public class RocketTerrorist : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent<Helicopter>(out Helicopter helicopter))
+        if (other.TryGetComponent<HelicopterMain>(out HelicopterMain helicopter))
         {
             //_effectBoom.Play();
             //_audioBoom.Play();

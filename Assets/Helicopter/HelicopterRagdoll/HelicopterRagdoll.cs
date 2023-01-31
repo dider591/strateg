@@ -1,11 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class HelicopterRagdoll : MonoBehaviour
 {
     [SerializeField] private ParticleSystem _boomEffect;
-
 
     private void OnTriggerEnter(Collider other)
     {

@@ -11,7 +11,6 @@ public class Player : MonoBehaviour
     private Weapon _currentWeapon;
     private RaycastHit hit;
 
-
     private void Update()
     {
         AimRay();
@@ -28,7 +27,6 @@ public class Player : MonoBehaviour
         }
     }
 
-
     private void AimRay()
     {
         Ray ray = new Ray(transform.position, transform.forward);
@@ -36,5 +34,4 @@ public class Player : MonoBehaviour
 
         Physics.Raycast(ray, out hit);
     }
-
 }
