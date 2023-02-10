@@ -6,10 +6,14 @@ public class HelicopterMain : MonoBehaviour
     [SerializeField] private Helicopter _helicopter;
     [SerializeField] private Target _helicopterRagdoll;
     [SerializeField] private ParticleSystem _smokeAndFire;
+    [SerializeField] private float _health;
 
-    //private bool _isAdded = false;
+    public UnityAction<Vector3> CrashedPoint;
+    public UnityAction<float> HealthChanged;
+    public UnityAction GameOver;
 
-    public event UnityAction<Vector3> CrashedPoint;
+    private float _maxHealth = 1f;
+    private float _minHealth = 0f;
 
     private void Awake()
     {
@@ -28,5 +32,33 @@ public class HelicopterMain : MonoBehaviour
             _helicopterRagdoll.gameObject.SetActive(true);
             CrashedPoint?.Invoke(transform.position);
         }
+    }
+
+
+    public void TakeDamage(float damage)
+    {
+        _health -= damage;
+        HealthChanged?.Invoke(_health);
+
+        if (_health <= _minHealth)
+        {
+            OnGameOver();
+        }
+    }
+
+    public void Healing(float healing)
+    {
+        _health += healing;
+        HealthChanged?.Invoke(_health);
+
+        if (_health > _maxHealth)
+        {
+            _health = _maxHealth;
+        }
+    }
+
+    private void OnGameOver()
+    {
+        GameOver?.Invoke();
     }
 }

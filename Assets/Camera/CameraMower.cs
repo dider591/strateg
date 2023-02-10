@@ -25,6 +25,7 @@ public class CameraMower : MonoBehaviour
 
     private void MoweCircle()
     {
+            Debug.Log("CameraMower");
         transform.rotation *= Quaternion.Euler(new Vector3(0, -_speed, 0) * Time.deltaTime);
     }
 }

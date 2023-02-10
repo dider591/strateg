@@ -879,6 +879,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _radius: 5
+  _damage: 0
+  _healing: 0.05
   _health: 10
   _ragdoll: {fileID: 757878315285055693, guid: ee350c505bb685b4b813a182ab97d5f6, type: 3}
 --- !u!54 &4041032793023340720

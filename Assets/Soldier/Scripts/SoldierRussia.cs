@@ -1,11 +1,27 @@
+using System.Collections;
 using UnityEngine;
 
 public class SoldierRussia : Soldier
 {
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.TryGetComponent<HelicopterMain>(out HelicopterMain helicopterMain))
+        {
+            _applyDamage = StartCoroutine(ApplyDamage(helicopterMain));
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.TryGetComponent<HelicopterMain>(out HelicopterMain helicopterMain))
+        {
+            StopCoroutine(_applyDamage);
+        }
+    }
+
     public override void SearchTarget()
     {
         Collider[] _colliders = Physics.OverlapSphere(transform.position, _radius);
-        bool _isFindSoldier = false;
 
         foreach (var collider in _colliders)
         {
@@ -16,10 +32,18 @@ public class SoldierRussia : Soldier
                     if (soldierUsa.Health > 0)
                     {
                         _target = target;
-                        _isFindSoldier = true;
                     }
                 }
             }
+        }
+    }
+
+    private IEnumerator ApplyDamage(HelicopterMain helicopterMain)
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(_delay);
+            helicopterMain.TakeDamage(_damage);
         }
     }
 }

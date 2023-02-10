@@ -10,6 +10,7 @@ public class RocketTerrorist : MonoBehaviour
     [SerializeField] private Transform _helicopter;
     [SerializeField] private float _minDistance;
     [SerializeField] private AudioSource _audio;
+    [SerializeField] private float _damage;
 
     private bool _isPlayAudio = false;
 
@@ -44,6 +45,7 @@ public class RocketTerrorist : MonoBehaviour
             //_effectBoom.Play();
             //_audioBoom.Play();
             Instantiate(_effectBoom, transform.position, transform.rotation);
+            helicopter.TakeDamage(_damage);
             Destroy(gameObject);
         }
     }

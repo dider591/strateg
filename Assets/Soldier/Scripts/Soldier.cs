@@ -4,10 +4,15 @@ using UnityEngine.Events;
 public abstract class Soldier : MonoBehaviour
 {
     [SerializeField] protected float _radius;
+    [SerializeField] protected float _damage;
+    [SerializeField] protected float _healing;
     [SerializeField] private int _health;
     [SerializeField] private Ragdoll _ragdoll;
 
     protected Target _target;
+    protected Coroutine _applyDamage;
+    protected Coroutine _applyHealing;
+    protected float _delay = 5f;
     private Vector3 _crashPoint;
     private float _randomStepPoint = 0.5f;
 
@@ -16,6 +21,8 @@ public abstract class Soldier : MonoBehaviour
     public Vector3 CrashPoint => _crashPoint;
 
     public event UnityAction Dying;
+
+
 
     private void Update()
     {
@@ -27,7 +34,6 @@ public abstract class Soldier : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        Debug.Log("Soldier");
         _health -= damage;
 
         if (_health <= 0)
@@ -39,7 +45,6 @@ public abstract class Soldier : MonoBehaviour
 
     public void OnDied()
     {
-        //_ragdoll.ActivateRagdoll();
         Instantiate(_ragdoll, transform.position, transform.rotation);
         Destroy(gameObject);
     }
