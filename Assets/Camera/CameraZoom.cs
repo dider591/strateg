@@ -1,82 +1,80 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraZoom : MonoBehaviour
 {
-    [SerializeField] private int _maxValue;
-    [SerializeField] private int _minValue;
-    [SerializeField] private float _cameraOffsetLimit;
-    [SerializeField] private float _speed;
-    [SerializeField] private Camera _camera;
+    [SerializeField] private float _maxZoom;
+    [SerializeField] private float _minZoom;
     [SerializeField] private float sensitivity;
+    [SerializeField] private float _cameraOffsetLimit;
 
-    private Vector2 f0start;
-    private Vector2 f1start;
-
-    private float mouseX;
-    private float mouseY;
-    private bool _isZoom;
-    private Vector3 _touchStart;
-    private float _currentDelta;
+    private float _distance;
+    private float _currentZoom;
 
     private void Update()
     {
-        if (Input.touchCount < 2)
+        if (Input.mouseScrollDelta.y != 0)
         {
-            f0start = Vector2.zero;
-            f1start = Vector2.zero;
+            ZoomDesktop();
         }
-        if (Input.touchCount == 2) Zoom();
-
-        //if (Input.GetMouseButtonUp(0))
-        //{
-        //    _camera.fieldOfView = _maxValue;
-        //    _isZoom = false;
-        //}
-        //if (Input.GetMouseButtonDown(1))
-        //{
-        //    _camera.fieldOfView = _minValue;
-        //    _isZoom = true;
-        //}
-
-        //if (_isZoom == true)
-        //{
-        //    Look();
-        //}
-    }
-
-    private void Look()
-    {
-        mouseX += Input.GetAxis("Mouse X") * _speed * Time.deltaTime;
-        mouseY += Input.GetAxis("Mouse Y") * _speed * Time.deltaTime;
-
-        transform.localRotation = Quaternion.Euler(
-            new Vector3(-Mathf.Clamp(mouseY, -_cameraOffsetLimit, _cameraOffsetLimit),
-            Mathf.Clamp(mouseX, -_cameraOffsetLimit, _cameraOffsetLimit),
-            transform.localRotation.z)
-            );
-
-        transform.localPosition = new Vector3(
-            Mathf.Clamp(mouseX, -_cameraOffsetLimit, _cameraOffsetLimit),
-            Mathf.Clamp(mouseY, -_cameraOffsetLimit, _cameraOffsetLimit),
-            transform.localRotation.z
-        );
-    }
-
-    private void Zoom()
-    {
-        if (f0start == Vector2.zero && f1start == Vector2.zero)
+        if (Input.touchCount == 2)
         {
-            f0start = Input.GetTouch(0).position;
-            f1start = Input.GetTouch(1).position;
+            ZoomMobile();
+        }
+        else if (_distance != 0)
+        {
+            _distance = 0;
         }
 
-        Vector2 f0position = Input.GetTouch(0).position;
-        Vector2 f1position = Input.GetTouch(1).position;
+        ControlPosition();
+    }
 
-        float dir = Mathf.Sign(Vector2.Distance(f1start, f0start) - Vector2.Distance(f0position, f1position));
-        transform.position = Vector3.MoveTowards(transform.position, transform.position + transform.forward, dir * sensitivity * Time.deltaTime * Vector3.Distance(f0position, f1position));
+    private void ZoomMobile()
+    {
+        Vector2 fingerOne = Input.GetTouch(0).position;
+        Vector2 fingerTwo = Input.GetTouch(1).position;
+
+        if (_distance == 0) _distance = Vector2.Distance(fingerOne, fingerTwo);
+
+        float delta = Vector2.Distance(fingerOne, fingerTwo) - _distance;
+        Camera.main.fieldOfView -= delta * Time.deltaTime;
+        _distance = Vector2.Distance(fingerOne, fingerTwo);
+
+        if (Camera.main.fieldOfView < _minZoom)
+        {
+            Camera.main.fieldOfView = _minZoom;
+        }
+        if (Camera.main.fieldOfView > _maxZoom)
+        {
+            Camera.main.fieldOfView = _maxZoom;
+        }
+    }
+
+    private void ZoomDesktop()
+    {
+        _currentZoom = Camera.main.fieldOfView;
+        _currentZoom -= Input.mouseScrollDelta.y * sensitivity;
+        _currentZoom = Mathf.Clamp(_currentZoom, _minZoom, _maxZoom);
+        Camera.main.fieldOfView = _currentZoom;
+    }
+
+    private void ControlPosition()
+    {
+        if (transform.localPosition.x < -_cameraOffsetLimit)
+        {
+            transform.localPosition = new Vector3(-_cameraOffsetLimit, transform.localPosition.y, transform.localPosition.z);
+        }
+        if (transform.localPosition.x > _cameraOffsetLimit)
+        {
+            transform.localPosition = new Vector3(_cameraOffsetLimit, transform.localPosition.y, transform.localPosition.z);
+        }
+        if (transform.localPosition.y < -_cameraOffsetLimit)
+        {
+            transform.localPosition = new Vector3(transform.localPosition.x, -_cameraOffsetLimit, transform.localPosition.z);
+        }
+        if (transform.localPosition.y > _cameraOffsetLimit)
+        {
+            transform.localPosition = new Vector3(transform.localPosition.x, _cameraOffsetLimit, transform.localPosition.z);
+        }
     }
 }
 
