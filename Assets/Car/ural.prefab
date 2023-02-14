@@ -1233,7 +1233,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4251073577718406194}
   - component: {fileID: 27966391453970255}
-  - component: {fileID: 8920632224014938927}
+  - component: {fileID: 2047667161}
+  - component: {fileID: 6742778090127147205}
+  - component: {fileID: 4483664531059769853}
+  - component: {fileID: 5146182459535602450}
   m_Layer: 0
   m_Name: ural
   m_TagString: Untagged
@@ -1285,6 +1288,7 @@ Transform:
   - {fileID: 3057453577005166283}
   - {fileID: 1538577604142873264}
   - {fileID: 6941633336114407548}
+  - {fileID: 822416017421787202}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1307,7 +1311,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &8920632224014938927
+--- !u!114 &2047667161
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1316,10 +1320,57 @@ MonoBehaviour:
   m_GameObject: {fileID: 3581778191678965384}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f807e2b078aa6849be77b7130915967, type: 3}
+  m_Script: {fileID: 11500000, guid: 56fdd8a831817aa4b9faa696a5c586c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _targetPoint: {fileID: 0}
+  _ragdoll: {fileID: 1131725640182092334, guid: c3b0e36bb5d394b498a7caa866932c9a, type: 3}
+  _targetPoint: {x: -0.47, y: 0.965, z: 16.99}
+  _spawnSoldierPoint: {fileID: 822416017421787202}
+  _soldier: {fileID: 3732363592648562764, guid: b813b53e606be514e9227690e8df9f41, type: 3}
+  _countSoldier: 3
+  _health: 10
+  _stepSpawn: 1
+--- !u!114 &6742778090127147205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3581778191678965384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0de7b8db1bbb60d47afc88a099d5a926, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &4483664531059769853
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3581778191678965384}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.72401106, y: 0.8824832, z: 2.1423686}
+  m_Center: {x: -0.015388429, y: 0.05875904, z: -0.030687451}
+--- !u!54 &5146182459535602450
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3581778191678965384}
+  serializedVersion: 2
+  m_Mass: 10
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 64
+  m_CollisionDetection: 0
 --- !u!1 &3764142312013196869
 GameObject:
   m_ObjectHideFlags: 0
@@ -2711,6 +2762,36 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &8487532767586396839
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 822416017421787202}
+  m_Layer: 0
+  m_Name: SpawnSoldierPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &822416017421787202
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8487532767586396839}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1.37}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4251073577718406194}
+  m_RootOrder: 33
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8497704650497326489
 GameObject:
   m_ObjectHideFlags: 0

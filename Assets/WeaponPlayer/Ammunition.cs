@@ -44,6 +44,10 @@ public abstract class Ammunition : MonoBehaviour
                 {
                     soldier.TakeDamage(_damage);
                 }
+                if (rigidbody.TryGetComponent<Car>(out Car car))
+                {
+                    car.TakeDamage(_damage);
+                }
             }
         }
     }

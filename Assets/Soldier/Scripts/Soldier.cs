@@ -22,8 +22,6 @@ public abstract class Soldier : MonoBehaviour
 
     public event UnityAction Dying;
 
-
-
     private void Update()
     {
         if (_target == null)
@@ -59,4 +57,9 @@ public abstract class Soldier : MonoBehaviour
     }
 
     public abstract void SearchTarget();
+
+    internal void TakeDamage(object damage)
+    {
+        throw new System.NotImplementedException();
+    }
 }

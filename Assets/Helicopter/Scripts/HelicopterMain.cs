@@ -34,7 +34,6 @@ public class HelicopterMain : MonoBehaviour
         }
     }
 
-
     public void TakeDamage(float damage)
     {
         _health -= damage;

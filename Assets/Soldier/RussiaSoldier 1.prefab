@@ -738,6 +738,7 @@ GameObject:
   - component: {fileID: 6775597764755443529}
   - component: {fileID: -4371124590666876498}
   - component: {fileID: 3767922915257485402}
+  - component: {fileID: 986354724733561734}
   m_Layer: 3
   m_Name: RussiaSoldier 1
   m_TagString: Untagged
@@ -912,6 +913,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.11236568, y: 0.3668336, z: 0.073949315}
   m_Center: {x: 0.0047844425, y: 0.17509411, z: 0.0068614}
+--- !u!114 &986354724733561734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2283764695943371695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0de7b8db1bbb60d47afc88a099d5a926, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2393277705942222757
 GameObject:
   m_ObjectHideFlags: 0
