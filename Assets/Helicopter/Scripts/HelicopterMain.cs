@@ -11,6 +11,7 @@ public class HelicopterMain : MonoBehaviour
     public UnityAction<Vector3> CrashedPoint;
     public UnityAction<float> HealthChanged;
     public UnityAction GameOver;
+    public UnityAction Healed;
 
     private float _maxHealth = 1f;
     private float _minHealth = 0f;
@@ -50,8 +51,9 @@ public class HelicopterMain : MonoBehaviour
         _health += healing;
         HealthChanged?.Invoke(_health);
 
-        if (_health > _maxHealth)
+        if (_health >= _maxHealth)
         {
+            Healed?.Invoke();
             _health = _maxHealth;
         }
     }

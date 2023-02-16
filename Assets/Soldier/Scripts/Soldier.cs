@@ -54,6 +54,7 @@ public abstract class Soldier : MonoBehaviour
         Vector3 correctPoint = new Vector3(pointX, point.y, pointZ);
 
         _crashPoint = correctPoint;
+        Debug.Log("Soldier point = " + _crashPoint);
     }
 
     public abstract void SearchTarget();

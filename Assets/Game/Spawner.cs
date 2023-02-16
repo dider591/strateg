@@ -10,24 +10,30 @@ public abstract class Spawner : MonoBehaviour
     [SerializeField] private int _countWaves;
     [SerializeField] private float _stepSpawn;
 
+    protected Vector3 _crashedPoint;
     private bool _isCrashed = false;
     private bool _isAllCreated = false;
-    protected Vector3 _crashedPoint;
+    private bool _isTwoWave = false;
+
+    private int _coefficient = 5;
 
     private void OnEnable()
     {
         _helicopterMain.CrashedPoint += OnHelicopterCrash;
+        _helicopterMain.Healed += OnHealed;
     }
 
     private void OnDisable()
     {
         _helicopterMain.CrashedPoint -= OnHelicopterCrash;
+        _helicopterMain.Healed -= OnHealed;
     }
 
     private void OnHelicopterCrash(Vector3 target)
     {
         _crashedPoint = target;
         _isCrashed = true;
+        Debug.Log("Spawner point = " + _crashedPoint);
     }
 
     private void Update()
@@ -50,5 +56,13 @@ public abstract class Spawner : MonoBehaviour
 
             yield return new WaitForSeconds(_stepSpawn);
         }
+    }
+
+    private void OnHealed()
+    {
+        _countWaves += _coefficient;
+        _countUnit += _coefficient;
+        _isTwoWave = true;
+        _isAllCreated = false;
     }
 }

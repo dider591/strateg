@@ -1327,9 +1327,9 @@ MonoBehaviour:
   _targetPoint: {x: -0.47, y: 0.965, z: 16.99}
   _spawnSoldierPoint: {fileID: 822416017421787202}
   _soldier: {fileID: 3732363592648562764, guid: b813b53e606be514e9227690e8df9f41, type: 3}
-  _countSoldier: 3
+  _countSoldier: 8
   _health: 10
-  _stepSpawn: 1
+  _stepSpawn: 2
 --- !u!114 &6742778090127147205
 MonoBehaviour:
   m_ObjectHideFlags: 0
