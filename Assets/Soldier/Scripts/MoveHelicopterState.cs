@@ -6,6 +6,11 @@ public class MoveHelicopterState : SoldierAction
 {
     private int Run = Animator.StringToHash("Run");
 
+    public override void OnStart()
+    {
+        Debug.Log("MoveHelicopterState");
+    }
+
     public override TaskStatus OnUpdate()
     {
         if (_soldier.CrashPoint != null)

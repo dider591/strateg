@@ -6,6 +6,11 @@ public class MoveTargetState : SoldierAction
 {
     private int Run = Animator.StringToHash("Run");
 
+    public override void OnStart()
+    {
+        Debug.Log("MoveTargetState");
+    }
+
     public override TaskStatus OnUpdate()
     {
         if (_soldier.Target != null)

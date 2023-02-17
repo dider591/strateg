@@ -6,6 +6,11 @@ public class IdleState : SoldierAction
 {
     private int IdleAnimation = Animator.StringToHash("Idle");
 
+    public override void OnStart()
+    {
+        Debug.Log("IdleState");
+    }
+
     public override TaskStatus OnUpdate()
     {
         if (_soldier.Target == null)
@@ -16,5 +21,4 @@ public class IdleState : SoldierAction
         return TaskStatus.Failure;
     }
 
-    // Создать поведение мув к точке
 }
