@@ -6,12 +6,6 @@ public class AttackState : SoldierAction
 {
     private int ShootAnimation = Animator.StringToHash("Shoot");
 
-    public override void OnStart()
-    {
-        Debug.Log("AttackState");
-    }
-
-
     public override TaskStatus OnUpdate()
     {
         if (_soldier.Target != null)

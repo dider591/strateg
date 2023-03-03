@@ -1,50 +1,43 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public abstract class Soldier : MonoBehaviour
+public abstract class Soldier : Unit
 {
     [SerializeField] protected float _radius;
     [SerializeField] protected float _damage;
     [SerializeField] protected float _healing;
-    [SerializeField] private int _health;
-    [SerializeField] private Ragdoll _ragdoll;
 
-    protected Target _target;
+    protected Unit _target;
     protected Coroutine _applyDamage;
     protected Coroutine _applyHealing;
     protected float _delay = 5f;
     private Vector3 _crashPoint;
     private float _randomStepPoint = 0.5f;
+    private Ragdoll _ragdoll;
 
-    public Target Target => _target;
-    public int Health => _health;
+    public Unit Target => _target;
+
+
     public Vector3 CrashPoint => _crashPoint;
 
     public event UnityAction Dying;
 
+    private void Awake()
+    {
+        _ragdoll = GetComponent<Ragdoll>();
+    }
+
     private void Update()
     {
-        if (_target == null)
+        if(_target == null)
         {
             SearchTarget();
         }
-    }
-
-    public void TakeDamage(int damage)
-    {
-        _health -= damage;
-
-        if (_health <= 0)
+        if (_target != null && _target.Health <= 0)
         {
-            Dying?.Invoke();
-            OnDied();
+            _target = null;
+            SearchTarget();
         }
-    }
-
-    public void OnDied()
-    {
-        Instantiate(_ragdoll, transform.position, transform.rotation);
-        Destroy(gameObject);
     }
 
     public void SetCrashPoint(Vector3 point)
@@ -54,13 +47,18 @@ public abstract class Soldier : MonoBehaviour
         Vector3 correctPoint = new Vector3(pointX, point.y, pointZ);
 
         _crashPoint = correctPoint;
-        Debug.Log("Soldier point = " + _crashPoint);
     }
 
     public abstract void SearchTarget();
 
-    internal void TakeDamage(object damage)
+    public void TakeDamage(int damage)
     {
-        throw new System.NotImplementedException();
+        _health -= damage;
+
+        if (_health <= 0)
+        {
+            Dying?.Invoke();
+            _ragdoll.Disable();
+        }
     }
 }

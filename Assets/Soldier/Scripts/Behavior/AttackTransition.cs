@@ -6,7 +6,6 @@ public class AttackTransition : SoldierConditional
 {
     [SerializeField] private float _transitionRange;
 
-
     public override TaskStatus OnUpdate()
     {
         if (_soldier.Target != null)

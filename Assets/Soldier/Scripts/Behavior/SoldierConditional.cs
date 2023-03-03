@@ -2,7 +2,7 @@ using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
 using UnityEngine;
 
-public class SoldierConditional : Conditional
+public abstract class SoldierConditional : Conditional
 {
     protected Soldier _soldier;
 

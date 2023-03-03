@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class Ammunition : MonoBehaviour
+public class Ammunition : MonoBehaviour
 {
     [SerializeField] private float _speed;
     [SerializeField] private int _damage;
@@ -40,9 +40,9 @@ public abstract class Ammunition : MonoBehaviour
             {
                 rigidbody.AddExplosionForce(_forse, transform.position, _radius, _modifier, ForceMode.Acceleration);
 
-                if (rigidbody.TryGetComponent<Soldier>(out Soldier soldier))
+                if (rigidbody.TryGetComponent<Bone>(out Bone bone))
                 {
-                    soldier.TakeDamage(_damage);
+                    bone.TakeDamage(_damage);
                 }
                 if (rigidbody.TryGetComponent<Car>(out Car car))
                 {

@@ -6,11 +6,6 @@ public class MoveTargetState : SoldierAction
 {
     private int Run = Animator.StringToHash("Run");
 
-    public override void OnStart()
-    {
-        Debug.Log("MoveTargetState");
-    }
-
     public override TaskStatus OnUpdate()
     {
         if (_soldier.Target != null)
@@ -23,8 +18,6 @@ public class MoveTargetState : SoldierAction
 
     private void MoveToPoint(Vector3 point)
     {
-        transform.LookAt(point);
-        transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
         _animator.Play(Run);
         _agent.SetDestination(point);
     }

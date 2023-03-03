@@ -11,8 +11,6 @@ public class Player : MonoBehaviour
     [SerializeField] private GameScreen _gameScreen;
     public Weapon CurrentWeapon => _currentWeapon;
 
-    //public UnityAction ClickWeapon 
-
     private Weapon _currentWeapon;
     private RaycastHit hit;
 
@@ -31,17 +29,6 @@ public class Player : MonoBehaviour
     private void Update()
     {
         AimRay();
-
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            Shooting(_bazooka);
-            Debug.Log("Работает Базука");
-        }
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            Shooting(_machineGun);
-            Debug.Log("Работает Пулемет");
-        }
     }
 
     public void Shooting(Weapon weapon)

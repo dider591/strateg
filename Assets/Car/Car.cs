@@ -3,25 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class Car : MonoBehaviour
+public class Car : Unit
 {
-    [SerializeField] private Ragdoll _ragdoll;
+    [SerializeField] private RagdollCar _ragdollCar;
+    [SerializeField] private Mesh _meshRegdoll;
     [SerializeField] private Vector3 _targetPoint;
     [SerializeField] private Transform _spawnSoldierPoint;
     [SerializeField] private Soldier _soldier;
     [SerializeField] private int _countSoldier;
-    [SerializeField] private int _health;
     [SerializeField] private float _stepSpawn;
 
-    public float Health => _health;
-
     private Rigidbody _rigidbody;
+    private MeshRenderer _meshRenderer;
     private Vector3 _crashPoint;
     private bool _isAllCreated;
     private float _radius = 1f;
     private float _forse = 600f;
     private float _modifier = 2;
-    private int _damage = 10;
+    private int _damage = 10;  
 
     private void OnTriggerEnter(Collider other)
     {
@@ -45,7 +44,7 @@ public class Car : MonoBehaviour
         if (_isAllCreated == false && transform.position == _targetPoint)
         {
             _isAllCreated = true;
-            StartCoroutine(InstantiateCars());
+            StartCoroutine(InstantiateSoldiers());
         }
     }
 
@@ -66,7 +65,8 @@ public class Car : MonoBehaviour
     public void Died()
     {      
         Explosion();
-        Instantiate(_ragdoll, transform.position, transform.rotation);
+        ////_meshRenderer.me
+        Instantiate(_ragdollCar, transform.position, transform.rotation);
         Destroy(gameObject);
     }
 
@@ -91,7 +91,7 @@ public class Car : MonoBehaviour
         }
     }
 
-    private IEnumerator InstantiateCars()
+    private IEnumerator InstantiateSoldiers()
     {
         if (transform.position == _targetPoint)
         {

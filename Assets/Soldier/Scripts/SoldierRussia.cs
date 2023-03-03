@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class SoldierRussia : Soldier
@@ -25,14 +26,11 @@ public class SoldierRussia : Soldier
 
         foreach (var collider in _colliders)
         {
-            if (collider.TryGetComponent<Target>(out Target target))
+            if (collider.TryGetComponent<Unit>(out Unit targetUnit))
             {
-                if (target.TryGetComponent<SoldierUsa>(out SoldierUsa soldierUsa))
+                if (targetUnit.TryGetComponent<SoldierUSA> (out SoldierUSA soldierUSA) && targetUnit.Health > 0)
                 {
-                    if (soldierUsa.Health > 0)
-                    {
-                        _target = target;
-                    }
+                    _target = targetUnit;
                 }
             }
         }

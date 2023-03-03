@@ -12,7 +12,7 @@ public class SoldierAction : Action
     public override void OnAwake()
     {
         _soldier = GetComponent<Soldier>();
-        _animator = gameObject.GetComponentInChildren<Animator>();
+        _animator = GetComponent<Animator>();
         _agent = GetComponent<NavMeshAgent>();
     }
 }

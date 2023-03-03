@@ -1,7 +1,8 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class SoldierUsa : Soldier
+public class SoldierUSA : Soldier
 {
     private void OnTriggerEnter(Collider other)
     {
@@ -25,14 +26,11 @@ public class SoldierUsa : Soldier
 
         foreach (var collider in _colliders)
         {
-            if (collider.TryGetComponent<Target>(out Target target))
+            if (collider.TryGetComponent<Unit>(out Unit targetUnit))
             {
-                if (target.TryGetComponent<SoldierRussia>(out SoldierRussia soldierRussia))
+                if (targetUnit.TryGetComponent<SoldierRussia>(out SoldierRussia soldierRussia) && targetUnit.Health > 0)
                 {
-                    if (soldierRussia.Health > 0)
-                    {
-                        _target = target;
-                    }
+                    _target = targetUnit;
                 }
             }
         }

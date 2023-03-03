@@ -10,6 +10,8 @@ public class GameScreen : Screen
     [SerializeField] private HelicopterMain _helicopterMain;
     [SerializeField] private Button _menuButton;
     [SerializeField] private Button _machineGun;
+    [SerializeField] private Button _zoomIn;
+    [SerializeField] private Button _zoomOut;
     [SerializeField] private Button _missile;
     [SerializeField] private Image _fillMissile;
     [SerializeField] private Image _fillMachineGun;
@@ -21,7 +23,7 @@ public class GameScreen : Screen
 
     private float _delayMissile = 10f;
     private float _delayMachineGun = 5f;
-    private float _delayButtons = 8f;
+    private float _delayButtons = 9f;
     private float _healthChangeDurationn = 1f;
     private float _fillAmountMax = 1f;
     private float _fillAmountMin = 0f;
@@ -104,6 +106,8 @@ public class GameScreen : Screen
         _menuButton.gameObject.SetActive(false);
         _machineGun.gameObject.SetActive(false);
         _missile.gameObject.SetActive(false);
+        _zoomIn.gameObject.SetActive(false);
+        _zoomOut.gameObject.SetActive(false);
     }
 
     private void ActivateButtons()
@@ -111,5 +115,7 @@ public class GameScreen : Screen
         _menuButton.gameObject.SetActive(true);
         _machineGun.gameObject.SetActive(true);
         _missile.gameObject.SetActive(true);
+        _zoomIn.gameObject.SetActive(true);
+        _zoomOut.gameObject.SetActive(true);
     }
 }

@@ -4,49 +4,33 @@ using UnityEngine;
 
 public abstract class Spawner : MonoBehaviour
 {
-    [SerializeField] private HelicopterMain _helicopterMain;
     [SerializeField] private Unit _unit;
     [SerializeField] private int _countUnit;
     [SerializeField] private int _countWaves;
     [SerializeField] private float _stepSpawn;
 
     protected Vector3 _crashedPoint;
-    private bool _isCrashed = false;
-    private bool _isAllCreated = false;
-    private bool _isTwoWave = false;
+    private bool _isAllCreated;
+    private bool _isInit;
 
-    private int _coefficient = 5;
-
-    private void OnEnable()
+    public void Init(Vector3 crashedPoint)
     {
-        _helicopterMain.CrashedPoint += OnHelicopterCrash;
-        _helicopterMain.Healed += OnHealed;
-    }
-
-    private void OnDisable()
-    {
-        _helicopterMain.CrashedPoint -= OnHelicopterCrash;
-        _helicopterMain.Healed -= OnHealed;
-    }
-
-    private void OnHelicopterCrash(Vector3 target)
-    {
-        _crashedPoint = target;
-        _isCrashed = true;
-        Debug.Log("Spawner point = " + _crashedPoint);
+        _crashedPoint = crashedPoint;
+        _isInit = true;
     }
 
     private void Update()
     {
-        if (_isCrashed && _isAllCreated == false)
+        if (_isInit && !_isAllCreated)
         {
-            _isAllCreated = true;
-            StartCoroutine(InstantiateWaves());
+            StartCoroutine(InstantiateUnits());
         }
     }
 
-    private IEnumerator InstantiateWaves()
+    private IEnumerator InstantiateUnits()
     {
+        _isAllCreated = true;
+
         for (int i = 0; i < _countWaves; i++)
         {
             for (int a = 0; a < _countUnit; a++)
@@ -56,13 +40,5 @@ public abstract class Spawner : MonoBehaviour
 
             yield return new WaitForSeconds(_stepSpawn);
         }
-    }
-
-    private void OnHealed()
-    {
-        _countWaves += _coefficient;
-        _countUnit += _coefficient;
-        _isTwoWave = true;
-        _isAllCreated = false;
     }
 }
