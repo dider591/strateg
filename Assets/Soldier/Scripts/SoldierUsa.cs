@@ -8,7 +8,7 @@ public class SoldierUSA : Soldier
     {
         if (other.TryGetComponent<HelicopterMain>(out HelicopterMain helicopterMain))
         {
-            _applyHealing = StartCoroutine(ApplyHealing(helicopterMain));
+            _applyDamage = StartCoroutine(ApplyDamage(helicopterMain));
         }
     }
 
@@ -16,7 +16,7 @@ public class SoldierUSA : Soldier
     {
         if (other.TryGetComponent<HelicopterMain>(out HelicopterMain helicopterMain))
         {
-            StopCoroutine(_applyHealing);
+            StopCoroutine(_applyDamage);
         }
     }
 
@@ -36,12 +36,12 @@ public class SoldierUSA : Soldier
         }
     }
 
-    private IEnumerator ApplyHealing(HelicopterMain helicopterMain)
+    private IEnumerator ApplyDamage(HelicopterMain helicopterMain)
     {
         while (true)
         {
             yield return new WaitForSeconds(_delay);
-            helicopterMain.Healing(_healing);
+            helicopterMain.TakeDamage(_damage);
         }
     }
 }

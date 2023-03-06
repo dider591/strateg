@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,8 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private Weapon _bazooka;
     [SerializeField] private Weapon _machineGun;
+    [SerializeField] private Squad _squad;
+    [SerializeField] private Weapon _artStrike;
     [SerializeField] private GameScreen _gameScreen;
     public Weapon CurrentWeapon => _currentWeapon;
 
@@ -18,6 +21,18 @@ public class Player : MonoBehaviour
     {
         _gameScreen.MachineGunButtonClick += OnMachineGunButtonClick;
         _gameScreen.MessileButtonClick += OnMessileButtonClick;
+        _gameScreen.SquadButtonClick += OnSquadButtonClick;
+        _gameScreen.ArtStrskeButtonClick += OnArtStrakeButtonClick;
+    }
+
+    private void OnArtStrakeButtonClick()
+    {
+        Shooting(_artStrike);
+    }
+
+    private void OnSquadButtonClick()
+    {
+        _squad.OnSquadsButtonClick();
     }
 
     private void OnDisable()

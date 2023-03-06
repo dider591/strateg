@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using DG.Tweening;
+using System;
 
 public class GameScreen : Screen
 {
@@ -13,16 +14,24 @@ public class GameScreen : Screen
     [SerializeField] private Button _zoomIn;
     [SerializeField] private Button _zoomOut;
     [SerializeField] private Button _missile;
+    [SerializeField] private Button _squad;
+    [SerializeField] private Button _artStrike;
     [SerializeField] private Image _fillMissile;
     [SerializeField] private Image _fillMachineGun;
     [SerializeField] private Image _fillHealth;
+    [SerializeField] private Image _fillSquads;
+    [SerializeField] private Image _fillArtStrike;
 
     public UnityAction MenuButtonClick;
     public UnityAction MachineGunButtonClick;
     public UnityAction MessileButtonClick;
+    public UnityAction SquadButtonClick;
+    public UnityAction ArtStrskeButtonClick;
 
     private float _delayMissile = 10f;
     private float _delayMachineGun = 5f;
+    private float _delaySquad = 10f;
+    private float _delayArtStrike = 10f;
     private float _delayButtons = 9f;
     private float _healthChangeDurationn = 1f;
     private float _fillAmountMax = 1f;
@@ -42,6 +51,8 @@ public class GameScreen : Screen
         _menuButton.onClick.AddListener(OnMenuButtonClick);
         _machineGun.onClick.AddListener(OnMachineGunButtonClick);
         _missile.onClick.AddListener(OnMessileButtonClick);
+        _squad.onClick.AddListener(OnSquadsButtonClick);
+        _artStrike.onClick.AddListener(OnArtStrikeButtonClick);
     }
 
     private void OnDisable()
@@ -50,6 +61,22 @@ public class GameScreen : Screen
         _menuButton.onClick.RemoveListener(OnMenuButtonClick);
         _machineGun.onClick.RemoveListener(OnMachineGunButtonClick);
         _missile.onClick.RemoveListener(OnMessileButtonClick);
+        _squad.onClick.RemoveListener(OnSquadsButtonClick);
+        _artStrike.onClick.RemoveListener(OnArtStrikeButtonClick);
+    }
+
+    private void OnArtStrikeButtonClick()
+    {
+        ArtStrskeButtonClick?.Invoke();
+        Recharges(_fillArtStrike, _delayArtStrike);
+        StartCoroutine(BlocksButton(_artStrike, _delayArtStrike));
+    }
+
+    private void OnSquadsButtonClick()
+    {
+        SquadButtonClick?.Invoke();
+        Recharges(_fillSquads, _delaySquad);
+        StartCoroutine(BlocksButton(_squad, _delaySquad));
     }
 
     public override void Close()
@@ -86,6 +113,7 @@ public class GameScreen : Screen
     private void Recharges(Image image, float delay)
     {
         image.fillAmount = _fillAmountMax;
+
         image.DOFillAmount(_fillAmountMin, delay);
     }
 
@@ -106,6 +134,8 @@ public class GameScreen : Screen
         _menuButton.gameObject.SetActive(false);
         _machineGun.gameObject.SetActive(false);
         _missile.gameObject.SetActive(false);
+        _squad.gameObject.SetActive(false);
+        _artStrike.gameObject.SetActive(false);
         _zoomIn.gameObject.SetActive(false);
         _zoomOut.gameObject.SetActive(false);
     }
@@ -115,6 +145,8 @@ public class GameScreen : Screen
         _menuButton.gameObject.SetActive(true);
         _machineGun.gameObject.SetActive(true);
         _missile.gameObject.SetActive(true);
+        _squad.gameObject.SetActive(true);
+        _artStrike.gameObject.SetActive(true);
         _zoomIn.gameObject.SetActive(true);
         _zoomOut.gameObject.SetActive(true);
     }

@@ -8,28 +8,33 @@ public abstract class Spawner : MonoBehaviour
     [SerializeField] private int _countUnit;
     [SerializeField] private int _countWaves;
     [SerializeField] private float _stepSpawn;
+    [SerializeField] private bool _isReady;
 
-    protected Vector3 _crashedPoint;
-    private bool _isAllCreated;
+    protected Vector3 CrashedPoint;
     private bool _isInit;
 
     public void Init(Vector3 crashedPoint)
     {
-        _crashedPoint = crashedPoint;
+        CrashedPoint = crashedPoint;
         _isInit = true;
     }
 
     private void Update()
     {
-        if (_isInit && !_isAllCreated)
+        if (_isInit && _isReady)
         {
             StartCoroutine(InstantiateUnits());
         }
     }
 
+    public void SetReady()
+    {
+        _isReady = true;
+    }
+
     private IEnumerator InstantiateUnits()
     {
-        _isAllCreated = true;
+        _isReady = false;
 
         for (int i = 0; i < _countWaves; i++)
         {

@@ -448,7 +448,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1157194418483437235}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.262, z: 0.226}
+  m_LocalPosition: {x: 0, y: 0.262, z: 0.252}
   m_LocalScale: {x: 0.82353175, y: 1.8543094, z: 0.6110985}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -768,7 +768,7 @@ GameObject:
   - component: {fileID: 6388933882992288129}
   - component: {fileID: 6586705008941846684}
   - component: {fileID: 4467749397924116752}
-  - component: {fileID: 57391019322562132}
+  - component: {fileID: 451071603469635304}
   m_Layer: 3
   m_Name: mixamorig:Hips
   m_TagString: Untagged
@@ -805,8 +805,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.07014356, y: 0.057383545, z: 0.03392884}
-  m_Center: {x: -0.0021040179, y: 0.022143472, z: -0.00445726}
+  m_Size: {x: 0.07014356, y: 0.057383545, z: 0.050061814}
+  m_Center: {x: -0.0021040179, y: 0.022143472, z: 0.0036092922}
 --- !u!54 &4467749397924116752
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -823,7 +823,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &57391019322562132
+--- !u!114 &451071603469635304
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -835,7 +835,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be0758176ac83744990f0d84f261b42d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _soldier: {fileID: -6311786382245468148}
+  _soldier: {fileID: 8163052035364453282}
 --- !u!1 &2098264887535685515
 GameObject:
   m_ObjectHideFlags: 0
@@ -881,10 +881,10 @@ GameObject:
   - component: {fileID: 5642961275058606371}
   - component: {fileID: 6775597764755443529}
   - component: {fileID: 4287407264755028526}
-  - component: {fileID: -6311786382245468148}
-  - component: {fileID: 7118187314744776476}
+  - component: {fileID: 3935586512595656855}
+  - component: {fileID: 8163052035364453282}
   m_Layer: 3
-  m_Name: USASoldier
+  m_Name: UsaSoldier
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1039,7 +1039,20 @@ MonoBehaviour:
   - {fileID: 2887114742020474187}
   _regdollMaterial: {fileID: 2100000, guid: 97461c1100248bb4c85ee7eedab9b770, type: 2}
   _renderer: {fileID: 1354277207040016201}
---- !u!114 &-6311786382245468148
+--- !u!65 &3935586512595656855
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2283764695943371695}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.042604305, y: 0.062781096, z: 0.03937339}
+  m_Center: {x: 0.0020598583, y: 0.33451182, z: -0.0064401506}
+--- !u!114 &8163052035364453282
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1055,19 +1068,6 @@ MonoBehaviour:
   _radius: 5
   _damage: 0
   _healing: 0.05
---- !u!65 &7118187314744776476
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2283764695943371695}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.042604305, y: 0.062781096, z: 0.03937339}
-  m_Center: {x: 0.0020598583, y: 0.33451182, z: -0.0064401506}
 --- !u!1 &2393277705942222757
 GameObject:
   m_ObjectHideFlags: 0
@@ -3326,10 +3326,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.015246395
+  m_Radius: 0.013843501
   m_Height: 0.055374004
   m_Direction: 1
-  m_Center: {x: -0.00015243671, y: 0.027687006, z: -0.0015553288}
+  m_Center: {x: 0, y: 0.027687002, z: 0}
 --- !u!54 &7127087809854248956
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3417,7 +3417,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7600368452634497168}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: -0.013, z: 0}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3625,7 +3625,7 @@ GameObject:
   - component: {fileID: 4708136508941526222}
   - component: {fileID: 3675615367602833037}
   - component: {fileID: 2919461913457141102}
-  - component: {fileID: 1332945008140045237}
+  - component: {fileID: 735345019092119963}
   m_Layer: 3
   m_Name: mixamorig:Spine1
   m_TagString: Untagged
@@ -3660,8 +3660,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.07059248, y: 0.054559436, z: 0.031399094}
-  m_Center: {x: 0.00049349305, y: 0.02727974, z: -0.011900069}
+  m_Size: {x: 0.07059248, y: 0.041299794, z: 0.04980039}
+  m_Center: {x: 0.00049349293, y: 0.0206499, z: -0.0026993956}
 --- !u!54 &3675615367602833037
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3724,7 +3724,7 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &1332945008140045237
+--- !u!114 &735345019092119963
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3736,7 +3736,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be0758176ac83744990f0d84f261b42d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _soldier: {fileID: -6311786382245468148}
+  _soldier: {fileID: 8163052035364453282}
 --- !u!1 &8012467725064763514
 GameObject:
   m_ObjectHideFlags: 0

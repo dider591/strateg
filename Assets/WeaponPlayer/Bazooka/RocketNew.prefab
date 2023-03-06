@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 5204373674905699228}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -0.096}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6424897768293484563}
@@ -52,9 +52,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 10
   _damage: 10
-  _radius: 0.8
+  _radius: 0.7
   _forse: 800
-  _modifier: 10
+  _modifier: 2
   _explosion: {fileID: -9105811596838308180, guid: a7c694f0877ea874fa57e033221095c3, type: 3}
 --- !u!136 &821189926632129100
 CapsuleCollider:

@@ -114,8 +114,8 @@ MonoBehaviour:
   _speed: 10
   _damage: 1
   _radius: 0.05
-  _forse: 100
-  _modifier: 2
+  _forse: 10
+  _modifier: 0.5
   _explosion: {fileID: 1083527779128879853, guid: 99bcac2ae0e90da48ba8fc0374e9e98f, type: 3}
 --- !u!54 &-2415725961973041523
 Rigidbody:

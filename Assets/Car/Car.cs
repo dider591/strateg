@@ -2,55 +2,41 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.AI;
 
-public class Car : Unit
+public abstract class Car : Unit
 {
     [SerializeField] private RagdollCar _ragdollCar;
-    [SerializeField] private Mesh _meshRegdoll;
-    [SerializeField] private Vector3 _targetPoint;
-    [SerializeField] private Transform _spawnSoldierPoint;
-    [SerializeField] private Soldier _soldier;
-    [SerializeField] private int _countSoldier;
-    [SerializeField] private float _stepSpawn;
 
-    private Rigidbody _rigidbody;
-    private MeshRenderer _meshRenderer;
-    private Vector3 _crashPoint;
-    private bool _isAllCreated;
+    protected Transform _targetPoint;
+    protected Rigidbody _rigidbody;
+    protected NavMeshAgent _agent;
+    protected Vector3 _crashPoint;
+    protected bool _isInit;
     private float _radius = 1f;
     private float _forse = 600f;
     private float _modifier = 2;
-    private int _damage = 10;  
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (_crashPoint != null)
-        {
-            if (other.TryGetComponent<Soldier>(out Soldier soldier))
-            {
-                soldier.SetCrashPoint(_crashPoint);
-            }
-        }
-    }
+    private int _damage = 10;
 
     private void Start()
     {
+        _agent = GetComponent<NavMeshAgent>();
         _rigidbody = GetComponent<Rigidbody>();
-        Move();
     }
 
     private void Update()
     {
-        if (_isAllCreated == false && transform.position == _targetPoint)
+        if (_isInit)
         {
-            _isAllCreated = true;
-            StartCoroutine(InstantiateSoldiers());
+            Move();
         }
     }
 
-    public void SetCrashPoint(Vector3 crashpoint)
+    public void Init(Vector3 crashpoint, Transform targetPoint)
     {
         _crashPoint = crashpoint;
+        _targetPoint = targetPoint;
+        _isInit = true;
     }
 
     public void TakeDamage(int damage)
@@ -63,16 +49,15 @@ public class Car : Unit
         }
     }
     public void Died()
-    {      
+    {
         Explosion();
-        ////_meshRenderer.me
         Instantiate(_ragdollCar, transform.position, transform.rotation);
         Destroy(gameObject);
     }
 
     private void Explosion()
     {
-        _rigidbody.AddForce(new Vector3(0,10,0));
+        _rigidbody.AddForce(new Vector3(0, 10, 0));
         Collider[] colliders = Physics.OverlapSphere(transform.position, _radius);
 
         foreach (var collider in colliders)
@@ -91,21 +76,8 @@ public class Car : Unit
         }
     }
 
-    private IEnumerator InstantiateSoldiers()
-    {
-        if (transform.position == _targetPoint)
-        {
-            for (int i = 0; i < _countSoldier; i++)
-            {
-                Instantiate(_soldier, _spawnSoldierPoint.position, _spawnSoldierPoint.rotation);
-            }
-        }
-
-        yield return new WaitForSeconds(_stepSpawn);
-    }
-
     private void Move()
     {
-        transform.DOMove(_targetPoint, 8f);
+        _agent.SetDestination(_targetPoint.position);
     }
 }
