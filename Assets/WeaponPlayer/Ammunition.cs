@@ -25,7 +25,7 @@ public class Ammunition : MonoBehaviour
     private void Update()
     {
         transform.Translate(0, 0, _speed * Time.deltaTime);
-        Destroy(gameObject, 5f);
+        Destroy(gameObject, 4f);
     }
 
     private void OnExplosion()
@@ -48,7 +48,7 @@ public class Ammunition : MonoBehaviour
                 {
                     car.TakeDamage(_damage);
                 }
-            }
+            }           
         }
     }
 }

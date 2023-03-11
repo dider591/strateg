@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class AttackState : SoldierAction
 {
+    //[SerializeField] private SharedTransform _rayPoint;
+    //[SerializeField] private int _damage;
+    //[SerializeField] private ParticleSystem _bulletEffect;
+    [SerializeField] private AudioSource _audioShoot;
+
     private int ShootAnimation = Animator.StringToHash("Shoot");
 
     public override TaskStatus OnUpdate()
@@ -23,6 +28,17 @@ public class AttackState : SoldierAction
 
     private void Shoot()
     {
+        //_bulletEffect.Play();
+        _audioShoot.Play();
         _animator.Play(ShootAnimation);
+
+        //RaycastHit hit;
+        //if (Physics.Raycast(_rayPoint.Value.position, _rayPoint. Value.forward, out hit))
+        //{
+        //    if (hit.collider.TryGetComponent(out Bone bone))
+        //    {
+        //        bone.TakeDamage(_damage);
+        //    }
+        //}
     }
 }

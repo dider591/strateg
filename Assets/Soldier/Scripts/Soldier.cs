@@ -11,12 +11,11 @@ public abstract class Soldier : Unit
     protected Coroutine _applyDamage;
     protected Coroutine _applyHealing;
     protected float _delay = 5f;
-    private Vector3 _crashPoint;
+
     private float _randomStepPoint = 0.5f;
     private Ragdoll _ragdoll;
 
     public Unit Target => _target;
-
 
     public Vector3 CrashPoint => _crashPoint;
 

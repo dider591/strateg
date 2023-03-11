@@ -16,11 +16,12 @@ public class SpawnerCar : Spawner
                 {
                     int randomPoint = (int)Random.Range(0f, _carTargetPoints.Length);
                     Transform _targetPoint = _carTargetPoints[randomPoint];
-                    car.Init(CrashedPoint, _targetPoint);
+                    car.SetTargetPoint(_targetPoint);
+                    car.Init(CrashedPoint);
                 }
                 else
                 {
-                    car.Init(CrashedPoint, _carTargetPoints[0]);
+                    car.SetTargetPoint(_carTargetPoints[0]);
                 }
             }
         }

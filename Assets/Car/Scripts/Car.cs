@@ -11,7 +11,6 @@ public abstract class Car : Unit
     protected Transform _targetPoint;
     protected Rigidbody _rigidbody;
     protected NavMeshAgent _agent;
-    protected Vector3 _crashPoint;
     protected bool _isInit;
     private float _radius = 1f;
     private float _forse = 600f;
@@ -32,9 +31,8 @@ public abstract class Car : Unit
         }
     }
 
-    public void Init(Vector3 crashpoint, Transform targetPoint)
+    public void SetTargetPoint(Transform targetPoint)
     {
-        _crashPoint = crashpoint;
         _targetPoint = targetPoint;
         _isInit = true;
     }
