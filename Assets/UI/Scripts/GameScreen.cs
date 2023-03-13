@@ -5,6 +5,7 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 using DG.Tweening;
 using System;
+using TMPro;
 
 public class GameScreen : Screen
 {
@@ -21,12 +22,14 @@ public class GameScreen : Screen
     [SerializeField] private Image _fillHealth;
     [SerializeField] private Image _fillSquads;
     [SerializeField] private Image _fillArtStrike;
+    [SerializeField] private Player _player;
+    [SerializeField] private TextMeshProUGUI _maneyCount;
 
-    public UnityAction MenuButtonClick;
-    public UnityAction MachineGunButtonClick;
-    public UnityAction MessileButtonClick;
-    public UnityAction SquadButtonClick;
-    public UnityAction ArtStrskeButtonClick;
+    //public UnityAction MenuButtonClick;
+    //public UnityAction MachineGunButtonClick;
+    //public UnityAction MessileButtonClick;
+    //public UnityAction SquadButtonClick;
+    //public UnityAction ArtStrskeButtonClick;
 
     private float _delayMissile = 10f;
     private float _delayMachineGun = 5f;
@@ -34,10 +37,11 @@ public class GameScreen : Screen
     private float _delayArtStrike = 10f;
     private float _delayButtons = 9f;
     private float _healthChangeDurationn = 1f;
-    private float _fillAmountMax = 1f;
-    private float _fillAmountMin = 0f;
+    //private float _fillAmountMax = 1f;
+    //private float _fillAmountMin = 0f;
     private float _canvasAlphaMax = 1f;
     private float _canvasAlphaMin = 0f;
+    private int _priceMessile = 100;
 
     private void Awake()
     {
@@ -48,35 +52,23 @@ public class GameScreen : Screen
     {
         Invoke(nameof(ActivateButtons), _delayButtons);
         _helicopterMain.HealthChanged += OnHealthChanged;
-        _menuButton.onClick.AddListener(OnMenuButtonClick);
-        _machineGun.onClick.AddListener(OnMachineGunButtonClick);
-        _missile.onClick.AddListener(OnMessileButtonClick);
-        _squad.onClick.AddListener(OnSquadsButtonClick);
-        _artStrike.onClick.AddListener(OnArtStrikeButtonClick);
+        //_menuButton.onClick.AddListener(OnMenuButtonClick);
+        //_machineGun.onClick.AddListener(OnMachineGunButtonClick);
+        //_missile.onClick.AddListener(OnMessileButtonClick);
+        //_squad.onClick.AddListener(OnSquadsButtonClick);
+        //_artStrike.onClick.AddListener(OnArtStrikeButtonClick);
+        _player.ChangedManeyCount += OnChangedManeyCount;
     }
 
     private void OnDisable()
     {
         _helicopterMain.HealthChanged -= OnHealthChanged;
-        _menuButton.onClick.RemoveListener(OnMenuButtonClick);
-        _machineGun.onClick.RemoveListener(OnMachineGunButtonClick);
-        _missile.onClick.RemoveListener(OnMessileButtonClick);
-        _squad.onClick.RemoveListener(OnSquadsButtonClick);
-        _artStrike.onClick.RemoveListener(OnArtStrikeButtonClick);
-    }
-
-    private void OnArtStrikeButtonClick()
-    {
-        ArtStrskeButtonClick?.Invoke();
-        Recharges(_fillArtStrike, _delayArtStrike);
-        StartCoroutine(BlocksButton(_artStrike, _delayArtStrike));
-    }
-
-    private void OnSquadsButtonClick()
-    {
-        SquadButtonClick?.Invoke();
-        Recharges(_fillSquads, _delaySquad);
-        StartCoroutine(BlocksButton(_squad, _delaySquad));
+        //_menuButton.onClick.RemoveListener(OnMenuButtonClick);
+        //_machineGun.onClick.RemoveListener(OnMachineGunButtonClick);
+        //_missile.onClick.RemoveListener(OnMessileButtonClick);
+        //_squad.onClick.RemoveListener(OnSquadsButtonClick);
+        //_artStrike.onClick.RemoveListener(OnArtStrikeButtonClick);
+        _player.ChangedManeyCount -= OnChangedManeyCount;
     }
 
     public override void Close()
@@ -91,38 +83,71 @@ public class GameScreen : Screen
         _menuButton.interactable = true;
     }
 
-    public void OnMenuButtonClick()
+    //public void OnMenuButtonClick()
+    //{
+    //    MenuButtonClick?.Invoke();
+    //}
+
+    //public void OnMachineGunButtonClick()
+    //{
+    //    MachineGunButtonClick?.Invoke();
+    //    Recharges(_fillMachineGun, _delayMachineGun);
+    //    StartCoroutine(BlocksButton(_machineGun, _delayMachineGun));
+    //}
+
+    //public void OnMessileButtonClick()
+    //{
+    //    if (_player.Maney > _priceMessile)
+    //    {
+    //        MessileButtonClick?.Invoke();
+    //        Recharges(_fillMissile, _delayMissile);
+    //        StartCoroutine(BlocksButton(_missile, _delayMissile));
+    //        _player.ReducesManey(_priceMessile);
+    //    }
+    //}
+    private void OnChangedManeyCount(int maneyCount)
     {
-        MenuButtonClick?.Invoke();
+        _maneyCount.text = maneyCount.ToString();
     }
 
-    public void OnMachineGunButtonClick()
-    {
-        MachineGunButtonClick?.Invoke();
-        Recharges(_fillMachineGun, _delayMachineGun);
-        StartCoroutine(BlocksButton(_machineGun, _delayMachineGun));
-    }
+    //private void OnArtStrikeButtonClick()
+    //{
+    //    ArtStrskeButtonClick?.Invoke();
+    //    Recharges(_fillArtStrike, _delayArtStrike);
+    //    StartCoroutine(BlocksButton(_artStrike, _delayArtStrike));
+    //}
 
-    public void OnMessileButtonClick()
-    {
-        MessileButtonClick?.Invoke();
-        Recharges(_fillMissile, _delayMissile);
-        StartCoroutine(BlocksButton(_missile, _delayMissile));
-    }
+    //private void OnSquadsButtonClick()
+    //{
+    //    SquadButtonClick?.Invoke();
+    //    Recharges(_fillSquads, _delaySquad);
+    //    StartCoroutine(BlocksButton(_squad, _delaySquad));
+    //}
 
-    private void Recharges(Image image, float delay)
-    {
-        image.fillAmount = _fillAmountMax;
+    //private void Recharges(Image image, float delay)
+    //{
+    //    image.fillAmount = _fillAmountMax;
+    //    image.DOFillAmount(_fillAmountMin, delay);
+    //}
 
-        image.DOFillAmount(_fillAmountMin, delay);
-    }
+    //private IEnumerator BlocksButton(Button button, float delay)
+    //{
+    //    button.interactable = false;
+    //    yield return new WaitForSeconds(delay);
+    //    button.interactable = true;
+    //}
 
-    private IEnumerator BlocksButton(Button button, float delay)
-    {
-        button.interactable = false;
-        yield return new WaitForSeconds(delay);
-        button.interactable = true;
-    }
+    //private void DeactivatesButtons(Image image, Button button)
+    //{
+    //    image.fillAmount = _fillAmountMax;
+    //    button.interactable = false;
+    //}
+
+    //private void ActivateButton(Image image, Button button, float delay)
+    //{
+    //    Recharges(image, delay);
+    //    StartCoroutine(BlocksButton(button, delay));
+    //}
 
     private void OnHealthChanged(float health)
     {

@@ -14,10 +14,9 @@ public abstract class Soldier : Unit
 
     private float _randomStepPoint = 0.5f;
     private Ragdoll _ragdoll;
+    private bool _isDead;
 
     public Unit Target => _target;
-
-    public Vector3 CrashPoint => _crashPoint;
 
     public event UnityAction Dying;
 
@@ -28,7 +27,7 @@ public abstract class Soldier : Unit
 
     private void Update()
     {
-        if(_target == null)
+        if (_target == null)
         {
             SearchTarget();
         }
@@ -56,8 +55,19 @@ public abstract class Soldier : Unit
 
         if (_health <= 0)
         {
+            Death();
+        }
+    }
+
+    private void Death()
+    {
+        if (!_isDead)
+        {
             Dying?.Invoke();
+            FindObjectOfType<Player>().AddManey(_reward);
             _ragdoll.Disable();
         }
+
+        _isDead = true;
     }
 }

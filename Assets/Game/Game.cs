@@ -11,6 +11,7 @@ public class Game : MonoBehaviour
     [SerializeField] private GameOverScreen _gameOverScreen;
     [SerializeField] private GameScreen _gameScreen;
     [SerializeField] private Spawner[] _spawners;
+    [SerializeField] private Button _menuButton;
 
     private const string SampleScene = "SampleScene";
 
@@ -26,7 +27,8 @@ public class Game : MonoBehaviour
         _gameOverScreen.RestartButtonClick += OnRestartButtonClick;
         _gameOverScreen.CloseButtonClick += OnPlayButtonClick;
         _gameOverScreen.ExitButtonClick += OnExitButtonClick;
-        _gameScreen.MenuButtonClick += OnMenuButtonClick;
+        //_gameScreen.MenuButtonClick += OnMenuButtonClick;
+        _menuButton.onClick.AddListener(OnMenuButtonClick);
         _helicopterMain.GameOver += OnGameOver;
     }
 
@@ -37,7 +39,8 @@ public class Game : MonoBehaviour
         _gameOverScreen.RestartButtonClick -= OnRestartButtonClick;
         _gameOverScreen.CloseButtonClick -= OnPlayButtonClick;
         _gameOverScreen.ExitButtonClick -= OnExitButtonClick;
-        _gameScreen.MenuButtonClick -= OnMenuButtonClick;
+        //_gameScreen.MenuButtonClick -= OnMenuButtonClick;
+        _menuButton.onClick.RemoveListener(OnMenuButtonClick);
         _helicopterMain.GameOver -= OnGameOver;
     }
 

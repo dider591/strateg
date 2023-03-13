@@ -5,6 +5,7 @@ using UnityEngine;
 public class Unit : MonoBehaviour
 {
     [SerializeField] protected int _health;
+    [SerializeField] protected int _reward;
 
     protected Vector3 _crashPoint;
 

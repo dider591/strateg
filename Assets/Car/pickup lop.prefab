@@ -844,6 +844,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: 10
+  _reward: 20
   _ragdollCar: {fileID: 7885999673489267923, guid: f662e63c3fbfa8b4dad7f5b2ee214c46, type: 3}
 --- !u!1 &5635462019471605910
 GameObject:
@@ -2113,6 +2114,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: 10
+  _reward: 0
   _radius: 5
   _damage: 0
   _healing: 0

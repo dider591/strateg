@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -11,18 +11,51 @@ public class Player : MonoBehaviour
     [SerializeField] private Weapon _machineGun;
     [SerializeField] private Squad _squad;
     [SerializeField] private Weapon _artStrike;
-    [SerializeField] private GameScreen _gameScreen;
-    public Weapon CurrentWeapon => _currentWeapon;
+    //[SerializeField] private GameScreen _gameScreen;
+    [SerializeField] private Button _squadButton;
+    [SerializeField] private Button _machineGunButton;
+    [SerializeField] private Button _missileButton;
+    [SerializeField] private Button _artStrikeButton;
 
+    private int _maney;
     private Weapon _currentWeapon;
     private RaycastHit hit;
 
+    public Weapon CurrentWeapon => _currentWeapon;
+    public int Maney => _maney;
+
+    public UnityAction<int> ChangedManeyCount;
+
     private void OnEnable()
     {
-        _gameScreen.MachineGunButtonClick += OnMachineGunButtonClick;
-        _gameScreen.MessileButtonClick += OnMessileButtonClick;
-        _gameScreen.SquadButtonClick += OnSquadButtonClick;
-        _gameScreen.ArtStrskeButtonClick += OnArtStrakeButtonClick;
+        _machineGunButton.onClick.AddListener(OnMachineGunButtonClick);
+        _missileButton.onClick.AddListener(OnMessileButtonClick);
+        _squadButton.onClick.AddListener(OnSquadButtonClick);
+        _artStrikeButton.onClick.AddListener(OnArtStrakeButtonClick);
+    }
+    private void OnDisable()
+    {
+        _machineGunButton.onClick.RemoveListener(OnMachineGunButtonClick);
+        _missileButton.onClick.RemoveListener(OnMessileButtonClick);
+        _squadButton.onClick.RemoveListener(OnSquadButtonClick);
+        _artStrikeButton.onClick.RemoveListener(OnArtStrakeButtonClick);
+    }
+
+    public void Shooting(Weapon weapon)
+    {
+        weapon.Shoot(hit.point);
+    }
+
+    public void AddManey(int maneyCount)
+    {
+        _maney += maneyCount;
+        ChangedManeyCount?.Invoke(_maney);
+    }
+
+    public void ReducesManey(int price)
+    {
+        _maney -= price;
+        ChangedManeyCount?.Invoke(_maney);
     }
 
     private void OnArtStrakeButtonClick()
@@ -35,20 +68,9 @@ public class Player : MonoBehaviour
         _squad.OnSquadsButtonClick();
     }
 
-    private void OnDisable()
-    {
-        _gameScreen.MachineGunButtonClick -= OnMachineGunButtonClick;
-        _gameScreen.MessileButtonClick -= OnMessileButtonClick;
-    }
-
     private void Update()
     {
         AimRay();
-    }
-
-    public void Shooting(Weapon weapon)
-    {
-        weapon.Shoot(hit.point);
     }
 
     private void OnMachineGunButtonClick()

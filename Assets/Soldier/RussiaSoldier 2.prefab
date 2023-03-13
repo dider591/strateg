@@ -1029,6 +1029,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: 10
+  _reward: 10
   _radius: 5
   _damage: 0.05
   _healing: 0

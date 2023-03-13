@@ -1523,6 +1523,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: 10
+  _reward: 20
   _ragdollCar: {fileID: -5492253247826888886, guid: c3b0e36bb5d394b498a7caa866932c9a, type: 3}
   _spawnSoldierPoint: {fileID: 822416017421787202}
   _soldier: {fileID: 2417258755657241481, guid: 248abeb8ee85c0e4594103ef3ab6ed64, type: 3}

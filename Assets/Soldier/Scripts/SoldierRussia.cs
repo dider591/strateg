@@ -40,6 +40,7 @@ public class SoldierRussia : Soldier
     {
         while (true)
         {
+            Debug.Log("damage");
             yield return new WaitForSeconds(_delay);
             helicopterMain.TakeDamage(_damage);
         }
