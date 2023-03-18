@@ -10,7 +10,7 @@ public class RocketTerrorist : MonoBehaviour
     [SerializeField] private Transform _helicopter;
     [SerializeField] private float _minDistance;
     [SerializeField] private AudioSource _audio;
-    [SerializeField] private float _damage;
+    [SerializeField] private int _damage;
 
     private bool _isPlayAudio = false;
 
@@ -40,7 +40,7 @@ public class RocketTerrorist : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent<HelicopterMain>(out HelicopterMain helicopter))
+        if (other.TryGetComponent<Helicopter>(out Helicopter helicopter))
         {
             //_effectBoom.Play();
             //_audioBoom.Play();

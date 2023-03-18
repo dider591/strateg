@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public abstract class Spawner : MonoBehaviour
 {
@@ -10,27 +12,43 @@ public abstract class Spawner : MonoBehaviour
     [SerializeField] private float _stepSpawn;
     [SerializeField] private bool _isReady;
 
-    protected Vector3 CrashedPoint;
-    private bool _isInit;
+    protected Transform TargetPoint;
+    protected Transform _currentTransform;
 
-    public void Init(Vector3 crashedPoint)
+    private Helicopter _helicopter;
+
+    public bool IsReady => _isReady;
+
+    private void Awake()
     {
-        CrashedPoint = crashedPoint;
-        _isInit = true;
+        FindTargetPoint();       
     }
 
-    private void Update()
+    private void OnEnable()
     {
-        if (_isInit && _isReady)
+        _helicopter = FindObjectOfType<Helicopter>();
+        _helicopter.Crashed += StartSpawn;
+    }
+
+    private void OnDisable()
+    {
+        _helicopter.Crashed -= StartSpawn;
+    }
+
+    public void SetReady(bool isReady)
+    {
+        _isReady = isReady;
+    }
+
+    public void StartSpawn()
+    {
+        if (_isReady)
         {
-            StartCoroutine(InstantiateUnits());
+            StartCoroutine(nameof(InstantiateUnits));
         }
     }
 
-    public void SetReady()
-    {
-        _isReady = true;
-    }
+    public abstract void FindTargetPoint();
 
     private IEnumerator InstantiateUnits()
     {

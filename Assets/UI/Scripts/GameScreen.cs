@@ -9,7 +9,7 @@ using TMPro;
 
 public class GameScreen : Screen
 {
-    [SerializeField] private HelicopterMain _helicopterMain;
+    [SerializeField] private Helicopter _helicopterMain;
     [SerializeField] private Button _menuButton;
     [SerializeField] private Button _machineGun;
     [SerializeField] private Button _zoomIn;

@@ -6,23 +6,22 @@ using UnityEngine.SceneManagement;
 
 public class Game : MonoBehaviour
 {
-    [SerializeField] private HelicopterMain _helicopterMain;
+    [SerializeField] private Helicopter _helicopterMain;
     [SerializeField] private StartScreen _startScreen;
     [SerializeField] private GameOverScreen _gameOverScreen;
     [SerializeField] private GameScreen _gameScreen;
-    [SerializeField] private Spawner[] _spawners;
     [SerializeField] private Button _menuButton;
 
     private const string SampleScene = "SampleScene";
 
     private float _wavs;
     protected Vector3 _crashedPoint;
-    private bool _isCrashed;
-    private bool _isAllInit;
+    //private bool _isCrashed;
+    //private bool _isAllInit;
 
     private void OnEnable()
     {
-        _helicopterMain.CrashedPoint += OnHelicopterCrash;
+        //_helicopterMain.CrashedPoint += OnHelicopterCrash;
         _startScreen.PlayButtonClick += OnPlayButtonClick;
         _gameOverScreen.RestartButtonClick += OnRestartButtonClick;
         _gameOverScreen.CloseButtonClick += OnPlayButtonClick;
@@ -34,7 +33,7 @@ public class Game : MonoBehaviour
 
     private void OnDisable()
     {
-        _helicopterMain.CrashedPoint -= OnHelicopterCrash;
+        //_helicopterMain.CrashedPoint -= OnHelicopterCrash;
         _startScreen.PlayButtonClick -= OnPlayButtonClick;
         _gameOverScreen.RestartButtonClick -= OnRestartButtonClick;
         _gameOverScreen.CloseButtonClick -= OnPlayButtonClick;
@@ -50,14 +49,6 @@ public class Game : MonoBehaviour
         _startScreen.Open();
         _gameOverScreen.Close();
         _gameScreen.Close();
-    }
-
-    private void Update()
-    {
-        if (_isCrashed && _isAllInit == false)
-        {
-            InitSpawners(_crashedPoint);
-        }
     }
 
     private void OnPlayButtonClick()
@@ -98,21 +89,5 @@ public class Game : MonoBehaviour
         _gameScreen.Close();
         _gameOverScreen.Open();
         Time.timeScale = 0;
-    }
-
-    private void OnHelicopterCrash(Vector3 target)
-    {
-        _crashedPoint = target;
-        _isCrashed = true;
-    }
-
-    private void InitSpawners(Vector3 crashedPoint)
-    {
-        foreach (var spawner in _spawners)
-        {
-            spawner.Init(crashedPoint);
-        }
-
-        _isAllInit = true;
     }
 }
