@@ -11,6 +11,6 @@ public class Squad : MonoBehaviour
     public void OnSquadsButtonClick()
     {
         int randomPoint = (int)UnityEngine.Random.Range(0f, _spawnersSoldiers.Length);
-        _spawnersSoldiers[randomPoint].SetReady();
+        _spawnersSoldiers[randomPoint].SetReady(true);
     }
 }

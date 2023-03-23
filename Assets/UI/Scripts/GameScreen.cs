@@ -9,7 +9,7 @@ using TMPro;
 
 public class GameScreen : Screen
 {
-    [SerializeField] private HelicopterMain _helicopterMain;
+    [SerializeField] private FallenHelicopter _helicopterMain;
     [SerializeField] private Button _menuButton;
     [SerializeField] private Button _machineGun;
     [SerializeField] private Button _zoomIn;
@@ -151,6 +151,7 @@ public class GameScreen : Screen
 
     private void OnHealthChanged(float health)
     {
+        Debug.Log("HealthChagedGameScreen");
         _fillHealth.DOFillAmount(health, _healthChangeDurationn);
     }
 

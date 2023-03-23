@@ -133,7 +133,7 @@ MonoBehaviour:
   _speed: 30
   _damage: 3
   _radius: 0.1
-  _forse: 400
+  _forse: 1000
   _modifier: 2
   _explosion: {fileID: -7047977757178347670, guid: 99bcac2ae0e90da48ba8fc0374e9e98f, type: 3}
 --- !u!82 &1449060616791948898

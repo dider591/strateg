@@ -7,10 +7,10 @@ public class RocketTerrorist : MonoBehaviour
     [SerializeField] private ParticleSystem _effectBoom;
     [SerializeField] private AudioSource _audioBoom;
     [SerializeField] private float _speed;
-    [SerializeField] private Transform _helicopter;
+    [SerializeField] private Transform _helicopterPoint;
     [SerializeField] private float _minDistance;
     [SerializeField] private AudioSource _audio;
-    [SerializeField] private float _damage;
+    [SerializeField] private int _damage;
 
     private bool _isPlayAudio = false;
 
@@ -18,8 +18,8 @@ public class RocketTerrorist : MonoBehaviour
 
     private void Update()
     {
-        transform.LookAt(_helicopter);
-        _distance = Vector3.Distance(transform.position, _helicopter.position);
+        transform.LookAt(_helicopterPoint);
+        _distance = Vector3.Distance(transform.position, _helicopterPoint.position);
 
         if (_distance < _minDistance)
         {
@@ -40,12 +40,11 @@ public class RocketTerrorist : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent<HelicopterMain>(out HelicopterMain helicopter))
+        if (other.TryGetComponent<FallenHelicopter>(out FallenHelicopter helicopter))
         {
-            //_effectBoom.Play();
-            //_audioBoom.Play();
             Instantiate(_effectBoom, transform.position, transform.rotation);
             helicopter.TakeDamage(_damage);
+            helicopter.Crash();
             Destroy(gameObject);
         }
     }

@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class Game : MonoBehaviour
 {
-    [SerializeField] private HelicopterMain _helicopterMain;
+    [SerializeField] private FallenHelicopter _FallenHelicopter;
     [SerializeField] private StartScreen _startScreen;
     [SerializeField] private GameOverScreen _gameOverScreen;
     [SerializeField] private GameScreen _gameScreen;
@@ -15,33 +15,31 @@ public class Game : MonoBehaviour
 
     private const string SampleScene = "SampleScene";
 
-    private float _wavs;
-    protected Vector3 _crashedPoint;
     private bool _isCrashed;
     private bool _isAllInit;
 
     private void OnEnable()
     {
-        _helicopterMain.CrashedPoint += OnHelicopterCrash;
+        _FallenHelicopter.Crashed += OnHelicopterCrash;
         _startScreen.PlayButtonClick += OnPlayButtonClick;
         _gameOverScreen.RestartButtonClick += OnRestartButtonClick;
         _gameOverScreen.CloseButtonClick += OnPlayButtonClick;
         _gameOverScreen.ExitButtonClick += OnExitButtonClick;
         //_gameScreen.MenuButtonClick += OnMenuButtonClick;
         _menuButton.onClick.AddListener(OnMenuButtonClick);
-        _helicopterMain.GameOver += OnGameOver;
+        _FallenHelicopter.GameOver += OnGameOver;
     }
 
     private void OnDisable()
     {
-        _helicopterMain.CrashedPoint -= OnHelicopterCrash;
+        _FallenHelicopter.Crashed -= OnHelicopterCrash;
         _startScreen.PlayButtonClick -= OnPlayButtonClick;
         _gameOverScreen.RestartButtonClick -= OnRestartButtonClick;
         _gameOverScreen.CloseButtonClick -= OnPlayButtonClick;
         _gameOverScreen.ExitButtonClick -= OnExitButtonClick;
         //_gameScreen.MenuButtonClick -= OnMenuButtonClick;
         _menuButton.onClick.RemoveListener(OnMenuButtonClick);
-        _helicopterMain.GameOver -= OnGameOver;
+        _FallenHelicopter.GameOver -= OnGameOver;
     }
 
     private void Start()
@@ -56,7 +54,7 @@ public class Game : MonoBehaviour
     {
         if (_isCrashed && _isAllInit == false)
         {
-            InitSpawners(_crashedPoint);
+            InitSpawners();
         }
     }
 
@@ -100,17 +98,16 @@ public class Game : MonoBehaviour
         Time.timeScale = 0;
     }
 
-    private void OnHelicopterCrash(Vector3 target)
+    private void OnHelicopterCrash()
     {
-        _crashedPoint = target;
         _isCrashed = true;
     }
 
-    private void InitSpawners(Vector3 crashedPoint)
+    private void InitSpawners()
     {
         foreach (var spawner in _spawners)
         {
-            spawner.Init(crashedPoint);
+            spawner.SetReady(true);
         }
 
         _isAllInit = true;

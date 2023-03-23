@@ -38,16 +38,17 @@ public class Ammunition : MonoBehaviour
 
             if (rigidbody)
             {
-                rigidbody.AddExplosionForce(_forse, transform.position, _radius, _modifier, ForceMode.Acceleration);
+                rigidbody.AddExplosionForce(_forse, transform.position, _radius, _modifier, ForceMode.Force);
 
                 if (rigidbody.TryGetComponent<Bone>(out Bone bone))
                 {
                     bone.TakeDamage(_damage);
                 }
-                if (rigidbody.TryGetComponent<Car>(out Car car))
+                if (rigidbody.TryGetComponent<ITakeDamage>(out ITakeDamage iTakeDamage))
                 {
-                    car.TakeDamage(_damage);
+                    iTakeDamage.TakeDamage(_damage);
                 }
+
             }           
         }
     }
