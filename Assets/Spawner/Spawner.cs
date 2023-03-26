@@ -19,10 +19,6 @@ public class Spawner : MonoBehaviour
             {
                 isetTargetPoint.SetTargetPoint(_targetPoint.position);
             }
-            //if (other.TryGetComponent<CarTargetPoint>(out CarTargetPoint carTargetPoint))
-            //{
-            //    SetReady(true);
-            //}
         }
     }
 

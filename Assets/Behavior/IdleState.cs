@@ -10,9 +10,12 @@ public class IdleState : UnitAction
     {
         if (_unit.CurrentTarget == null)
         {
+            _agent.enabled = false;
             _animator.Play(IdleAnimation);
             return TaskStatus.Success;
         }
+
+        _agent.enabled = true;
         return TaskStatus.Failure;
     }
 

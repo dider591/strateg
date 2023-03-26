@@ -4,22 +4,13 @@ using UnityEngine;
 
 public class SoldierUSA : Soldier
 {
-    [SerializeField] protected int _healing;
+    private FallenHelicopter _fallenHelicopter;
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.TryGetComponent<FallenHelicopter>(out FallenHelicopter helicopterMain))
-        {
-            _applyHealing = StartCoroutine(ApplyHealing(helicopterMain));
-        }
-    }
+    public FallenHelicopter FallenHelicopter => _fallenHelicopter;
 
-    private void OnTriggerExit(Collider other)
+    private void Awake()
     {
-        if (other.TryGetComponent<FallenHelicopter>(out FallenHelicopter helicopterMain))
-        {
-            StopCoroutine(_applyHealing);
-        }
+        _fallenHelicopter = FindObjectOfType<FallenHelicopter>();
     }
 
     public override void SearchTarget()
@@ -33,17 +24,13 @@ public class SoldierUSA : Soldier
                 if (targetUnit.TryGetComponent<SoldierRussia>(out SoldierRussia soldierRussia) && targetUnit.CurrentHealth > 0)
                 {
                     Target = targetUnit;
+                    return;
+                }
+                if (targetUnit.TryGetComponent<CarRussia>(out CarRussia carRussia) && targetUnit.CurrentHealth > 0)
+                {
+                    Target = carRussia;
                 }
             }
-        }
-    }
-
-    private IEnumerator ApplyHealing(FallenHelicopter helicopterMain)
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(_delay);
-            helicopterMain.Healing(_healing);
         }
     }
 }

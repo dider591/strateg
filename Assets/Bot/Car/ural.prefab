@@ -1182,11 +1182,11 @@ GameObject:
   - component: {fileID: 4483664531059769853}
   - component: {fileID: 5146182459535602450}
   - component: {fileID: 7925817378082616371}
-  - component: {fileID: 6331571858908359034}
   - component: {fileID: 7548429829731049878}
   - component: {fileID: 5717753891385498992}
   - component: {fileID: 7452223031043875012}
   - component: {fileID: 3669709197215594251}
+  - component: {fileID: 899433995923255640}
   m_Layer: 0
   m_Name: ural
   m_TagString: Untagged
@@ -1249,8 +1249,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.72401106, y: 0.8824832, z: 2.1423686}
-  m_Center: {x: -0.015388429, y: 0.05875904, z: -0.030687451}
+  m_Size: {x: 0.72401106, y: 0.77665657, z: 2.1423686}
+  m_Center: {x: -0.015388429, y: 0.11167252, z: -0.030687451}
 --- !u!54 &5146182459535602450
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1259,7 +1259,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3581778191678965384}
   serializedVersion: 2
-  m_Mass: 100
+  m_Mass: 50
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -1277,7 +1277,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 2
+  m_Speed: 1
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -1289,22 +1289,6 @@ NavMeshAgent:
   m_BaseOffset: 0.43
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &6331571858908359034
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3581778191678965384}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56fdd8a831817aa4b9faa696a5c586c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Health: 50
-  Reward: 20
-  SearchRadius: 5
-  _explosionEffect: {fileID: -9105811596838308180, guid: a7c694f0877ea874fa57e033221095c3, type: 3}
 --- !u!114 &7548429829731049878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1384,7 +1368,34 @@ MonoBehaviour:
   _rigidbodys:
   - {fileID: 5146182459535602450}
   _regdollMaterial: {fileID: 2100000, guid: 7c764377d898ee9429853758a6449ae5, type: 2}
-  _renderer: {fileID: 6561367224681156203}
+  _renderers:
+  - {fileID: 4211271656436746039}
+  - {fileID: 8451769638561680167}
+  - {fileID: 6157463506791137420}
+  - {fileID: 719287381927731307}
+  - {fileID: 7910827315399586311}
+  - {fileID: 4359685152426175774}
+  - {fileID: 4136812106872694653}
+  - {fileID: 5563510031539302409}
+  - {fileID: 6346888689676621670}
+  - {fileID: 2431893266619054697}
+  - {fileID: 8354969402303406148}
+  - {fileID: 8881418301442997807}
+  - {fileID: 6561367224681156203}
+  - {fileID: 1698661040781174668}
+  - {fileID: 4751492536907292978}
+  - {fileID: 2666328074549680363}
+  - {fileID: 8561471744696278959}
+  - {fileID: 6168220317721253166}
+  - {fileID: 5485613913271763726}
+  - {fileID: 2489355421142592379}
+  - {fileID: 255191111227452447}
+  - {fileID: 2109060954549813486}
+  - {fileID: 6923096345169913345}
+  - {fileID: 2965365476951086532}
+  - {fileID: 4639799720839376048}
+  - {fileID: 5312822934711769489}
+  - {fileID: 6138803999001344092}
   _timeDestroy: 20
 --- !u!208 &3669709197215594251
 NavMeshObstacle:
@@ -1393,7 +1404,7 @@ NavMeshObstacle:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3581778191678965384}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
   m_Extents: {x: 0.465, y: 0.23, z: 0.94}
@@ -1402,6 +1413,22 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
+--- !u!114 &899433995923255640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3581778191678965384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bb42891146dc2041bb461feec486fad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 20
+  Reward: 20
+  SearchRadius: 5
+  _explosionEffect: {fileID: -9105811596838308180, guid: a7c694f0877ea874fa57e033221095c3, type: 3}
 --- !u!1 &3764142312013196869
 GameObject:
   m_ObjectHideFlags: 0
@@ -2997,7 +3024,7 @@ MonoBehaviour:
   _unit: {fileID: 2417258755657241481, guid: 248abeb8ee85c0e4594103ef3ab6ed64, type: 3}
   _countUnit: 6
   _countWaves: 1
-  _stepSpawn: 0
+  _stepSpawn: 1.5
   _isReady: 0
 --- !u!65 &973375848334240521
 BoxCollider:

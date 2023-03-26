@@ -8,7 +8,7 @@ public abstract class Soldier : Unit, ITakeDamage, ISetTargetPoint
     protected Coroutine _applyHealing;
     protected float _delay = 5f;
 
-    private float _randomStepPoint = 0.5f;
+    private float _randomStepPoint = 1f;
 
     private bool _isDead;
 

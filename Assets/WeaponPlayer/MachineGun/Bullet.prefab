@@ -115,7 +115,7 @@ Rigidbody:
   m_AngularDrag: 0.05
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 2
   m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!114 &-7336889845620122123
@@ -132,8 +132,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 30
   _damage: 3
-  _radius: 0.1
-  _forse: 1000
+  _radius: 0.18
+  _forse: 800
   _modifier: 2
   _explosion: {fileID: -7047977757178347670, guid: 99bcac2ae0e90da48ba8fc0374e9e98f, type: 3}
 --- !u!82 &1449060616791948898

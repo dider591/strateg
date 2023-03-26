@@ -17,6 +17,11 @@ public class SoldierRussia : Soldier
                     Target = soldierUSA;
                     return;
                 }
+                if (targetUnit.TryGetComponent<CarUSA>(out CarUSA carUSA) && targetUnit.CurrentHealth > 0)
+                {
+                    Target = carUSA;
+                    return;
+                }
                 if (targetUnit.TryGetComponent<FallenHelicopter>(out FallenHelicopter fallenHelicopter))
                 {
                     Target = fallenHelicopter;

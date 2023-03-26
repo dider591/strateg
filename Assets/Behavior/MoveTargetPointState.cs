@@ -8,7 +8,7 @@ public class MoveTargetPointState : UnitAction
 
     public override TaskStatus OnUpdate()
     {
-        if (_unit.CurrentTargetPoint != null)
+        if (_unit.CurrentTarget == null && _unit.CurrentTargetPoint != null)
         {
             MoveToPoint(_unit.CurrentTargetPoint);
             return TaskStatus.Success;

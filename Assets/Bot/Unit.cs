@@ -43,8 +43,4 @@ public abstract class Unit : MonoBehaviour
 
     public abstract void Death();
     public abstract void SearchTarget();
-
-    //Сделать нормальный регдолл машинам
-    //создать гит
-    //обновить документ игры и посмотреть как сделали документ другие
 }

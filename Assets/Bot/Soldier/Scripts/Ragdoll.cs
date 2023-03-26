@@ -7,7 +7,7 @@ public class Ragdoll : MonoBehaviour
 {
     [SerializeField] private Rigidbody[] _rigidbodys;
     [SerializeField] private Material _regdollMaterial;
-    [SerializeField] private Renderer _renderer;
+    [SerializeField] private Renderer[] _renderers;
     [SerializeField] private float _timeDestroy;
 
     private Animator _animator;
@@ -40,7 +40,19 @@ public class Ragdoll : MonoBehaviour
         _animator.enabled = false;
         _agent.enabled = false;
         _behaviorDesigner.enabled = false;
-        _renderer.material = _regdollMaterial;
+
+        foreach (var renderer in _renderers)
+        {
+            Material[] materials = renderer.materials;
+
+            for (int i = 0; i < materials.Length; i++)
+            {
+                materials[i] = _regdollMaterial;
+            }
+
+            renderer.materials = materials;
+        }
+
         Destroy(gameObject, _timeDestroy);
     }
 }

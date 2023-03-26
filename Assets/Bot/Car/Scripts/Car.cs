@@ -30,7 +30,7 @@ public class Car : Unit, ITakeDamage, ISetTargetPoint
         if (_isDeath == false)
         {
             _isDeath = true;
-            ThisRigidbody.AddForce(0, 1000f, 0, ForceMode.Acceleration);
+            ThisRigidbody.AddForce(2000f, 0, 0);
             Instantiate(_explosionEffect, transform.position, transform.rotation);
             Ragdoll.Disable();
         }

@@ -41,7 +41,6 @@ public class FallenHelicopter : Unit, ITakeDamage
     {
         _health -= (float)damage / 1000f;
         HealthChanged?.Invoke(_health);
-        Debug.Log("Health = " + _health);
 
         if (_health <= _minHealth)
         {
