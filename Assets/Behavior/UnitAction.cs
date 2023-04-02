@@ -9,7 +9,7 @@ public class UnitAction : Action
     protected Unit _unit;
     protected Animator _animator;
     protected NavMeshAgent _agent;
-    protected FallenHelicopter Helicopter;
+    protected MainTarget MainTarget;
 
     public override void OnAwake()
     {
@@ -19,7 +19,7 @@ public class UnitAction : Action
 
         if (this.GetComponent<SoldierUSA>())
         {
-            Helicopter = GetComponent<SoldierUSA>().FallenHelicopter;
+            MainTarget = GetComponent<SoldierUSA>().MainTarget;
         }
     }
 }

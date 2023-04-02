@@ -40,11 +40,10 @@ public class RocketTerrorist : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent<FallenHelicopter>(out FallenHelicopter helicopter))
+        if (other.TryGetComponent<MainTarget>(out MainTarget mainTarget))
         {
             Instantiate(_effectBoom, transform.position, transform.rotation);
-            helicopter.TakeDamage(_damage);
-            helicopter.Crash();
+            mainTarget.TakeDamage(_damage);
             Destroy(gameObject);
         }
     }

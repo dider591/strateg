@@ -7,9 +7,9 @@ public class MoveHelicopterState : UnitAction
 
     public override TaskStatus OnUpdate()
     {
-        if (Helicopter != null)
+        if (MainTarget != null)
         {
-            MoveToPoint(Helicopter.transform.position);
+            MoveToPoint(MainTarget.transform.position);
             return TaskStatus.Success;
         }
         return TaskStatus.Failure;

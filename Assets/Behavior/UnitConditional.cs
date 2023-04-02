@@ -6,7 +6,7 @@ using UnityEngine;
 public abstract class UnitConditional : Conditional
 {
     protected Unit _unit;
-    protected FallenHelicopter Helicopter;
+    protected MainTarget Helicopter;
 
     public override void OnAwake()
     {
@@ -14,7 +14,7 @@ public abstract class UnitConditional : Conditional
 
         if (this.GetComponent<SoldierUSA>())
         {
-            Helicopter = GetComponent<SoldierUSA>().FallenHelicopter;
+            Helicopter = GetComponent<SoldierUSA>().MainTarget;
         }
     }
 }

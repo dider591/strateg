@@ -22,9 +22,9 @@ public class SoldierRussia : Soldier
                     Target = carUSA;
                     return;
                 }
-                if (targetUnit.TryGetComponent<FallenHelicopter>(out FallenHelicopter fallenHelicopter))
+                if (targetUnit.TryGetComponent<MainTarget>(out MainTarget mainTarget))
                 {
-                    Target = fallenHelicopter;
+                    Target = mainTarget;
                 }
             }
         }

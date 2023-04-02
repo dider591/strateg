@@ -1,107 +1,84 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using IJunior.TypedScenes;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class Game : MonoBehaviour
 {
-    [SerializeField] private FallenHelicopter _FallenHelicopter;
-    [SerializeField] private StartScreen _startScreen;
-    [SerializeField] private GameOverScreen _gameOverScreen;
+    [SerializeField] private LevelConfig _gameOverConfig;
+    [SerializeField] private LevelConfig _winConfig;
+    [SerializeField] private MainTarget _mainTarget;
     [SerializeField] private GameScreen _gameScreen;
     [SerializeField] private Spawner[] _spawners;
     [SerializeField] private Button _menuButton;
+    [SerializeField] private float _delayStart;
 
-    private const string SampleScene = "SampleScene";
-
-    private bool _isCrashed;
+    //private bool _isCrashed;
     private bool _isAllInit;
+    private bool _isStartMenu;
 
     private void OnEnable()
     {
-        _FallenHelicopter.Crashed += OnHelicopterCrash;
-        _startScreen.PlayButtonClick += OnPlayButtonClick;
-        _gameOverScreen.RestartButtonClick += OnRestartButtonClick;
-        _gameOverScreen.CloseButtonClick += OnPlayButtonClick;
-        _gameOverScreen.ExitButtonClick += OnExitButtonClick;
-        //_gameScreen.MenuButtonClick += OnMenuButtonClick;
+        StartGame();
+        //_FallenHelicopter.Crashed += OnHelicopterCrash;
         _menuButton.onClick.AddListener(OnMenuButtonClick);
-        _FallenHelicopter.GameOver += OnGameOver;
+        _mainTarget.GameOver += OnGameOver;
+        _mainTarget.Healed += OnHealed;
+    }
+
+    private void OnHealed()
+    {
+        if (_isStartMenu == false)
+        {
+            _isStartMenu = true;
+            Menu.Load(_winConfig);
+        }
     }
 
     private void OnDisable()
     {
-        _FallenHelicopter.Crashed -= OnHelicopterCrash;
-        _startScreen.PlayButtonClick -= OnPlayButtonClick;
-        _gameOverScreen.RestartButtonClick -= OnRestartButtonClick;
-        _gameOverScreen.CloseButtonClick -= OnPlayButtonClick;
-        _gameOverScreen.ExitButtonClick -= OnExitButtonClick;
-        //_gameScreen.MenuButtonClick -= OnMenuButtonClick;
+        //_FallenHelicopter.Crashed -= OnHelicopterCrash;
         _menuButton.onClick.RemoveListener(OnMenuButtonClick);
-        _FallenHelicopter.GameOver -= OnGameOver;
-    }
-
-    private void Start()
-    {
-        Time.timeScale = 0;
-        _startScreen.Open();
-        _gameOverScreen.Close();
-        _gameScreen.Close();
+        _mainTarget.GameOver -= OnGameOver;
     }
 
     private void Update()
     {
-        if (_isCrashed && _isAllInit == false)
+        if (/*_isCrashed && */_isAllInit == false)
         {
             InitSpawners();
         }
     }
 
-    private void OnPlayButtonClick()
-    {
-        _startScreen.Close();
-        _gameOverScreen.Close();
-        _gameScreen.Open();
-        StartGame();
-    }
-
-    private void OnRestartButtonClick()
-    {
-        SceneManager.LoadScene(SampleScene);
-        _gameOverScreen.Close();
-        _gameScreen.Open();
-        StartGame();
-    }
-
-    private void OnExitButtonClick()
-    {
-        Application.Quit();
-    }
-
     private void OnMenuButtonClick()
     {
         _gameScreen.Close();
-        _gameOverScreen.Open();
         Time.timeScale = 0;
     }
 
     private void StartGame()
     {
         Time.timeScale = 1;
+
+        if (/*_isCrashed && */_isAllInit == false)
+        {
+            _isAllInit = true;
+            Invoke(nameof(InitSpawners), _delayStart);
+        }
     }
 
     private void OnGameOver()
     {
-        _gameScreen.Close();
-        _gameOverScreen.Open();
+        GameOver.Load();
         Time.timeScale = 0;
     }
 
-    private void OnHelicopterCrash()
-    {
-        _isCrashed = true;
-    }
+    //private void OnHelicopterCrash()
+    //{
+    //    _isCrashed = true;
+    //}
 
     private void InitSpawners()
     {
@@ -109,7 +86,5 @@ public class Game : MonoBehaviour
         {
             spawner.SetReady(true);
         }
-
-        _isAllInit = true;
     }
 }

@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class SoldierUSA : Soldier
 {
-    private FallenHelicopter _fallenHelicopter;
+    private MainTarget _mainTarget;
 
-    public FallenHelicopter FallenHelicopter => _fallenHelicopter;
+    public MainTarget MainTarget => _mainTarget;
 
     private void Awake()
     {
-        _fallenHelicopter = FindObjectOfType<FallenHelicopter>();
+        _mainTarget = FindObjectOfType<MainTarget>();
     }
 
     public override void SearchTarget()

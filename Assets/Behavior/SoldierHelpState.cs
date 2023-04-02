@@ -16,7 +16,7 @@ public class SoldierHelpState : UnitAction
         {
             _agent.SetDestination(transform.position);
 
-            transform.LookAt(Helicopter.transform.position);
+            transform.LookAt(MainTarget.transform.position);
             transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
             Help();
             return TaskStatus.Success;
@@ -28,15 +28,15 @@ public class SoldierHelpState : UnitAction
     private void Help()
     {
         _animator.Play(HelpAnimation);
-        StartCoroutine(ApplyHealing(Helicopter));
+        StartCoroutine(ApplyHealing(MainTarget));
     }
 
-    private IEnumerator ApplyHealing(FallenHelicopter helicopter)
+    private IEnumerator ApplyHealing(MainTarget mainTarget)
     {
         while (true)
         {
             yield return new WaitForSeconds(_delay);
-            helicopter.Healing(_healing);
+            mainTarget.Healing(_healing);
         }
     }
 }
