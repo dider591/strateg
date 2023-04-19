@@ -5,38 +5,30 @@ using UnityEngine;
 
 public class SoldierHelpState : UnitAction
 {
-    [SerializeField] private int _healing;
-    [SerializeField] private float _delay;
+    [SerializeField] private float _healing;
+    [SerializeField] private float _delayHealing;
 
     private int HelpAnimation = Animator.StringToHash("Help");
+    private bool _isApplyHealing = false;
 
     public override TaskStatus OnUpdate()
     {
         if (_unit.CurrentTargetPoint != null)
         {
             _agent.SetDestination(transform.position);
-
-            transform.LookAt(MainTarget.transform.position);
+            _animator.Play(HelpAnimation);
+            transform.LookAt(_unit.CurrentTargetPoint);
             transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
-            Help();
+
+            if (_isApplyHealing == false)
+            {
+                _isApplyHealing = true;
+                _unit.CurrentMainTarget.Healing(_healing);
+            }
+
             return TaskStatus.Success;
         }
 
         return TaskStatus.Failure;
-    }
-
-    private void Help()
-    {
-        _animator.Play(HelpAnimation);
-        StartCoroutine(ApplyHealing(MainTarget));
-    }
-
-    private IEnumerator ApplyHealing(MainTarget mainTarget)
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(_delay);
-            mainTarget.Healing(_healing);
-        }
     }
 }

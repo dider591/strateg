@@ -28,15 +28,15 @@ public class RagDollHelicopter : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (collision.collider.TryGetComponent<RocketTerrorist>(out RocketTerrorist rocketTerrorist))
+        {
+            Crash();
+        }
         if (collision.collider.TryGetComponent<Graund>(out Graund graund))
         {
             //Crashed?.Invoke();
             _helicopterModel.SetActive(false);
             _helicopterRagdoll.SetActive(true);
-        }
-        if (collision.collider.TryGetComponent<RocketTerrorist>(out RocketTerrorist rocketTerrorist))
-        {
-            Crash();
         }
     }
 

@@ -3,56 +3,52 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameOverScreen : Screen
 {
     [SerializeField] private Button _restartButton;
-    [SerializeField] private Button _exitButton;
-    [SerializeField] private Button _closeButton;
-
-    public UnityAction RestartButtonClick;
-    public UnityAction CloseButtonClick;
-    public UnityAction ExitButtonClick;
+    [SerializeField] private Button _selectLevelButton;
 
     private void OnEnable()
     {
         _restartButton.onClick.AddListener(OnRestartButtonClick);
-        _exitButton.onClick.AddListener(OnExitButtonClick);
-        _closeButton.onClick.AddListener(OnCloseButtonClick);
+        _selectLevelButton.onClick.AddListener(OnSelectButtonClick);
     }
 
     private void OnDisable()
     {
         _restartButton.onClick.RemoveListener(OnRestartButtonClick);
-        _exitButton.onClick.RemoveListener(OnExitButtonClick);
-        _closeButton.onClick.RemoveListener(OnCloseButtonClick);
+        _selectLevelButton.onClick.RemoveListener(OnSelectButtonClick);
     }
 
     public override void Close()
     {
         _canvas.alpha = 0;
         _restartButton.interactable = false;
-        _exitButton.interactable = false;
+        _selectLevelButton.interactable = false;
     }
 
     public void OnRestartButtonClick()
     {
-        RestartButtonClick.Invoke();
+        int lastScene = PlayerPrefs.GetInt("levels");
+        SceneManager.LoadScene(lastScene);
     }
 
-    public void OnCloseButtonClick()
+    public void OnSelectButtonClick()
     {
-        CloseButtonClick?.Invoke();
-    }
-    public void OnExitButtonClick()
-    {
-        ExitButtonClick?.Invoke();
+        SceneManager.LoadScene(0);
     }
 
     public override void Open()
     {
         _canvas.alpha = 1;
         _restartButton.interactable = true;
-        _exitButton.interactable = true;
+        _selectLevelButton.interactable = true;
     }
+
+    //public void OnSceneLoaded(TypedScene lastScene)
+    //{
+    //    _lastScene = lastScene;
+    //}
 }

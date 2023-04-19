@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Bazooka : Weapon
 {
-    public override void Shoot(Vector3 shootPoint)
+    public override void Shoot(/*Vector3 shootPoint*/)
     {
-        LookAim(shootPoint);
+        //FindAim();
+        //LookAim(shootPoint);
         Instantiate(Bullet, transform.position, transform.rotation);
     }
 }

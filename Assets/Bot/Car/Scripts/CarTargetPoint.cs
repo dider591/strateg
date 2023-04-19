@@ -8,6 +8,7 @@ public class CarTargetPoint : MonoBehaviour
     {
         if (other.TryGetComponent<Spawner>(out Spawner spawner))
         {
+            Debug.Log("CarTargetPoint");
             spawner.SetReady(true);
         }
     }

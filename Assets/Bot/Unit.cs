@@ -12,15 +12,18 @@ public abstract class Unit : MonoBehaviour
     protected Rigidbody ThisRigidbody;
     protected Unit Target;
     protected Ragdoll Ragdoll;
+    protected MainTarget MainTarget;
 
     public Vector3 CurrentTargetPoint => TargetPoint;
     public Unit CurrentTarget => Target;
     public int CurrentHealth => Health;
+    public MainTarget CurrentMainTarget => MainTarget;
 
     private void Start()
     {
         ThisRigidbody = GetComponent<Rigidbody>();
         Ragdoll = GetComponent<Ragdoll>();
+        MainTarget = FindObjectOfType<MainTarget>();
     }
 
     private void Update()

@@ -5,19 +5,18 @@ using DG.Tweening;
 public class CameraRotator : MonoBehaviour
 {
     [SerializeField] private float _speed;
-    [SerializeField] private Vector3 _wayPoints;
+    [SerializeField] private Vector3 _wayPointsOne;
 
     private Animator _animator;
 
     private void Start()
     {
         _animator = GetComponent<Animator>();
-        _animator.Play("CameraMove");
     }
 
     private void Update()
     {
-        if (transform.position == _wayPoints)
+        if (transform.position == _wayPointsOne)
         {
             _animator.enabled = false;
             MoweCircle();
@@ -26,6 +25,6 @@ public class CameraRotator : MonoBehaviour
 
     private void MoweCircle()
     {
-        transform.rotation *= Quaternion.Euler(new Vector3(0, -_speed, 0) * Time.deltaTime);
+        transform.rotation *= Quaternion.Euler(new Vector3(0, _speed, 0) * Time.deltaTime);
     }
 }

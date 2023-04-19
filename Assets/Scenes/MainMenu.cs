@@ -1,19 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
-using IJunior.TypedScenes;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MainMenu : MonoBehaviour, ISceneLoadHandler<LevelConfig>
+public class MainMenu : MonoBehaviour
 {
     [SerializeField] private MenuScreen _menuScreen;
     [SerializeField] private Button[] _buttons;
 
-    private int _countOpenScene = 1;
+    private int _countOpenScene;
 
     private void OnEnable()
     {
+        _countOpenScene = PlayerPrefs.GetInt("levels", 1);
         _menuScreen.OneLevelButtonClick += OnOneLevel;
         _menuScreen.TwoLevelButtonClick += OnTwoLevel;
     }
@@ -45,15 +45,15 @@ public class MainMenu : MonoBehaviour, ISceneLoadHandler<LevelConfig>
 
     private void OnOneLevel()
     {
-        Scene1.Load();
+        LoadLevel(1);
     }
     private void OnTwoLevel()
     {
-        Scene2.Load();
+        LoadLevel(2);
     }
 
-    public void OnSceneLoaded(LevelConfig argument)
+    public void LoadLevel(int levelIndex)
     {
-        _countOpenScene += argument.CountLevel;
+        SceneManager.LoadScene(levelIndex);
     }
 }

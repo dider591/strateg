@@ -18,8 +18,9 @@ public class Player : MonoBehaviour
     [SerializeField] private Button _artStrikeButton;
 
     private int _maney;
+    private int _startCountManey = 100;
     private Weapon _currentWeapon;
-    private RaycastHit hit;
+    private RaycastHit _hit;
 
     public Weapon CurrentWeapon => _currentWeapon;
     public int Maney => _maney;
@@ -28,6 +29,7 @@ public class Player : MonoBehaviour
 
     private void OnEnable()
     {
+        AddManey(_startCountManey);
         _machineGunButton.onClick.AddListener(OnMachineGunButtonClick);
         _missileButton.onClick.AddListener(OnMessileButtonClick);
         _squadButton.onClick.AddListener(OnSquadButtonClick);
@@ -43,7 +45,7 @@ public class Player : MonoBehaviour
 
     public void Shooting(Weapon weapon)
     {
-        weapon.Shoot(hit.point);
+        weapon.Shoot(/*_hit.point*/);
     }
 
     public void AddManey(int maneyCount)
@@ -88,6 +90,6 @@ public class Player : MonoBehaviour
         Ray ray = new Ray(transform.position, transform.forward);
         Debug.DrawRay(transform.position, transform.forward * 100f, Color.red);
 
-        Physics.Raycast(ray, out hit);
+        Physics.Raycast(ray, out _hit);
     }
 }

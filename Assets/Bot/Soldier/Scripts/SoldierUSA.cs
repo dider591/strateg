@@ -4,15 +4,6 @@ using UnityEngine;
 
 public class SoldierUSA : Soldier
 {
-    private MainTarget _mainTarget;
-
-    public MainTarget MainTarget => _mainTarget;
-
-    private void Awake()
-    {
-        _mainTarget = FindObjectOfType<MainTarget>();
-    }
-
     public override void SearchTarget()
     {
         Collider[] _colliders = Physics.OverlapSphere(transform.position, SearchRadius);

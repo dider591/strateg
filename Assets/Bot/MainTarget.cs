@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class MainTarget : Unit, ITakeDamage
+public class MainTarget : MonoBehaviour, ITakeDamage
 {
     private float _health;
 
@@ -30,9 +31,10 @@ public class MainTarget : Unit, ITakeDamage
         }
     }
 
-    public void Healing(int healing)
+    public void Healing(float healing)
     {
-        _health += (float)healing / 1000f;
+        Debug.Log("Healing");
+        _health += healing;
         HealthChanged?.Invoke(_health);
 
         if (_health >= _maxHealth)
@@ -42,12 +44,8 @@ public class MainTarget : Unit, ITakeDamage
         }
     }
 
-    public override void Death()
+    public void Death()
     {
         GameOver?.Invoke();
-    }
-
-    public override void SearchTarget()
-    {
     }
 }

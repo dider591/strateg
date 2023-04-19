@@ -10,7 +10,7 @@ public class MoveTargetPointTransition : UnitConditional
     {
         if (_unit.CurrentTargetPoint != null)
         {
-            if (_unit.CurrentTarget == null && Vector3.Distance(transform.position, _unit.CurrentTargetPoint) >= _transitionRange)
+            if (/*_unit.CurrentTarget == null &&*/ Vector3.Distance(transform.position, _unit.CurrentTargetPoint) >= _transitionRange)
             {
                 return TaskStatus.Success;
             }

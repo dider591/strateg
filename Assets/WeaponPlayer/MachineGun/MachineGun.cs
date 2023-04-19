@@ -7,9 +7,11 @@ public class MachineGun : Weapon
     [SerializeField] private float _randomStepPoint;
     [SerializeField] private float _delayShoot;
 
-    public override void Shoot(Vector3 shootPoint)
+    public override void Shoot(/*Vector3 shootPoint*/)
     {
-        LookAim(shootPoint);
+        //_shootPoint = shootPoint;
+        //LookAim(shootPoint);
+        //FindAim();
         StartCoroutine(Shooting());
     }
 

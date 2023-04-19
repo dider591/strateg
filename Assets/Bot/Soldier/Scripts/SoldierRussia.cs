@@ -22,10 +22,7 @@ public class SoldierRussia : Soldier
                     Target = carUSA;
                     return;
                 }
-                if (targetUnit.TryGetComponent<MainTarget>(out MainTarget mainTarget))
-                {
-                    Target = mainTarget;
-                }
+                //возможно нужно переделать юнит машин вертолет
             }
         }
     }

@@ -24,12 +24,12 @@ public class GameScreen : Screen
     [SerializeField] private Image _fillArtStrike;
     [SerializeField] private Player _player;
     [SerializeField] private TextMeshProUGUI _maneyCount;
+    [SerializeField] private float _delayButtons;
 
     private float _delayMissile = 10f;
     private float _delayMachineGun = 5f;
     private float _delaySquad = 10f;
     private float _delayArtStrike = 10f;
-    private float _delayButtons = 9f;
     private float _healthChangeDurationn = 1f;
     private float _canvasAlphaMax = 1f;
     private float _canvasAlphaMin = 0f;

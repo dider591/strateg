@@ -7,6 +7,7 @@ using UnityEngine.AI;
 public class Car : Unit, ITakeDamage, ISetTargetPoint
 {
     [SerializeField] private Explosion _explosionEffect;
+    [SerializeField] private WeaponCar _weaponCar;
 
     protected bool _isInit;
     protected bool _isDeath;
@@ -25,6 +26,7 @@ public class Car : Unit, ITakeDamage, ISetTargetPoint
             Death();
         }
     }
+
     public override void Death()
     {
         if (_isDeath == false)
@@ -33,6 +35,11 @@ public class Car : Unit, ITakeDamage, ISetTargetPoint
             ThisRigidbody.AddForce(2000f, 0, 0);
             Instantiate(_explosionEffect, transform.position, transform.rotation);
             Ragdoll.Disable();
+
+            if (_weaponCar != null)
+            {
+                _weaponCar.gameObject.SetActive(false);
+            }
         }
     }
 

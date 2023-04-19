@@ -629,10 +629,10 @@ GameObject:
   - component: {fileID: 1984501493435030544}
   - component: {fileID: 5054313690215731095}
   - component: {fileID: 6674285097550671152}
-  - component: {fileID: -2610442313199963787}
   - component: {fileID: -3248963533771901560}
   - component: {fileID: 8524127985271114262}
   - component: {fileID: 8980196953067779210}
+  - component: {fileID: -8200839335909222674}
   m_Layer: 0
   m_Name: pickup lop
   m_TagString: Untagged
@@ -709,7 +709,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.78
-  m_Speed: 1.5
+  m_Speed: 1
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -749,47 +749,22 @@ MonoBehaviour:
       parentIndex: 
       startIndex: 
       variableStartIndex: 
-      JSONSerialization: '{"EntryTask":{"Type":"BehaviorDesigner.Runtime.Tasks.EntryTask","NodeData":{"Offset":"(344,30)"},"ID":0,"Name":"Entry","Instant":true},"RootTask":{"Type":"BehaviorDesigner.Runtime.Tasks.Repeater","NodeData":{"Offset":"(4,120)"},"ID":1,"Name":"Repeater","Instant":true,"SharedIntcount":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":null,"Int32mValue":0},"SharedBoolrepeatForever":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"SharedBoolendOnFailure":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(14,120)"},"ID":2,"Name":"Selector","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-500.993744,120.6479)"},"ID":3,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"AttackTransition","NodeData":{"Offset":"(-72.78836,129.966553)"},"ID":4,"Name":"Attack
-        Transition","Instant":true,"Single_transitionRange":5},{"Type":"CarAttackState","NodeData":{"Offset":"(70.454834,132.66925)"},"ID":5,"Name":"Car
-        Attack State","Instant":true,"Transform_machingunner":0},{"Type":"BehaviorDesigner.Runtime.Tasks.Unity.UnityGameObject.Instantiate","NodeData":{"Offset":"(190.240448,130.51062)"},"ID":6,"Name":"Instantiate","Instant":true,"SharedGameObjecttargetGameObject":{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":null,"GameObjectmValue":1},"SharedTransform_transform":{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":null,"TransformmValue":2},"SharedGameObjectstoreResult":{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":null,"IsShared":true}},{"Type":"BehaviorDesigner.Runtime.Tasks.Wait","NodeData":{"Offset":"(312.855774,140.228027)"},"ID":7,"Name":"Wait","Instant":true,"SharedFloatwaitTime":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":0.5},"SharedBoolrandomWait":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedFloatrandomWaitMin":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"SharedFloatrandomWaitMax":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1}}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(142.621292,145.625137)"},"ID":8,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"MoveTargetPointTransition","NodeData":{"Offset":"(-138.282913,109.93898)"},"ID":9,"Name":"Move
-        Target Point Transition","Instant":true,"Single_transitionRange":1},{"Type":"MoveTargetPointState","NodeData":{"Offset":"(87.52341,109.939026)"},"ID":10,"Name":"Move
-        Target Point State","Instant":true}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(463.4214,153.870972)"},"ID":11,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"IdleTransition","NodeData":{"Offset":"(-55.057312,119.939026)"},"ID":12,"Name":"Idle
-        Transition","Instant":true,"Single_transitionRange":1},{"Type":"IdleState","NodeData":{"Offset":"(73.9749146,119.939026)"},"ID":13,"Name":"Idle
+      JSONSerialization: '{"EntryTask":{"Type":"BehaviorDesigner.Runtime.Tasks.EntryTask","NodeData":{"Offset":"(344,30)"},"ID":0,"Name":"Entry","Instant":true},"RootTask":{"Type":"BehaviorDesigner.Runtime.Tasks.Repeater","NodeData":{"Offset":"(4,120)"},"ID":1,"Name":"Repeater","Instant":true,"SharedIntcount":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":null,"Int32mValue":0},"SharedBoolrepeatForever":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"SharedBoolendOnFailure":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(14,120)"},"ID":2,"Name":"Selector","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-149.147537,143.987137)"},"ID":3,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"MoveTargetPointTransition","NodeData":{"Offset":"(-138.282913,109.93898)"},"ID":4,"Name":"Move
+        Target Point Transition","Instant":true,"Single_transitionRange":1},{"Type":"MoveTargetPointState","NodeData":{"Offset":"(87.52341,109.939026)"},"ID":5,"Name":"Move
+        Target Point State","Instant":true}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(147.331,153.870972)"},"ID":6,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"IdleTransition","NodeData":{"Offset":"(-55.057312,119.939026)"},"ID":7,"Name":"Idle
+        Transition","Instant":true,"Single_transitionRange":1},{"Type":"IdleState","NodeData":{"Offset":"(73.9749146,119.939026)"},"ID":8,"Name":"Idle
         State","Instant":true}]}]}]}}'
       fieldSerializationData:
         typeName: []
         fieldNameHash: 
         startIndex: 
         dataPosition: 
-        unityObjects:
-        - {fileID: 7362120076353930262}
-        - {fileID: 2142079588104617495, guid: caffed469c6aa7b4ba5411efcfd5939f, type: 3}
-        - {fileID: 7463860559803736205}
+        unityObjects: []
         byteData: 
         byteDataArray: 
       Version: 1.7.2
   gizmoViewMode: 2
   showBehaviorDesignerGizmo: 1
---- !u!95 &-2610442313199963787
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4964531785136103756}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: c60b0e2915c5e534bb5598ab0a3ccb97, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &-3248963533771901560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -826,7 +801,7 @@ MonoBehaviour:
   - {fileID: 5849670839702291054}
   - {fileID: 7886717660412058705}
   - {fileID: 36638098634784420}
-  _timeDestroy: 20
+  _timeDestroy: 10
 --- !u!208 &8524127985271114262
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -857,8 +832,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: 20
   Reward: 20
-  SearchRadius: 5
+  SearchRadius: 0
   _explosionEffect: {fileID: -9105811596838308180, guid: a7c694f0877ea874fa57e033221095c3, type: 3}
+  _weaponCar: {fileID: 0}
+--- !u!95 &-8200839335909222674
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4964531785136103756}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c60b0e2915c5e534bb5598ab0a3ccb97, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5781566344595441526
 GameObject:
   m_ObjectHideFlags: 0
@@ -1661,13 +1657,32 @@ PrefabInstance:
       propertyPath: m_Name
       value: SoldierDriver
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 9087205042201522152, guid: b000618db18cbf548b786d3eb9a1661b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b000618db18cbf548b786d3eb9a1661b, type: 3}
 --- !u!137 &36638098634784420 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: 2990959260724096757, guid: b000618db18cbf548b786d3eb9a1661b, type: 3}
   m_PrefabInstance: {fileID: 2954413796153675857}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &3577535349843543165 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1776066163241063468, guid: b000618db18cbf548b786d3eb9a1661b, type: 3}
+  m_PrefabInstance: {fileID: 2954413796153675857}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &6934066727197702028
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3577535349843543165}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.11, y: 0.17706105, z: 0.09255912}
+  m_Center: {x: 0, y: 0.2675222, z: 0.009493128}
 --- !u!4 &4246373136895024839 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1436096804899999382, guid: b000618db18cbf548b786d3eb9a1661b, type: 3}
@@ -1688,6 +1703,18 @@ PrefabInstance:
     - target: {fileID: 343212088579781359, guid: 843647645589880469a3f4126cebdcb4, type: 3}
       propertyPath: m_RootOrder
       value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 343212088579781359, guid: 843647645589880469a3f4126cebdcb4, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 343212088579781359, guid: 843647645589880469a3f4126cebdcb4, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 343212088579781359, guid: 843647645589880469a3f4126cebdcb4, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 343212088579781359, guid: 843647645589880469a3f4126cebdcb4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1733,16 +1760,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: Weapon
       objectReference: {fileID: 0}
-    - target: {fileID: 5436030410023219850, guid: 843647645589880469a3f4126cebdcb4, type: 3}
-      propertyPath: m_IsKinematic
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: -4904794316413424451, guid: 843647645589880469a3f4126cebdcb4, type: 3}
-    - {fileID: 2742399226552648841, guid: 843647645589880469a3f4126cebdcb4, type: 3}
-    - {fileID: 1250711781904038489, guid: 843647645589880469a3f4126cebdcb4, type: 3}
-    - {fileID: 6840089952542781738, guid: 843647645589880469a3f4126cebdcb4, type: 3}
-    - {fileID: 5436030410023219850, guid: 843647645589880469a3f4126cebdcb4, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 843647645589880469a3f4126cebdcb4, type: 3}
 --- !u!137 &5849670839702291054 stripped
 SkinnedMeshRenderer:
@@ -1752,11 +1770,6 @@ SkinnedMeshRenderer:
 --- !u!4 &7362120076353930262 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 343212088579781359, guid: 843647645589880469a3f4126cebdcb4, type: 3}
-  m_PrefabInstance: {fileID: 7127180226029942521}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &7463860559803736205 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 395227173710304884, guid: 843647645589880469a3f4126cebdcb4, type: 3}
   m_PrefabInstance: {fileID: 7127180226029942521}
   m_PrefabAsset: {fileID: 0}
 --- !u!137 &7886717660412058705 stripped

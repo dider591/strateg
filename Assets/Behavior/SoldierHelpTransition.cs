@@ -7,7 +7,7 @@ public class SoldierHelpTransition : UnitConditional
 
     public override TaskStatus OnUpdate()
     {
-        if (_unit.CurrentTarget == null && Helicopter != null)
+        if (_unit.CurrentTarget == null && _unit.CurrentTargetPoint != null)
         {
             if (Vector3.Distance(transform.position, _unit.CurrentTargetPoint) < _transitionRange)
             {

@@ -1183,10 +1183,10 @@ GameObject:
   - component: {fileID: 5146182459535602450}
   - component: {fileID: 7925817378082616371}
   - component: {fileID: 7548429829731049878}
-  - component: {fileID: 5717753891385498992}
   - component: {fileID: 7452223031043875012}
   - component: {fileID: 3669709197215594251}
   - component: {fileID: 899433995923255640}
+  - component: {fileID: 6998084069967521311}
   m_Layer: 0
   m_Name: ural
   m_TagString: Untagged
@@ -1277,7 +1277,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 1
+  m_Speed: 0.8
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -1333,26 +1333,6 @@ MonoBehaviour:
       Version: 1.7.2
   gizmoViewMode: 2
   showBehaviorDesignerGizmo: 1
---- !u!95 &5717753891385498992
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3581778191678965384}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: eeb93449197f25b4c9a368f9b2f15f52, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &7452223031043875012
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1396,7 +1376,7 @@ MonoBehaviour:
   - {fileID: 4639799720839376048}
   - {fileID: 5312822934711769489}
   - {fileID: 6138803999001344092}
-  _timeDestroy: 20
+  _timeDestroy: 10
 --- !u!208 &3669709197215594251
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -1427,8 +1407,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: 20
   Reward: 20
-  SearchRadius: 5
+  SearchRadius: 0
   _explosionEffect: {fileID: -9105811596838308180, guid: a7c694f0877ea874fa57e033221095c3, type: 3}
+  _weaponCar: {fileID: 0}
+--- !u!95 &6998084069967521311
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3581778191678965384}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: eeb93449197f25b4c9a368f9b2f15f52, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3764142312013196869
 GameObject:
   m_ObjectHideFlags: 0
@@ -3024,7 +3025,7 @@ MonoBehaviour:
   _unit: {fileID: 2417258755657241481, guid: 248abeb8ee85c0e4594103ef3ab6ed64, type: 3}
   _countUnit: 6
   _countWaves: 1
-  _stepSpawn: 1.5
+  _stepSpawn: 2
   _isReady: 0
 --- !u!65 &973375848334240521
 BoxCollider:
