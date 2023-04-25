@@ -726,7 +726,7 @@ GameObject:
   - component: {fileID: 4287407264755028526}
   - component: {fileID: 3935586512595656855}
   - component: {fileID: 2659599851918485430}
-  - component: {fileID: -4372260686765745494}
+  - component: {fileID: 8922101150928709821}
   m_Layer: 3
   m_Name: USASoldierBazooka
   m_TagString: Untagged
@@ -983,7 +983,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &-4372260686765745494
+--- !u!114 &8922101150928709821
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

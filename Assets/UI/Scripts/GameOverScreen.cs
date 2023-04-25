@@ -8,31 +8,38 @@ using UnityEngine.SceneManagement;
 public class GameOverScreen : Screen
 {
     [SerializeField] private Button _restartButton;
-    [SerializeField] private Button _selectLevelButton;
+    [SerializeField] private Button _mainMenuButton;
 
     private void OnEnable()
     {
         _restartButton.onClick.AddListener(OnRestartButtonClick);
-        _selectLevelButton.onClick.AddListener(OnSelectButtonClick);
+        _mainMenuButton.onClick.AddListener(OnSelectButtonClick);
     }
 
     private void OnDisable()
     {
         _restartButton.onClick.RemoveListener(OnRestartButtonClick);
-        _selectLevelButton.onClick.RemoveListener(OnSelectButtonClick);
+        _mainMenuButton.onClick.RemoveListener(OnSelectButtonClick);
+    }
+
+    public override void Open()
+    {
+        _canvas.alpha = 1;
+        _restartButton.interactable = true;
+        _mainMenuButton.interactable = true;
     }
 
     public override void Close()
     {
         _canvas.alpha = 0;
         _restartButton.interactable = false;
-        _selectLevelButton.interactable = false;
+        _mainMenuButton.interactable = false;
     }
 
     public void OnRestartButtonClick()
     {
-        int lastScene = PlayerPrefs.GetInt("levels");
-        SceneManager.LoadScene(lastScene);
+        int currentScene = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentScene);
     }
 
     public void OnSelectButtonClick()
@@ -40,15 +47,4 @@ public class GameOverScreen : Screen
         SceneManager.LoadScene(0);
     }
 
-    public override void Open()
-    {
-        _canvas.alpha = 1;
-        _restartButton.interactable = true;
-        _selectLevelButton.interactable = true;
-    }
-
-    //public void OnSceneLoaded(TypedScene lastScene)
-    //{
-    //    _lastScene = lastScene;
-    //}
 }

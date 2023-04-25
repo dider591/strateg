@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 10
-  _damage: 21
+  _damage: 10
   _radius: 0.3
   _forse: 1000
   _modifier: 2

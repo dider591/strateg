@@ -22,6 +22,11 @@ public class Spawner : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        
+    }
+
     private void Update()
     {
         if (_targetPoint != null)
@@ -40,6 +45,7 @@ public class Spawner : MonoBehaviour
     public void SetReady(bool isReady)
     {
         _isReady = isReady;
+
     }
 
     private IEnumerator InstantiateUnits()

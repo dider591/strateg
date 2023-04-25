@@ -10,6 +10,7 @@ public class SoldierHelpState : UnitAction
 
     private int HelpAnimation = Animator.StringToHash("Help");
     private bool _isApplyHealing = false;
+    private Coroutine _coroutineHelp;
 
     public override TaskStatus OnUpdate()
     {
@@ -23,12 +24,20 @@ public class SoldierHelpState : UnitAction
             if (_isApplyHealing == false)
             {
                 _isApplyHealing = true;
-                _unit.CurrentMainTarget.Healing(_healing);
+                _coroutineHelp = StartCoroutine(Help());
             }
 
             return TaskStatus.Success;
         }
 
         return TaskStatus.Failure;
+    }
+
+    private IEnumerator Help()
+    {
+        _unit.CurrentMainTarget.Healing(_healing);
+
+         yield return new WaitForSeconds(_delayHealing);
+        _isApplyHealing = false;
     }
 }

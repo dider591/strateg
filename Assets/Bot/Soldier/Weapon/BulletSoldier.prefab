@@ -131,7 +131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 30
-  _damage: 3
+  _damage: 1
   _radius: 0.1
   _forse: 400
   _modifier: 2

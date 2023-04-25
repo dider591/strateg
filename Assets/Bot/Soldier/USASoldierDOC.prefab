@@ -987,7 +987,7 @@ MonoBehaviour:
         Target Point Transition","Instant":true,"Single_transitionRange":1},{"Type":"MoveTargetPointState","NodeData":{"Offset":"(39.4921875,144.679688)"},"ID":13,"Name":"Move
         Target Point State","Instant":true}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(302.036224,283.492157)"},"ID":14,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"SoldierHelpTransition","NodeData":{"Offset":"(-31.4101563,169.921875)"},"ID":15,"Name":"Soldier
         Help Transition","Instant":true,"Single_transitionRange":1},{"Type":"SoldierHelpState","NodeData":{"Offset":"(116.210938,169.920059)"},"ID":16,"Name":"Soldier
-        Help State","Instant":true,"Single_healing":0.05,"Single_delayHealing":5}]}]}]},"Variables":[{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"Damage","IsShared":true,"Int32mValue":1},{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"BulletSpawnPoint","IsShared":true,"TransformmValue":3}]}'
+        Help State","Instant":true,"Single_healing":0.01,"Single_delayHealing":5}]}]}]},"Variables":[{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"Damage","IsShared":true,"Int32mValue":1},{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"BulletSpawnPoint","IsShared":true,"TransformmValue":3}]}'
       fieldSerializationData:
         typeName: []
         fieldNameHash: 

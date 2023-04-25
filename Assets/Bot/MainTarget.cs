@@ -33,7 +33,6 @@ public class MainTarget : MonoBehaviour, ITakeDamage
 
     public void Healing(float healing)
     {
-        Debug.Log("Healing");
         _health += healing;
         HealthChanged?.Invoke(_health);
 
