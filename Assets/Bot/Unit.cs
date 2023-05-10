@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public abstract class Unit : MonoBehaviour
 {
@@ -12,18 +13,19 @@ public abstract class Unit : MonoBehaviour
     protected Rigidbody ThisRigidbody;
     protected Unit Target;
     protected Ragdoll Ragdoll;
-    protected MainTarget MainTarget;
+    protected Helicopter MainTarget;
 
+    public UnityAction ChangeHealth;    //Сделать скрипт Health и сделать дзот тоже unit  и добавить им скрипт Health
     public Vector3 CurrentTargetPoint => TargetPoint;
     public Unit CurrentTarget => Target;
     public int CurrentHealth => Health;
-    public MainTarget CurrentMainTarget => MainTarget;
+    public Helicopter CurrentMainTarget => MainTarget;
 
     private void Start()
     {
         ThisRigidbody = GetComponent<Rigidbody>();
         Ragdoll = GetComponent<Ragdoll>();
-        MainTarget = FindObjectOfType<MainTarget>();
+        MainTarget = FindObjectOfType<Helicopter>();
     }
 
     private void Update()

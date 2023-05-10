@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Wall : MonoBehaviour, ITakeDamage
 {
-    private Destructor _destructor;
+    private Building _destructor;
     private Collider _collider;
     private float _destroiTime = 5f;
 
     private void Awake()
     {
-        _destructor = GetComponentInParent<Destructor>();
+        _destructor = GetComponentInParent<Building>();
         _collider = GetComponent<Collider>();
     }
 

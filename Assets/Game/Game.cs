@@ -8,7 +8,6 @@ using UnityEngine.Events;
 
 public class Game : MonoBehaviour
 {
-    [SerializeField] private GameMode _gameMode;
     [SerializeField] private Screen _winScreen;
     [SerializeField] private GameOverScreen _gameOverScreen;
     [SerializeField] private MainTarget _mainTarget;
@@ -19,15 +18,10 @@ public class Game : MonoBehaviour
 
     private bool _isAllInit;
     private bool _isStartMenu;
+    private bool _isWin;
     private int _currentLevel;
     private int _currentWave;
     private int _canvasMax = 1;
-
-    private enum GameMode
-    {
-        Assault,
-        Defense
-    }
 
     private void OnEnable()
     {
@@ -35,38 +29,28 @@ public class Game : MonoBehaviour
         _winScreen.Close();
         _gameOverScreen.Close();
         _currentLevel = SceneManager.GetActiveScene().buildIndex;
-        PlayerPrefs.SetInt("levels", _currentLevel);
-        _menuButton.onClick.AddListener(OnMenuButtonClick);
-        _mainTarget.GameOver += OnGameOver;
-        _mainTarget.Healed += OnHealed;
+        //_menuButton.onClick.AddListener(OnMenuButtonClick);
+        _mainTarget.Defeat += OnGameOver;
+        _mainTarget.Win += OnWin;
     }
 
     private void OnGameOver()
     {
-        if (_gameMode == GameMode.Defense)
-        {
-            _gameOverScreen.Open();
-            Time.timeScale = 0;
-        }
-        if (_gameMode == GameMode.Assault)
-        {
-            Init();
-        }
+        _gameOverScreen.Open();
+        Time.timeScale = 0;
     }
 
-    private void OnHealed()
+    private void OnWin()
     {
-        if (_gameMode == GameMode.Defense)
-        {
-            _winScreen.Open();
-            Time.timeScale = 0;
-        }
+        UnLockLevel();
+        _winScreen.Open();
+        Time.timeScale = 0;
     }
 
     private void OnDisable()
     {
-        _menuButton.onClick.RemoveListener(OnMenuButtonClick);
-        _mainTarget.GameOver -= OnGameOver;
+        //_menuButton.onClick.RemoveListener(OnMenuButtonClick);
+        _mainTarget.Defeat -= OnGameOver;
     }
 
     private void OnMenuButtonClick()
@@ -80,7 +64,7 @@ public class Game : MonoBehaviour
         Time.timeScale = 1;
         _currentWave = 1;
 
-        if (!_isAllInit && _gameMode == GameMode.Defense)
+        if (!_isAllInit)
         {
             _isAllInit = true;
             Invoke(nameof(Init), _delayStart);
@@ -97,9 +81,9 @@ public class Game : MonoBehaviour
 
     private void UnLockLevel()
     {
-        if (_currentLevel >= PlayerPrefs.GetInt("levels")) ;
+        if (_currentLevel >= PlayerPrefs.GetInt("scenes")) ;
         {
-            PlayerPrefs.SetInt("levels", _currentLevel + 1);
+            PlayerPrefs.SetInt("scenes", _currentLevel + 1);
         }
     }
 }

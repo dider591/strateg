@@ -11,7 +11,6 @@ public class Player : MonoBehaviour
     [SerializeField] private Weapon _machineGun;
     [SerializeField] private Squad _squad;
     [SerializeField] private Weapon _artStrike;
-    //[SerializeField] private GameScreen _gameScreen;
     [SerializeField] private Button _squadButton;
     [SerializeField] private Button _machineGunButton;
     [SerializeField] private Button _missileButton;
@@ -45,18 +44,21 @@ public class Player : MonoBehaviour
 
     public void Shooting(Weapon weapon)
     {
-        weapon.Shoot(/*_hit.point*/);
+        weapon.Shoot();
     }
 
     public void AddManey(int maneyCount)
     {
-        _maney += maneyCount;
+        PlayerPrefs.SetInt("score", _maney += maneyCount); 
+        _maney = PlayerPrefs.GetInt("score");
+        Debug.Log("maney = " + PlayerPrefs.GetInt("score"));
         ChangedManeyCount?.Invoke(_maney);
     }
 
     public void ReducesManey(int price)
     {
-        _maney -= price;
+        PlayerPrefs.SetInt("score", _maney -= price);
+        _maney = PlayerPrefs.GetInt("score");
         ChangedManeyCount?.Invoke(_maney);
     }
 

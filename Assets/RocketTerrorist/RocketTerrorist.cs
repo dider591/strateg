@@ -50,7 +50,7 @@ public class RocketTerrorist : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.TryGetComponent<MainTarget>(out MainTarget mainTarget))
+        if (collision.collider.TryGetComponent<Helicopter>(out Helicopter mainTarget))
         {
             Instantiate(_effectBoom, transform.position, transform.rotation);
             mainTarget.TakeDamage(_damage);

@@ -9,11 +9,10 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private MenuScreen _menuScreen;
     [SerializeField] private Button[] _buttons;
 
-    private int _countOpenScene;
+    private int _levelInLock;
 
     private void OnEnable()
     {
-        _countOpenScene = PlayerPrefs.GetInt("levels", 1);
         _menuScreen.OneLevelButtonClick += OnOneLevel;
         _menuScreen.TwoLevelButtonClick += OnTwoLevel;
     }
@@ -26,12 +25,24 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
+        PlayerPrefs.SetInt("scenes", 1);
+        _levelInLock = PlayerPrefs.GetInt("scenes");
         StartMenu();
+        LevelLock();
+        LevelOpen();
     }
 
-    private void OpenLevel()
+    private void LevelLock()
     {
-        for (int i = 0; i < _countOpenScene; i++)
+        for (int i = 0; i < _buttons.Length; i++)
+        {
+            _buttons[i].interactable = false;
+        }
+    }
+
+    private void LevelOpen()
+    {
+        for (int i = 0; i < _levelInLock; i++)
         {
             _buttons[i].interactable = true;
         }
@@ -40,16 +51,16 @@ public class MainMenu : MonoBehaviour
     private void StartMenu()
     {
         Time.timeScale = 0;
-        OpenLevel();
     }
 
     private void OnOneLevel()
     {
-        LoadLevel(1);
+        LoadLevel(2);
     }
+
     private void OnTwoLevel()
     {
-        LoadLevel(2);
+        LoadLevel(3);
     }
 
     public void LoadLevel(int levelIndex)

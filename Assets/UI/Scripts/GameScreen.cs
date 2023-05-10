@@ -23,7 +23,7 @@ public class GameScreen : Screen
     [SerializeField] private Image _fillSquads;
     [SerializeField] private Image _fillArtStrike;
     [SerializeField] private Player _player;
-    [SerializeField] private TextMeshProUGUI _maneyCount;
+    [SerializeField] private Text _maneyCount;
     [SerializeField] private float _delayButtons;
 
     private float _delayMissile = 10f;
@@ -37,19 +37,20 @@ public class GameScreen : Screen
 
     private void Awake()
     {
+        _maneyCount.text = _player.Maney.ToString();
         DeactivateButtons();
     }
 
     private void OnEnable()
     {
         Invoke(nameof(ActivateButtons), _delayButtons);
-        _mainTarget.HealthChanged += OnHealthChanged;
+        _mainTarget.ProgressChanged += OnProgressChanged;
         _player.ChangedManeyCount += OnChangedManeyCount;
     }
 
     private void OnDisable()
     {
-        _mainTarget.HealthChanged -= OnHealthChanged;
+        _mainTarget.ProgressChanged -= OnProgressChanged;
         _player.ChangedManeyCount -= OnChangedManeyCount;
     }
 
@@ -67,10 +68,11 @@ public class GameScreen : Screen
 
     private void OnChangedManeyCount(int maneyCount)
     {
+        Debug.Log(maneyCount);
         _maneyCount.text = maneyCount.ToString();
     }
 
-    private void OnHealthChanged(float health)
+    private void OnProgressChanged(float health)
     {
         _fillHealth.DOFillAmount(health, _healthChangeDurationn);
     }

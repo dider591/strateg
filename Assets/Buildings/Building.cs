@@ -1,12 +1,17 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class Destructor : MonoBehaviour
+public class Building : MonoBehaviour
 {
     [SerializeField] private Rigidbody[] _rigidbodies;
     [SerializeField] private int _health;
 
+    public UnityAction Dead;
+    public UnityAction ChangeHealth;
     public int Health => _health;
+
+    private bool isDead;
 
     private void Awake()
     {
@@ -16,10 +21,16 @@ public class Destructor : MonoBehaviour
     public void TakeDamage(int damage)
     {
         _health -= damage;
+        ChangeHealth?.Invoke();
 
         if (_health <= 0)
         {
-            Destruct();
+            if (isDead != true)
+            {
+                Dead?.Invoke();
+                Destruct();
+                isDead = true;
+            }
         }
     }
 

@@ -1,7 +1,6 @@
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -11,7 +10,7 @@ public class ButtonController : MonoBehaviour
     [SerializeField] private Image _fillImage;
     [SerializeField] private float _delay;
     [SerializeField] private int _price;
-    [SerializeField] private TextMeshProUGUI _priceText;
+    [SerializeField] private Text _priceText;
 
     private float _fillAmountMax = 1f;
     private float _fillAmountMin = 0f;

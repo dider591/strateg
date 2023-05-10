@@ -8,8 +8,9 @@ public abstract class Soldier : Unit, ITakeDamage, ISetTargetPoint
     protected Coroutine _applyHealing;
     protected float _delay = 5f;
 
-    private float _randomStepPoint = 1f;
+    public UnityAction<Soldier> Dead;
 
+    private float _randomStepPoint = 1f;
     private bool _isDead;
 
     public void SetTargetPoint(Vector3 point)
@@ -36,6 +37,7 @@ public abstract class Soldier : Unit, ITakeDamage, ISetTargetPoint
         if (_isDead == false)
         {
             FindObjectOfType<Player>().AddManey(Reward);
+            Dead?.Invoke(this);
             Ragdoll.Disable();
         }
 

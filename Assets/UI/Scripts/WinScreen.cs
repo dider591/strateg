@@ -8,9 +8,11 @@ public class WinScreen : Screen
 {
     [SerializeField] private Button _nextLevelButton;
     [SerializeField] private Button _mainMenuButton;
+    [SerializeField] private Text _coinCount;
 
     private void OnEnable()
     {
+        _coinCount.text = PlayerPrefs.GetInt("score").ToString();
         _nextLevelButton.onClick.AddListener(OnNextLevelButtonClick);
         _mainMenuButton.onClick.AddListener(OnSelectButtonClick);
     }

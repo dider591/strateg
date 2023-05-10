@@ -9,9 +9,11 @@ public class GameOverScreen : Screen
 {
     [SerializeField] private Button _restartButton;
     [SerializeField] private Button _mainMenuButton;
+    [SerializeField] private Text _coinCount;
 
     private void OnEnable()
     {
+        _coinCount.text = PlayerPrefs.GetInt("score").ToString();
         _restartButton.onClick.AddListener(OnRestartButtonClick);
         _mainMenuButton.onClick.AddListener(OnSelectButtonClick);
     }

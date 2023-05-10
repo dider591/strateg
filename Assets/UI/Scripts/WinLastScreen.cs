@@ -7,9 +7,11 @@ using UnityEngine.SceneManagement;
 public class WinLastScreen : Screen
 {
     [SerializeField] private Button _mainMenuButton;
+    [SerializeField] private Text _coinCount;
 
     private void OnEnable()
     {
+        _coinCount.text = PlayerPrefs.GetInt("score").ToString();
         _mainMenuButton.onClick.AddListener(OnSelectButtonClick);
     }
 

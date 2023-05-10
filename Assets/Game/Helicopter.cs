@@ -4,13 +4,9 @@ using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class MainTarget : MonoBehaviour, ITakeDamage
+public class Helicopter : MainTarget, ITakeDamage, IGameOver
 {
     private float _health;
-
-    public UnityAction<float> HealthChanged;
-    public UnityAction Healed;
-    public UnityAction GameOver;
 
     private float _maxHealth = 1f;
     private float _minHealth = 0;
@@ -23,28 +19,26 @@ public class MainTarget : MonoBehaviour, ITakeDamage
     public void TakeDamage(int damage)
     {
         _health -= (float)damage / 1000f;
-        HealthChanged?.Invoke(_health);
-
-        if (_health <= _minHealth)
-        {
-            Death();
-        }
+        ProgressChanged?.Invoke(_health);
+        GameOver();
     }
 
     public void Healing(float healing)
     {
         _health += healing;
-        HealthChanged?.Invoke(_health);
-
-        if (_health >= _maxHealth)
-        {
-            Healed?.Invoke();
-            _health = _maxHealth;
-        }
+        ProgressChanged?.Invoke(_health);
+        GameOver();
     }
 
-    public void Death()
+    public void GameOver()
     {
-        GameOver?.Invoke();
+        if (_health <= _minHealth)
+        {
+            Defeat?.Invoke();
+        }
+        if (_health >= _maxHealth)
+        {
+            Win?.Invoke();
+        }
     }
 }
