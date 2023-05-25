@@ -10,6 +10,8 @@ public class WinScreen : Screen
     [SerializeField] private Button _mainMenuButton;
     [SerializeField] private Text _coinCount;
 
+    private int _nextScene = 1;
+
     private void OnEnable()
     {
         _coinCount.text = PlayerPrefs.GetInt("score").ToString();
@@ -26,20 +28,24 @@ public class WinScreen : Screen
     public override void Close()
     {
         _canvas.alpha = 0;
-        _nextLevelButton.interactable = false;
-        _mainMenuButton.interactable = false;
+        _canvas.blocksRaycasts = false;
+        _canvas.interactable = false;
+        //_nextLevelButton.interactable = false;
+        //_mainMenuButton.interactable = false;
     }
 
     public override void Open()
     {
         _canvas.alpha = 1;
-        _nextLevelButton.interactable = true;
-        _mainMenuButton.interactable = true;
+        _canvas.blocksRaycasts = true;
+        _canvas.interactable = true;
+        //_nextLevelButton.interactable = true;
+        //_mainMenuButton.interactable = true;
     }
 
     public void OnNextLevelButtonClick()
     {
-        int lastScene = PlayerPrefs.GetInt("levels");
+        int lastScene = PlayerPrefs.GetInt("levels") + _nextScene;
         SceneManager.LoadScene(lastScene);
     }
 

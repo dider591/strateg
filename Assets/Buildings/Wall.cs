@@ -16,7 +16,7 @@ public class Wall : MonoBehaviour, ITakeDamage
 
     private void Update()
     {
-        if (_destructor.Health <= 0)
+        if (_destructor.CurrentHealth <= 0)
         {
             Destroy(gameObject, _destroiTime);
         }

@@ -23,13 +23,17 @@ public class WinLastScreen : Screen
     public override void Close()
     {
         _canvas.alpha = 0;
-        _mainMenuButton.interactable = false;
+        _canvas.interactable = false;
+        _canvas.blocksRaycasts = false;
+        //_mainMenuButton.interactable = false;
     }
 
     public override void Open()
     {
         _canvas.alpha = 1;
-        _mainMenuButton.interactable = true;
+        _canvas.interactable = true;
+        _canvas.blocksRaycasts = true;
+        //_mainMenuButton.interactable = true;
     }
 
     public void OnNextLevelButtonClick()

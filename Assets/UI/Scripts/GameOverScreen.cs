@@ -27,15 +27,19 @@ public class GameOverScreen : Screen
     public override void Open()
     {
         _canvas.alpha = 1;
-        _restartButton.interactable = true;
-        _mainMenuButton.interactable = true;
+        _canvas.interactable = true;
+        _canvas.blocksRaycasts = true;
+        //_restartButton.interactable = true;
+        //_mainMenuButton.interactable = true;
     }
 
     public override void Close()
     {
         _canvas.alpha = 0;
-        _restartButton.interactable = false;
-        _mainMenuButton.interactable = false;
+        _canvas.interactable = false;
+        _canvas.blocksRaycasts = false;
+        //_restartButton.interactable = false;
+        //_mainMenuButton.interactable = false;
     }
 
     public void OnRestartButtonClick()

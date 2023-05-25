@@ -38,23 +38,23 @@ public class RocketTerrorist : MonoBehaviour
         transform.Translate(0, 0, _speed * Time.deltaTime);
     }
 
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.TryGetComponent<MainTarget>(out MainTarget mainTarget))
-    //    {
-    //        Instantiate(_effectBoom, transform.position, transform.rotation);
-    //        mainTarget.TakeDamage(_damage);
-    //        Destroy(gameObject);
-    //    }
-    //}
-
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.collider.TryGetComponent<Helicopter>(out Helicopter mainTarget))
+        if (other.TryGetComponent<Helicopter>(out Helicopter mainTarget))
         {
             Instantiate(_effectBoom, transform.position, transform.rotation);
             mainTarget.TakeDamage(_damage);
             Destroy(gameObject);
         }
     }
+
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if (collision.collider.TryGetComponent<Helicopter>(out Helicopter mainTarget))
+    //    {
+    //        Instantiate(_effectBoom, transform.position, transform.rotation);
+    //        mainTarget.TakeDamage(_damage);
+    //        Destroy(gameObject);
+    //    }
+    //}
 }

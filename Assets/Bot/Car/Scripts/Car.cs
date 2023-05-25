@@ -21,6 +21,11 @@ public class Car : Unit, ITakeDamage, ISetTargetPoint
     {
         Health -= damage;
 
+        if (isHealthViewer)
+        {
+            _healthViewer.SetSizeHealth(CurrentHealth);
+        }
+
         if (Health <= 0)
         {
             Death();

@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
     private int _startCountManey = 100;
     private Weapon _currentWeapon;
     private RaycastHit _hit;
+    private ISelectable _currentISelectable;
 
     public Weapon CurrentWeapon => _currentWeapon;
     public int Maney => _maney;
@@ -49,9 +50,8 @@ public class Player : MonoBehaviour
 
     public void AddManey(int maneyCount)
     {
-        PlayerPrefs.SetInt("score", _maney += maneyCount); 
+        PlayerPrefs.SetInt("score", _maney += maneyCount);
         _maney = PlayerPrefs.GetInt("score");
-        Debug.Log("maney = " + PlayerPrefs.GetInt("score"));
         ChangedManeyCount?.Invoke(_maney);
     }
 
@@ -74,7 +74,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        AimRay();
+        AimSelect();
     }
 
     private void OnMachineGunButtonClick()
@@ -87,11 +87,36 @@ public class Player : MonoBehaviour
         Shooting(_bazooka);
     }
 
-    private void AimRay()
+    private void AimSelect()
     {
         Ray ray = new Ray(transform.position, transform.forward);
-        Debug.DrawRay(transform.position, transform.forward * 100f, Color.red);
 
-        Physics.Raycast(ray, out _hit);
+        if (Physics.Raycast(ray, out _hit))
+        {
+            if (_hit.collider.gameObject.TryGetComponent<ISelectable>(out ISelectable selectable))
+            {
+                if (_currentISelectable != null && _currentISelectable != selectable)
+                {
+                    _currentISelectable.Deselect();
+                }
+
+                selectable.Select();
+                _currentISelectable = selectable;
+            }
+            else
+            {
+                if (_currentISelectable != null)
+                {
+                    _currentISelectable.Deselect();
+                }
+            }                  
+        }
+        else
+        {
+            if (_currentISelectable != null)
+            {
+                _currentISelectable.Deselect();
+            }
+        }
     }
 }

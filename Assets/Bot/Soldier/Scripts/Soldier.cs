@@ -36,11 +36,10 @@ public abstract class Soldier : Unit, ITakeDamage, ISetTargetPoint
     {
         if (_isDead == false)
         {
+            _isDead = true;
             FindObjectOfType<Player>().AddManey(Reward);
             Dead?.Invoke(this);
             Ragdoll.Disable();
         }
-
-        _isDead = true;
     }
 }

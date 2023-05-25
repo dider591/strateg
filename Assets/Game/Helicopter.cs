@@ -4,41 +4,46 @@ using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Helicopter : MainTarget, ITakeDamage, IGameOver
+public class Helicopter : MainTarget, ITakeDamage
 {
     private float _health;
 
     private float _maxHealth = 1f;
     private float _minHealth = 0;
+    private float _timeDelayTask = 4f;
 
     private void Start()
     {
         _health = _maxHealth;
+        Invoke(nameof(StartTaskMessage), _timeDelayTask);
     }
 
     public void TakeDamage(int damage)
     {
         _health -= (float)damage / 1000f;
         ProgressChanged?.Invoke(_health);
-        GameOver();
+
+        if (_health <= _minHealth)
+        {
+            Defeat?.Invoke();
+        }
     }
 
     public void Healing(float healing)
     {
         _health += healing;
         ProgressChanged?.Invoke(_health);
-        GameOver();
-    }
 
-    public void GameOver()
-    {
-        if (_health <= _minHealth)
-        {
-            Defeat?.Invoke();
-        }
         if (_health >= _maxHealth)
         {
             Win?.Invoke();
         }
     }
+
+    private void StartTaskMessage()
+    {
+        _taskMessage.Open();
+    }
+
+
 }

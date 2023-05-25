@@ -4,46 +4,34 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Flag : MainTarget, IGameOver
+public class Flag : MainTarget
 {
     [SerializeField] private Transform _flagEnemy;
     [SerializeField] private Transform _flagUSA;
-    [SerializeField] private Building[] _buildings;
-    [SerializeField] private Text _textCountBuildings;
-    [SerializeField] private Bar _bunkersBar;
+    [SerializeField] private Bunkers _bunkers;
     [SerializeField] private Bar _flagBar;
     [SerializeField] private Slider _sliderFlag;
+    [SerializeField] private Timer _timer;
 
-    private Coroutine _ChangeFlagCoroutine;
+    private Coroutine _ñhangeFlagCoroutine;
     private bool _isAllBunkersAlive = true;
-    private float _currentFillSize;
-    private int _countBuildings;
-    private float _sizeBuilding = 0.17f;
     private int _countRussianSoldiers;
     private int _countUSASoldiers;
-    private float _minFlagValue = -4.33f;
-    private float _maxFlagValue = 4.33f;
+    private float _minFlagValue = -4.3f;
+    private float _maxFlagValue = 4.3f;
     private float _stepCaptureFlag = 0.002f;
 
     private void OnEnable()
     {
         _sliderFlag.value = _maxFlagValue;
-        _countBuildings = _buildings.Length;
-        _textCountBuildings.text = _countBuildings.ToString();
-        _currentFillSize = 1f;
-
-        foreach (var building in _buildings)
-        {
-            building.Dead += OnChangeCountBuildings;
-        }
+        _bunkers.AllDestroyed += OnAllDestroedBuildings;
+        _timer.TimesUp += OnTimesUp;
     }
 
     private void OnDisable()
     {
-        foreach (var building in _buildings)
-        {
-            building.Dead -= OnChangeCountBuildings;
-        }
+        _bunkers.AllDestroyed -= OnAllDestroedBuildings;
+        _timer.TimesUp -= OnTimesUp;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -55,9 +43,9 @@ public class Flag : MainTarget, IGameOver
                 soldierUSA.Dead += OnDiedSoldier;
                 _countUSASoldiers++;
 
-                if (_ChangeFlagCoroutine == null)
+                if (_ñhangeFlagCoroutine == null)
                 {
-                    _ChangeFlagCoroutine = StartCoroutine(ChangeFlag());
+                    _ñhangeFlagCoroutine = StartCoroutine(ChangeFlag());
                 }
             }
             if (other.TryGetComponent<SoldierRussia>(out SoldierRussia soldierRussia))
@@ -65,9 +53,9 @@ public class Flag : MainTarget, IGameOver
                 soldierRussia.Dead += OnDiedSoldier;
                 _countRussianSoldiers++;
 
-                if (_ChangeFlagCoroutine == null)
+                if (_ñhangeFlagCoroutine == null)
                 {
-                    _ChangeFlagCoroutine = StartCoroutine(ChangeFlag());
+                    _ñhangeFlagCoroutine = StartCoroutine(ChangeFlag());
                 }
             }
         }
@@ -80,12 +68,12 @@ public class Flag : MainTarget, IGameOver
             if (other.TryGetComponent<SoldierUSA>(out SoldierUSA soldierUSA))
             {
                 soldierUSA.Dead -= OnDiedSoldier;
-                _countUSASoldiers--;
+                OnDiedSoldier(soldierUSA);
             }
             if (other.TryGetComponent<SoldierRussia>(out SoldierRussia soldierRussia))
             {
                 soldierRussia.Dead -= OnDiedSoldier;
-                _countRussianSoldiers--;
+                OnDiedSoldier(soldierRussia);
             }
         }
     }
@@ -94,21 +82,25 @@ public class Flag : MainTarget, IGameOver
     {
         while (true)
         {
+            float currentFlagValue = _sliderFlag.value;
+
             if (_countUSASoldiers > _countRussianSoldiers)
             {
-                if (_sliderFlag.value > _minFlagValue)
+                if (currentFlagValue > _minFlagValue)
                 {
-                    Debug.Log("min");
                     _sliderFlag.value -= _stepCaptureFlag;
                     _flagEnemy.Translate(0, -_stepCaptureFlag, 0);
                     _flagUSA.Translate(0, _stepCaptureFlag, 0);
                 }
+                else if (currentFlagValue <= _minFlagValue)
+                {
+                    Win?.Invoke();
+                }
             }
             else if (_countUSASoldiers < _countRussianSoldiers)
             {
-                if (_sliderFlag.value < _maxFlagValue)
+                if (currentFlagValue < _maxFlagValue)
                 {
-                    Debug.Log("max");
                     _sliderFlag.value += _stepCaptureFlag;
                     _flagEnemy.Translate(0, _stepCaptureFlag, 0);
                     _flagUSA.Translate(0, -_stepCaptureFlag, 0);
@@ -116,9 +108,11 @@ public class Flag : MainTarget, IGameOver
             }
             else if (_countUSASoldiers == 0 && _countRussianSoldiers == 0)
             {
-                Debug.Log("Stop Coroutine");
-                StopCoroutine(_ChangeFlagCoroutine);
-                _ChangeFlagCoroutine = null;
+                if (_ñhangeFlagCoroutine != null)
+                {
+                    StopCoroutine(_ñhangeFlagCoroutine);
+                    _ñhangeFlagCoroutine = null;
+                }
             }
 
             yield return new WaitForFixedUpdate();
@@ -143,28 +137,16 @@ public class Flag : MainTarget, IGameOver
         }
     }
 
-    public void GameOver()
+    private void OnAllDestroedBuildings()
     {
-
-    }
-
-    private void OnChangeCountBuildings()
-    {
-        _countBuildings--;
-        _textCountBuildings.text = _countBuildings.ToString();
-        _currentFillSize -= _sizeBuilding;
-        ProgressChanged?.Invoke(_currentFillSize);
-
-        if (_countBuildings <= 0)
-        {
-            _isAllBunkersAlive = false;
-            SwitchesBar();
-        }
-    }
-
-    private void SwitchesBar()
-    {
-        _bunkersBar.gameObject.SetActive(false);
+        _taskMessage.Open();
         _flagBar.gameObject.SetActive(true);
+        _timer.gameObject.SetActive(true);
+        _isAllBunkersAlive = false;
+    }
+
+    private void OnTimesUp()
+    {
+        Defeat?.Invoke();
     }
 }

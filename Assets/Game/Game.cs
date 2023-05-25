@@ -12,8 +12,8 @@ public class Game : MonoBehaviour
     [SerializeField] private GameOverScreen _gameOverScreen;
     [SerializeField] private MainTarget _mainTarget;
     [SerializeField] private GameScreen _gameScreen;
+    [SerializeField] private SettingsScreen _settigsScreen;
     [SerializeField] private Spawner[] _spawners;
-    [SerializeField] private Button _menuButton;
     [SerializeField] private float _delayStart;
 
     private bool _isAllInit;
@@ -28,8 +28,8 @@ public class Game : MonoBehaviour
         StartGame();
         _winScreen.Close();
         _gameOverScreen.Close();
+        _settigsScreen.Close();
         _currentLevel = SceneManager.GetActiveScene().buildIndex;
-        //_menuButton.onClick.AddListener(OnMenuButtonClick);
         _mainTarget.Defeat += OnGameOver;
         _mainTarget.Win += OnWin;
     }
@@ -49,7 +49,6 @@ public class Game : MonoBehaviour
 
     private void OnDisable()
     {
-        //_menuButton.onClick.RemoveListener(OnMenuButtonClick);
         _mainTarget.Defeat -= OnGameOver;
     }
 

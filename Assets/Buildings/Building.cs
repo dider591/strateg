@@ -6,15 +6,22 @@ public class Building : MonoBehaviour
 {
     [SerializeField] private Rigidbody[] _rigidbodies;
     [SerializeField] private int _health;
+    [SerializeField] private HealthViewer _healthViewer;
+
 
     public UnityAction Dead;
     public UnityAction ChangeHealth;
-    public int Health => _health;
+    public int CurrentHealth => _health;
+    private bool isHealthViewer => _healthViewer != null;
 
     private bool isDead;
 
     private void Awake()
     {
+        if (isHealthViewer)
+        {
+            _healthViewer.SetSizeHealth(_health);
+        }
         _rigidbodies = GetComponentsInChildren<Rigidbody>();
     }
 
@@ -22,6 +29,11 @@ public class Building : MonoBehaviour
     {
         _health -= damage;
         ChangeHealth?.Invoke();
+
+        if (isHealthViewer)
+        {
+            _healthViewer.HealthChange(_health);
+        }
 
         if (_health <= 0)
         {

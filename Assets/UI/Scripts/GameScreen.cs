@@ -10,13 +10,14 @@ using TMPro;
 public class GameScreen : Screen
 {
     [SerializeField] private MainTarget _mainTarget;
-    [SerializeField] private Button _menuButton;
+    [SerializeField] private Button _settigsButton;
     [SerializeField] private Button _machineGun;
     [SerializeField] private Button _zoomIn;
     [SerializeField] private Button _zoomOut;
     [SerializeField] private Button _missile;
     [SerializeField] private Button _squad;
     [SerializeField] private Button _artStrike;
+    [SerializeField] private Screen _settigsScreen;
     [SerializeField] private Image _fillMissile;
     [SerializeField] private Image _fillMachineGun;
     [SerializeField] private Image _fillHealth;
@@ -34,6 +35,7 @@ public class GameScreen : Screen
     private float _canvasAlphaMax = 1f;
     private float _canvasAlphaMin = 0f;
     private int _priceMessile = 100;
+    private bool _isOpenSettings = false;
 
     private void Awake()
     {
@@ -46,29 +48,30 @@ public class GameScreen : Screen
         Invoke(nameof(ActivateButtons), _delayButtons);
         _mainTarget.ProgressChanged += OnProgressChanged;
         _player.ChangedManeyCount += OnChangedManeyCount;
+        _settigsButton.onClick.AddListener(OnSettingsButtonClick);
     }
 
     private void OnDisable()
     {
         _mainTarget.ProgressChanged -= OnProgressChanged;
         _player.ChangedManeyCount -= OnChangedManeyCount;
+        _settigsButton.onClick.RemoveListener(OnSettingsButtonClick);
     }
 
     public override void Close()
     {
         _canvas.alpha = _canvasAlphaMin;
-        _menuButton.interactable = false;
+        _settigsButton.interactable = false;
     }
 
     public override void Open()
     {
         _canvas.alpha = _canvasAlphaMax;
-        _menuButton.interactable = true;
+        _settigsButton.interactable = true;
     }
 
     private void OnChangedManeyCount(int maneyCount)
     {
-        Debug.Log(maneyCount);
         _maneyCount.text = maneyCount.ToString();
     }
 
@@ -77,9 +80,23 @@ public class GameScreen : Screen
         _fillHealth.DOFillAmount(health, _healthChangeDurationn);
     }
 
+    private void OnSettingsButtonClick()
+    {
+        if (_isOpenSettings == false)
+        {
+            _settigsScreen.Open();
+            _isOpenSettings = true;
+        }
+        else
+        {
+            _settigsScreen.Close();
+            _isOpenSettings = false;
+        }
+    }
+
     private void DeactivateButtons()
     {
-        _menuButton.gameObject.SetActive(false);
+        _settigsButton.gameObject.SetActive(false);
         _machineGun.gameObject.SetActive(false);
         _missile.gameObject.SetActive(false);
         _squad.gameObject.SetActive(false);
@@ -90,7 +107,7 @@ public class GameScreen : Screen
 
     private void ActivateButtons()
     {
-        _menuButton.gameObject.SetActive(true);
+        _settigsButton.gameObject.SetActive(true);
         _machineGun.gameObject.SetActive(true);
         _missile.gameObject.SetActive(true);
         _squad.gameObject.SetActive(true);
