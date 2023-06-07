@@ -553,6 +553,7 @@ MonoBehaviour:
   Health: 10
   Reward: 10
   SearchRadius: 0
+  _healthViewer: {fileID: 0}
   _damage: 0
 --- !u!1 &1876556199292698632
 GameObject:
@@ -2142,7 +2143,7 @@ SkinnedMeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 3ace09bba432be945b6a39fb99e4945d, type: 2}
-  - {fileID: 2100000, guid: 9bdb6f50ff46f564b95febe02313ee5d, type: 2}
+  - {fileID: 2100000, guid: 13e1a794a173f3b468523c2d933b6614, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

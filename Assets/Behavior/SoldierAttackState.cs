@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class SoldierAttackState : UnitAction
 {
-    [SerializeField] private Transform _ShootPoint;
+    [SerializeField] private Ammunition _ammunition;
+    [SerializeField] private Transform _shootPoint;
+    [SerializeField] private float _range;
+    [SerializeField] private AudioSource _shootAudio;
+    [SerializeField] private ParticleSystem _hitEffect;
 
     private int ShootAnimation = Animator.StringToHash("Shoot");
-    private float _range = 6f;
+    private SharedGameObject _storeResult;
 
     public override TaskStatus OnUpdate()
     {
@@ -27,14 +31,22 @@ public class SoldierAttackState : UnitAction
     {
         //RaycastHit hit;
 
-        //if (Physics.Raycast(_ShootPoint.position, _ShootPoint.transform.forward, out hit, _range))
+        //if (Physics.Raycast(transform.position, transform.forward, out hit, _range))
         //{
-        //    if (hit.collider.gameObject != _unit.CurrentTarget)
-        //    {
-        //        _unit.SearchTarget();
-        //    }
+
+        //}
+
+        //Ammunition ammunition = _objectsPooler.GetPooledObject();
+
+        //if (ammunition != null)
+        //{
+        //    ammunition.gameObject.SetActive(true);
+        //    ammunition.transform.position = _shootPoint.position;
+        //    ammunition.transform.rotation = _shootPoint.rotation;
+        //}
+
+        GameObject.Instantiate(_ammunition, _shootPoint.transform.position, _shootPoint.transform.rotation);
 
         _animator.Play(ShootAnimation);
-        //}
     }
 }

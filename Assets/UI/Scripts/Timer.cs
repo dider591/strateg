@@ -30,10 +30,10 @@ public class Timer : MonoBehaviour
     {
         while (true)
         {
-            if (_secunds == 1)
+            if (_secunds == 0)
             {
                 _minutes--;
-                _secunds = -59;
+                _secunds = 59;
             }
 
             _secunds -= _delta;

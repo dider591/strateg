@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 448740}
   - component: {fileID: 19802634}
   - component: {fileID: 19901482}
-  - component: {fileID: -7047977757178347670}
+  - component: {fileID: 8837232457073436357}
   m_Layer: 0
   m_Name: Shoot
   m_TagString: Untagged
@@ -48,7 +48,7 @@ ParticleSystem:
   lengthInSec: 1
   simulationSpeed: 1
   stopAction: 0
-  cullingMode: 3
+  cullingMode: 1
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 0
@@ -4814,7 +4814,7 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &-7047977757178347670
+--- !u!114 &8837232457073436357
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4826,6 +4826,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f809e241a3c84614eb9446676f2eb7a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _destroiTime: 1
 --- !u!1 &172666
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,10 +15,16 @@ public class RocketTerrorist : MonoBehaviour
     private bool _isPlayAudio = false;
 
     private float _distance;
+    private Transform _transform;
+
+    private void Start()
+    {
+        _transform = GetComponent<Transform>();
+    }
 
     private void Update()
     {
-        transform.LookAt(_helicopterPoint);
+        _transform.LookAt(_helicopterPoint);
         _distance = Vector3.Distance(transform.position, _helicopterPoint.position);
 
         if (_distance < _minDistance)
@@ -35,14 +41,14 @@ public class RocketTerrorist : MonoBehaviour
             _audio.Play();
         }
 
-        transform.Translate(0, 0, _speed * Time.deltaTime);
+        _transform.Translate(0, 0, _speed * Time.deltaTime);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent<Helicopter>(out Helicopter mainTarget))
         {
-            Instantiate(_effectBoom, transform.position, transform.rotation);
+            Instantiate(_effectBoom, _transform.position, _transform.rotation);
             mainTarget.TakeDamage(_damage);
             Destroy(gameObject);
         }

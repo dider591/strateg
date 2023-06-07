@@ -200,8 +200,8 @@ SkinnedMeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 516902502616640539}
   m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
   m_MotionVectors: 1
@@ -883,7 +883,7 @@ GameObject:
   - component: {fileID: 4287407264755028526}
   - component: {fileID: 3935586512595656855}
   - component: {fileID: 2659599851918485430}
-  - component: {fileID: 478478351071174694}
+  - component: {fileID: 6019160976705735535}
   m_Layer: 3
   m_Name: RussiaSoldierDOC 1
   m_TagString: Untagged
@@ -983,19 +983,18 @@ MonoBehaviour:
         Target Unit Transition","Instant":true,"Single_transitionRange":2},{"Type":"MoveTargetUnitState","NodeData":{"Offset":"(74.46875,126.84375)"},"ID":5,"Name":"Move
         Target Unit State","Instant":true}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-470.7987,310.529968)"},"ID":6,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"AttackTransition","NodeData":{"Offset":"(-141.050781,121.320313)"},"ID":7,"Name":"Attack
         Transition","Instant":true,"Single_transitionRange":2},{"Type":"SoldierAttackState","NodeData":{"Offset":"(-9.8203125,143.613281)"},"ID":8,"Name":"Soldier
-        Attack State","Instant":true,"Transform_ShootPoint":0},{"Type":"BehaviorDesigner.Runtime.Tasks.Unity.UnityGameObject.Instantiate","NodeData":{"Offset":"(110.207031,115.011719)"},"ID":9,"Name":"Instantiate","Instant":true,"SharedGameObjecttargetGameObject":{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":null,"GameObjectmValue":1},"SharedTransform_transform":{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":null,"TransformmValue":2},"SharedGameObjectstoreResult":{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":null,"IsShared":true}},{"Type":"BehaviorDesigner.Runtime.Tasks.Wait","NodeData":{"Offset":"(221.836777,122.941208)"},"ID":10,"Name":"Wait","Instant":true,"SharedFloatwaitTime":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"SharedBoolrandomWait":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedFloatrandomWaitMin":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"SharedFloatrandomWaitMax":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1}}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(67.44052,313.045349)"},"ID":11,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"MoveTargetPointTransition","NodeData":{"Offset":"(-152.562927,144.679688)"},"ID":12,"Name":"Move
-        Target Point Transition","Instant":true,"Single_transitionRange":1},{"Type":"MoveTargetPointState","NodeData":{"Offset":"(39.4921875,144.679688)"},"ID":13,"Name":"Move
-        Target Point State","Instant":true}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(302.036224,283.492157)"},"ID":14,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"SoldierHelpTransition","NodeData":{"Offset":"(-31.4101563,169.921875)"},"ID":15,"Name":"Soldier
-        Help Transition","Instant":true,"Single_transitionRange":1},{"Type":"SoldierHelpState","NodeData":{"Offset":"(116.210938,169.920059)"},"ID":16,"Name":"Soldier
-        Help State","Instant":true,"Single_healing":0.01,"Single_delayHealing":5}]}]}]},"Variables":[{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"Damage","IsShared":true,"Int32mValue":1},{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"BulletSpawnPoint","IsShared":true,"TransformmValue":3}]}'
+        Attack State","Instant":true,"Ammunition_ammunition":0,"Transform_shootPoint":1,"Single_range":0},{"Type":"BehaviorDesigner.Runtime.Tasks.Wait","NodeData":{"Offset":"(121.8368,122.941208)"},"ID":9,"Name":"Wait","Instant":true,"SharedFloatwaitTime":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"SharedBoolrandomWait":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedFloatrandomWaitMin":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"SharedFloatrandomWaitMax":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1}}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(67.44052,313.045349)"},"ID":10,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"MoveTargetPointTransition","NodeData":{"Offset":"(-152.562927,144.679688)"},"ID":11,"Name":"Move
+        Target Point Transition","Instant":true,"Single_transitionRange":1},{"Type":"MoveTargetPointState","NodeData":{"Offset":"(39.4921875,144.679688)"},"ID":12,"Name":"Move
+        Target Point State","Instant":true}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(302.036224,283.492157)"},"ID":13,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"SoldierHelpTransition","NodeData":{"Offset":"(-31.4101563,169.921875)"},"ID":14,"Name":"Soldier
+        Help Transition","Instant":true,"Single_transitionRange":1},{"Type":"SoldierHelpState","NodeData":{"Offset":"(116.210938,169.920059)"},"ID":15,"Name":"Soldier
+        Help State","Instant":true}]}]}]},"Variables":[{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"Damage","IsShared":true,"Int32mValue":1},{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"BulletSpawnPoint","IsShared":true,"TransformmValue":2}]}'
       fieldSerializationData:
         typeName: []
         fieldNameHash: 
         startIndex: 
         dataPosition: 
         unityObjects:
-        - {fileID: 8746227307492588426}
-        - {fileID: 2142079588104617495, guid: 4ef8c92a81181574bb6544d9a9dfda07, type: 3}
+        - {fileID: -7336889845620122123, guid: 02617af47f92c554bb888ec4d2637678, type: 3}
         - {fileID: 8746227307492588426}
         - {fileID: 8746227307492588426}
         byteData: 
@@ -1140,7 +1139,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &478478351071174694
+--- !u!114 &6019160976705735535
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1155,6 +1154,7 @@ MonoBehaviour:
   Health: 10
   Reward: 10
   SearchRadius: 2
+  _healthViewer: {fileID: 0}
   _damage: 1
 --- !u!1 &2393277705942222757
 GameObject:
@@ -2712,17 +2712,17 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -8274133419916619345, guid: cbfa2d67919e34d46bc7f8165cf47bc2, type: 3}
+  - {fileID: 2100000, guid: 82e3bd2899ae50940bb78bdf2b3f50a3, type: 2}
   - {fileID: -3522955778539423533, guid: cbfa2d67919e34d46bc7f8165cf47bc2, type: 3}
   - {fileID: 6699446615349125189, guid: cbfa2d67919e34d46bc7f8165cf47bc2, type: 3}
   - {fileID: 880774007180850119, guid: cbfa2d67919e34d46bc7f8165cf47bc2, type: 3}
-  - {fileID: -2813467912831258332, guid: cbfa2d67919e34d46bc7f8165cf47bc2, type: 3}
-  - {fileID: -6629797300637803691, guid: cbfa2d67919e34d46bc7f8165cf47bc2, type: 3}
-  - {fileID: 9185737683893222716, guid: cbfa2d67919e34d46bc7f8165cf47bc2, type: 3}
+  - {fileID: 2100000, guid: 82e3bd2899ae50940bb78bdf2b3f50a3, type: 2}
+  - {fileID: 2100000, guid: 82e3bd2899ae50940bb78bdf2b3f50a3, type: 2}
+  - {fileID: 2100000, guid: 82e3bd2899ae50940bb78bdf2b3f50a3, type: 2}
   - {fileID: 4874126678125670354, guid: cbfa2d67919e34d46bc7f8165cf47bc2, type: 3}
   - {fileID: -3846018093981099296, guid: cbfa2d67919e34d46bc7f8165cf47bc2, type: 3}
   - {fileID: -6478536213147159724, guid: cbfa2d67919e34d46bc7f8165cf47bc2, type: 3}
-  - {fileID: 3780671244086486322, guid: cbfa2d67919e34d46bc7f8165cf47bc2, type: 3}
+  - {fileID: 2100000, guid: 82e3bd2899ae50940bb78bdf2b3f50a3, type: 2}
   - {fileID: -6087771358165109452, guid: cbfa2d67919e34d46bc7f8165cf47bc2, type: 3}
   - {fileID: 1886820026795636259, guid: cbfa2d67919e34d46bc7f8165cf47bc2, type: 3}
   m_StaticBatchInfo:
@@ -3520,8 +3520,8 @@ SkinnedMeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7600368452634497168}
   m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
   m_MotionVectors: 1

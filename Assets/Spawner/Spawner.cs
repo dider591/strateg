@@ -11,6 +11,13 @@ public class Spawner : MonoBehaviour
     [SerializeField] private float _stepSpawn;
     [SerializeField] private bool _isReady;
 
+    private Transform _transform;
+
+    private void Start()
+    {
+        _transform = GetComponent<Transform>();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (_targetPoint != null)
@@ -20,11 +27,6 @@ public class Spawner : MonoBehaviour
                 isetTargetPoint.SetTargetPoint(_targetPoint.position);
             }
         }
-    }
-
-    private void Start()
-    {
-        
     }
 
     private void Update()
@@ -56,7 +58,7 @@ public class Spawner : MonoBehaviour
         {
             for (int a = 0; a < _countUnit; a++)
             {
-                Instantiate(_unit, transform.position, transform.rotation);
+                Instantiate(_unit, _transform.position, _transform.rotation);
             }
 
             yield return new WaitForSeconds(_stepSpawn);

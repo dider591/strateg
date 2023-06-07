@@ -6,11 +6,13 @@ using UnityEngine.AI;
 
 public class Car : Unit, ITakeDamage, ISetTargetPoint
 {
-    [SerializeField] private Explosion _explosionEffect;
-    [SerializeField] private WeaponCar _weaponCar;
+    [SerializeField] private ParticleSystem _explosionEffect;
+    [SerializeField] private Soldier _soldierShooter;
 
     protected bool _isInit;
     protected bool _isDeath;
+
+    private int _force = 2000;
 
     public void SetTargetPoint(Vector3 point)
     {
@@ -37,13 +39,13 @@ public class Car : Unit, ITakeDamage, ISetTargetPoint
         if (_isDeath == false)
         {
             _isDeath = true;
-            ThisRigidbody.AddForce(2000f, 0, 0);
+            Rigidbody.AddForce(Vector3.up * _force);
             Instantiate(_explosionEffect, transform.position, transform.rotation);
             Ragdoll.Disable();
 
-            if (_weaponCar != null)
+            if (_soldierShooter != null)
             {
-                _weaponCar.gameObject.SetActive(false);
+                _soldierShooter.gameObject.SetActive(false);
             }
         }
     }

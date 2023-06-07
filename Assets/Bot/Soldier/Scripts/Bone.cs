@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bone : MonoBehaviour
+public class Bone : MonoBehaviour, ITakeDamage
 {
     [SerializeField] private Soldier _soldier;
 

@@ -24036,8 +24036,8 @@ GameObject:
   - component: {fileID: 19848870}
   - component: {fileID: 19917164}
   - component: {fileID: 82007018935423512}
-  - component: {fileID: -9105811596838308180}
   - component: {fileID: 2165188072902902472}
+  - component: {fileID: 4892368477598828988}
   m_Layer: 0
   m_Name: GrenadeExplosionFire
   m_TagString: Untagged
@@ -24076,7 +24076,7 @@ ParticleSystem:
   lengthInSec: 1
   simulationSpeed: 1
   stopAction: 0
-  cullingMode: 3
+  cullingMode: 1
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 0
@@ -28929,19 +28929,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!114 &-9105811596838308180
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 180702}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f809e241a3c84614eb9446676f2eb7a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _destroiTime: 1
 --- !u!136 &2165188072902902472
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -28956,6 +28943,19 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4892368477598828988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f809e241a3c84614eb9446676f2eb7a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _destroiTime: 1
 --- !u!1 &1075936047718304
 GameObject:
   m_ObjectHideFlags: 0

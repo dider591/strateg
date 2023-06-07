@@ -22,7 +22,6 @@ public class SoldierRussia : Soldier
                     Target = carUSA;
                     return;
                 }
-                //возможно нужно переделать юнит машин вертолет
             }
         }
     }

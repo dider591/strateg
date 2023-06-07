@@ -21,7 +21,7 @@ public class CameraZoom : MonoBehaviour
         _camera.fieldOfView = _maxZoom;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (Input.GetKey(KeyCode.E))
             ZoomIn();

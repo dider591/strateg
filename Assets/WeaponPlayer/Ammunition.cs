@@ -7,30 +7,41 @@ public class Ammunition : MonoBehaviour
     [SerializeField] private float _radius;
     [SerializeField] private float _forse;
     [SerializeField] private float _modifier;
-    [SerializeField] private Explosion _explosion;
+    [SerializeField] private ParticleSystem _explosion;
 
-    private bool isExplosion = false;
+    private bool _isExplosion = false;
+    private Transform _transform;
+    private float _timeLife = 3f;
+
+    private void Start()
+    {
+        _transform = GetComponent<Transform>();
+        Invoke(nameof(Disabled), _timeLife);
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (isExplosion == false)
+        if (collision.rigidbody)
         {
-            isExplosion = true;
-            Instantiate(_explosion, transform.position, Quaternion.identity);
-            OnExplosion();
-            Destroy(gameObject);
+            if (_isExplosion == false)
+            {
+                _isExplosion = true;
+                OnExplosion();         
+            }
+
+            Disabled();
         }
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        transform.Translate(0, 0, _speed * Time.deltaTime);
-        Destroy(gameObject, 4f);
+        _transform.position += _transform.forward * _speed * Time.deltaTime;
     }
 
     private void OnExplosion()
     {
-        Collider[] colliders = Physics.OverlapSphere(transform.position, _radius);
+        Instantiate(_explosion, _transform.position, Quaternion.identity);
+        Collider[] colliders = Physics.OverlapSphere(_transform.position, _radius);
 
         foreach (var collider in colliders)
         {
@@ -38,18 +49,18 @@ public class Ammunition : MonoBehaviour
 
             if (rigidbody)
             {
-                rigidbody.AddExplosionForce(_forse, transform.position, _radius, _modifier, ForceMode.Force);
+                rigidbody.AddExplosionForce(_forse, _transform.position, _radius, _modifier, ForceMode.Force);
 
-                if (rigidbody.TryGetComponent<Bone>(out Bone bone))
-                {
-                    bone.TakeDamage(_damage);
-                }
                 if (rigidbody.TryGetComponent<ITakeDamage>(out ITakeDamage iTakeDamage))
                 {
                     iTakeDamage.TakeDamage(_damage);
                 }
-
-            }           
+            }
         }
+    }
+
+    private void Disabled()
+    {
+        Destroy(gameObject);
     }
 }

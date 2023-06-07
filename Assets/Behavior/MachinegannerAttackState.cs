@@ -5,15 +5,30 @@ using UnityEngine;
 
 public class MachinegannerAttackState : UnitAction
 {
+    [SerializeField] private Ammunition _ammunition;
+    [SerializeField] private Transform _shootPoint;
     public override TaskStatus OnUpdate()
     {
         if (_unit.CurrentTarget != null)
         {
-            //_agent.SetDestination(transform.position);
             transform.LookAt(_unit.CurrentTarget.transform.position);
+            Shoot();
             return TaskStatus.Success;
         }
 
         return TaskStatus.Failure;
+    }
+
+    private void Shoot()
+    {
+        GameObject.Instantiate(_ammunition, _shootPoint.transform.position, _shootPoint.transform.rotation);
+        //Ammunition ammunition = _objectsPooler.GetPooledObject();
+
+        //if (ammunition != null)
+        //{
+        //    ammunition.transform.position = _shootPoint.position;
+        //    ammunition.transform.rotation = _shootPoint.rotation;
+        //    ammunition.gameObject.SetActive(true);
+        //}
     }
 }

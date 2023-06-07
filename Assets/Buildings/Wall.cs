@@ -14,17 +14,13 @@ public class Wall : MonoBehaviour, ITakeDamage
         _collider = GetComponent<Collider>();
     }
 
-    private void Update()
-    {
-        if (_destructor.CurrentHealth <= 0)
-        {
-            Destroy(gameObject, _destroiTime);
-        }
-    }
-
     public void TakeDamage(int damage)
     {
         _destructor.TakeDamage(damage);
 
+        if (_destructor.CurrentHealth <= 0)
+        {
+            Destroy(gameObject, _destroiTime);
+        }
     }
 }

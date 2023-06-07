@@ -11,10 +11,11 @@ public abstract class Unit : MonoBehaviour
     [SerializeField] protected HealthViewer _healthViewer;
 
     protected Vector3 TargetPoint;
-    protected Rigidbody ThisRigidbody;
+    protected Rigidbody Rigidbody;
     protected Unit Target;
     protected Ragdoll Ragdoll;
     protected Helicopter MainTarget;
+
     protected bool isHealthViewer => _healthViewer != null;
 
     public UnityAction ChangeHealth;
@@ -30,9 +31,9 @@ public abstract class Unit : MonoBehaviour
             _healthViewer.SetSizeHealth(CurrentHealth);
         }
 
-        ThisRigidbody = GetComponent<Rigidbody>();
+        Rigidbody = GetComponent<Rigidbody>();
         Ragdoll = GetComponent<Ragdoll>();
-        MainTarget = FindObjectOfType<Helicopter>();
+        MainTarget = FindObjectOfType<Helicopter>();      
     }
 
     private void Update()

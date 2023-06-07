@@ -49,6 +49,7 @@ public class SettingsScreen : Screen
     {
         _isMute = true;
         AudioListener.pause = _isMute;
+        AudioListener.volume = _isMute ? 1 : 0;
         PlayerPrefs.SetInt("Mute", _isMute ? 1 : 0);
     }
 }

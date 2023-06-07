@@ -6,15 +6,16 @@ using UnityEngine.Events;
 
 public class Helicopter : MainTarget, ITakeDamage
 {
-    private float _health;
+    private float _health = 1f;
 
     private float _maxHealth = 1f;
     private float _minHealth = 0;
     private float _timeDelayTask = 4f;
+    private float _deltaHealing = 0f;
 
     private void Start()
     {
-        _health = _maxHealth;
+        //_health = _maxHealth;
         Invoke(nameof(StartTaskMessage), _timeDelayTask);
     }
 
@@ -29,10 +30,11 @@ public class Helicopter : MainTarget, ITakeDamage
         }
     }
 
-    public void Healing(float healing)
+    public void Heal(float healing)
     {
         _health += healing;
         ProgressChanged?.Invoke(_health);
+        Debug.Log(_health);
 
         if (_health >= _maxHealth)
         {
@@ -44,6 +46,4 @@ public class Helicopter : MainTarget, ITakeDamage
     {
         _taskMessage.Open();
     }
-
-
 }

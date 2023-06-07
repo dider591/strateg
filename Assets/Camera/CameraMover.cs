@@ -21,7 +21,7 @@ public class CameraMover : MonoBehaviour
         _transform = GetComponent<Transform>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         ControlPosition();
         Move(GetDirection());
