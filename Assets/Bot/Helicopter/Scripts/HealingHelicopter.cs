@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class HealingHelicopter : MonoBehaviour
@@ -24,7 +23,7 @@ public class HealingHelicopter : MonoBehaviour
                 soldierUSA.Dead += OnDiedSoldier;
                 _countSoldiers++;
 
-                if (_coroutineHeal == null)
+                if (_coroutineHeal == null && _helicopter.Health < _helicopter.MaxHealth)
                 {
                     _coroutineHeal = StartCoroutine(Heal());
                 }
@@ -51,11 +50,12 @@ public class HealingHelicopter : MonoBehaviour
             {
                 _helicopter.Heal(_healing);
             }
-            else if (_countSoldiers <= 0)
+            if (_countSoldiers <= 0 || _helicopter.Health >= _helicopter.MaxHealth)
             {
                 if (_coroutineHeal != null)
                 {
                     StopCoroutine(_coroutineHeal);
+                    _coroutineHeal = null;
                 }
             }
 

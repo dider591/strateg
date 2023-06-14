@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -9,11 +7,13 @@ public class SettingsScreen : Screen
     [SerializeField] private Button _mainMenu;
     [SerializeField] private Button _mute;
 
-    private bool _isMute;
+    private const string Mute = "Mute";
+
+    private bool _isMute = false;
 
     private void OnEnable()
     {
-        _isMute = PlayerPrefs.GetInt("Mute") == 1;
+        _isMute = PlayerPrefs.GetInt(Mute) == 1;
         _mainMenu.onClick.AddListener(OnMainMenuButtonClick);
         _mute.onClick.AddListener(OnMuteButtonClick);
     }
@@ -47,9 +47,10 @@ public class SettingsScreen : Screen
 
     private void OnMuteButtonClick()
     {
-        _isMute = true;
-        AudioListener.pause = _isMute;
+        _isMute = !_isMute;
+        
+        PlayerPrefs.SetInt(Mute, _isMute ? 1 : 0);
         AudioListener.volume = _isMute ? 1 : 0;
-        PlayerPrefs.SetInt("Mute", _isMute ? 1 : 0);
+        AudioListener.pause = !_isMute;
     }
 }

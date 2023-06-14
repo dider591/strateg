@@ -1,5 +1,4 @@
 using UnityEngine;
-using DG.Tweening;
 
 [RequireComponent(typeof(Animator))]
 public class CameraRotator : MonoBehaviour

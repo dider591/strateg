@@ -10,6 +10,6 @@ public class Explosion : MonoBehaviour
 
     private void Shutdown()
     {
-        gameObject.SetActive(false);
+        Destroy(gameObject, _destroiTime);
     }
 }

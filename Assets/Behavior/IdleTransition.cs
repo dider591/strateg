@@ -1,4 +1,3 @@
-using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
 using UnityEngine;
 
@@ -8,7 +7,7 @@ public class IdleTransition : UnitConditional
 
     public override TaskStatus OnUpdate()
     {
-        if (/*_unit.CurrentTarget == null &&*/ Vector3.Distance(transform.position, _unit.CurrentTargetPoint) < _transitionRange)
+        if (Vector3.Distance(transform.position, _unit.CurrentTargetPoint) < _transitionRange)
         {
             return TaskStatus.Success;
         }

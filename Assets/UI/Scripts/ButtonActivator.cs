@@ -1,8 +1,6 @@
 using DG.Tweening;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class ButtonActivator : MonoBehaviour
@@ -80,20 +78,22 @@ public class ButtonActivator : MonoBehaviour
             _player.ReducesManey(_price);
         }
 
-        Recharges(_fillImage, _delay);
-        StartCoroutine(BlocksButton(_button, _delay));
+        StartCoroutine(BlocksButton(_fillImage, _button, _delay));
     }
 
-    private void Recharges(Image image, float delay)
-    {
-        image.fillAmount = _fillAmountMax;
-        image.DOFillAmount(_fillAmountMin, delay);
-    }
-
-    private IEnumerator BlocksButton(Button button, float delay)
+    private IEnumerator BlocksButton(Image image,Button button, float delay)
     {
         button.interactable = false;
-        yield return new WaitForSeconds(delay);
+        float currentTime = 0.0f;
+
+        while ((currentTime += Time.deltaTime) <= delay)
+        {
+            image.fillAmount = Mathf.Lerp(_fillAmountMax, _fillAmountMin, currentTime / delay);
+
+            yield return null;
+        }
+
+        image.fillAmount = _fillAmountMin;
         button.interactable = true;
     }
 }

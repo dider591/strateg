@@ -1,13 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening;
-using UnityEngine.AI;
 
 public class Car : Unit, ITakeDamage, ISetTargetPoint
 {
     [SerializeField] private ParticleSystem _explosionEffect;
-    [SerializeField] private Soldier _soldierShooter;
+    [SerializeField] private int _damage;
+    [SerializeField] private float _radius;
+    [SerializeField] private float _forse;
+    [SerializeField] private float _modifier;
 
     protected bool _isInit;
     protected bool _isDeath;
@@ -41,12 +40,25 @@ public class Car : Unit, ITakeDamage, ISetTargetPoint
             _isDeath = true;
             Rigidbody.AddForce(Vector3.up * _force);
             Instantiate(_explosionEffect, transform.position, transform.rotation);
-            Ragdoll.Disable();
 
-            if (_soldierShooter != null)
+            Collider[] colliders = Physics.OverlapSphere(transform.position, _radius);
+
+            foreach (var collider in colliders)
             {
-                _soldierShooter.gameObject.SetActive(false);
+                Rigidbody rigidbody = collider.attachedRigidbody;
+
+                if (rigidbody)
+                {
+                    rigidbody.AddExplosionForce(_forse, transform.position, _radius, _modifier, ForceMode.Force);
+
+                    if (rigidbody.TryGetComponent<ITakeDamage>(out ITakeDamage iTakeDamage))
+                    {
+                        iTakeDamage.TakeDamage(_damage);
+                    }
+                }
             }
+
+            Ragdoll.Disable();
         }
     }
 

@@ -1,3 +1,4 @@
+using Agava.YandexGames;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -13,10 +14,11 @@ public class Localization : MonoBehaviour
     private string _russian = "russian";
     private string _turkish = "turkish";
     private string _english = "english";
-    private int _mainMenuIndex = 1;
+    private int _mainMenuIndex = 2;
 
     private void OnEnable()
     {
+        InterstitialAd.Show();
         _englishButton.onClick.AddListener(OnEnglishButtonClick);
         _rissianButton.onClick.AddListener(OnRussianButtonClick);
         _turkishButton.onClick.AddListener(OnTurkishButtonClick);

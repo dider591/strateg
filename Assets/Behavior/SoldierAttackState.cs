@@ -1,4 +1,3 @@
-using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
 using UnityEngine;
 
@@ -11,7 +10,6 @@ public class SoldierAttackState : UnitAction
     [SerializeField] private ParticleSystem _hitEffect;
 
     private int ShootAnimation = Animator.StringToHash("Shoot");
-    private SharedGameObject _storeResult;
 
     public override TaskStatus OnUpdate()
     {
@@ -29,22 +27,6 @@ public class SoldierAttackState : UnitAction
 
     private void Shoot()
     {
-        //RaycastHit hit;
-
-        //if (Physics.Raycast(transform.position, transform.forward, out hit, _range))
-        //{
-
-        //}
-
-        //Ammunition ammunition = _objectsPooler.GetPooledObject();
-
-        //if (ammunition != null)
-        //{
-        //    ammunition.gameObject.SetActive(true);
-        //    ammunition.transform.position = _shootPoint.position;
-        //    ammunition.transform.rotation = _shootPoint.rotation;
-        //}
-
         GameObject.Instantiate(_ammunition, _shootPoint.transform.position, _shootPoint.transform.rotation);
 
         _animator.Play(ShootAnimation);

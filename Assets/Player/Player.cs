@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -21,6 +18,7 @@ public class Player : MonoBehaviour
     private Weapon _currentWeapon;
     private RaycastHit _hit;
     private ISelectable _currentISelectable;
+    private string _score = "_score";
 
     public Weapon CurrentWeapon => _currentWeapon;
     public int Maney => _maney;
@@ -29,6 +27,7 @@ public class Player : MonoBehaviour
 
     private void OnEnable()
     {
+        _maney = PlayerPrefs.GetInt(_score);
         AddManey(_startCountManey);
         _machineGunButton.onClick.AddListener(OnMachineGunButtonClick);
         _missileButton.onClick.AddListener(OnMessileButtonClick);
@@ -50,15 +49,15 @@ public class Player : MonoBehaviour
 
     public void AddManey(int maneyCount)
     {
-        PlayerPrefs.SetInt("score", _maney += maneyCount);
-        _maney = PlayerPrefs.GetInt("score");
+        PlayerPrefs.SetInt(_score, _maney += maneyCount);
+        _maney = PlayerPrefs.GetInt(_score);
         ChangedManeyCount?.Invoke(_maney);
     }
 
     public void ReducesManey(int price)
     {
-        PlayerPrefs.SetInt("score", _maney -= price);
-        _maney = PlayerPrefs.GetInt("score");
+        PlayerPrefs.SetInt(_score, _maney -= price);
+        _maney = PlayerPrefs.GetInt(_score);
         ChangedManeyCount?.Invoke(_maney);
     }
 

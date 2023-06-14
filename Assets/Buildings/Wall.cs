@@ -1,17 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Building))]
 public class Wall : MonoBehaviour, ITakeDamage
 {
     private Building _destructor;
-    private Collider _collider;
     private float _destroiTime = 5f;
 
     private void Awake()
     {
         _destructor = GetComponentInParent<Building>();
-        _collider = GetComponent<Collider>();
     }
 
     public void TakeDamage(int damage)

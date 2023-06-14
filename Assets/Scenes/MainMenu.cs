@@ -10,6 +10,10 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private Button[] _buttons;
 
     private int _levelInLock;
+    private int _currentOpenLevels = 1;
+    private int _oneLevelIndex = 3;
+    private int _twolevelIndex = 4;
+    private string _scenes = "scenes";
 
     private void OnEnable()
     {
@@ -25,11 +29,15 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
-        PlayerPrefs.SetInt("scenes", 1);
-        _levelInLock = PlayerPrefs.GetInt("scenes");
+        PlayerPrefs.SetInt(_scenes, _currentOpenLevels);
+        _levelInLock = PlayerPrefs.GetInt(_scenes);
         StartMenu();
         LevelLock();
         LevelOpen();
+    }
+    public void LoadLevel(int levelIndex)
+    {
+        SceneManager.LoadScene(levelIndex);
     }
 
     private void LevelLock()
@@ -55,16 +63,12 @@ public class MainMenu : MonoBehaviour
 
     private void OnOneLevel()
     {
-        LoadLevel(2);
+        LoadLevel(_oneLevelIndex);
     }
 
     private void OnTwoLevel()
     {
-        LoadLevel(3);
+        LoadLevel(_twolevelIndex);
     }
 
-    public void LoadLevel(int levelIndex)
-    {
-        SceneManager.LoadScene(levelIndex);
-    }
 }

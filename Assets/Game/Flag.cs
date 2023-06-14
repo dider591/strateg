@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -26,6 +24,7 @@ public class Flag : MainTarget
         _sliderFlag.value = _maxFlagValue;
         _bunkers.AllDestroyed += OnAllDestroedBuildings;
         _timer.TimesUp += OnTimesUp;
+        _timer.gameObject.SetActive(true);
     }
 
     private void OnDisable()
@@ -141,7 +140,6 @@ public class Flag : MainTarget
     {
         _taskMessage.Open();
         _flagBar.gameObject.SetActive(true);
-        _timer.gameObject.SetActive(true);
         _isAllBunkersAlive = false;
     }
 

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using BehaviorDesigner.Runtime.Tasks;
 using UnityEngine;
 
@@ -22,13 +20,5 @@ public class MachinegannerAttackState : UnitAction
     private void Shoot()
     {
         GameObject.Instantiate(_ammunition, _shootPoint.transform.position, _shootPoint.transform.rotation);
-        //Ammunition ammunition = _objectsPooler.GetPooledObject();
-
-        //if (ammunition != null)
-        //{
-        //    ammunition.transform.position = _shootPoint.position;
-        //    ammunition.transform.rotation = _shootPoint.rotation;
-        //    ammunition.gameObject.SetActive(true);
-        //}
     }
 }

@@ -799,8 +799,6 @@ MonoBehaviour:
   - {fileID: 9021313423699437357}
   - {fileID: 1255554609040551975}
   - {fileID: 4386261292166193307}
-  - {fileID: 5849670839702291054}
-  - {fileID: 7886717660412058705}
   - {fileID: 36638098634784420}
   _timeDestroy: 10
 --- !u!208 &8524127985271114262
@@ -836,7 +834,10 @@ MonoBehaviour:
   SearchRadius: 0
   _healthViewer: {fileID: 6237875675716396865}
   _explosionEffect: {fileID: 19848870, guid: a7c694f0877ea874fa57e033221095c3, type: 3}
-  _soldierShooter: {fileID: 2476922785653025220}
+  _damage: 10
+  _radius: 0.7
+  _forse: 1000
+  _modifier: 2
 --- !u!95 &-8200839335909222674
 Animator:
   serializedVersion: 4
@@ -1829,6 +1830,22 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1776066163241063468, guid: b000618db18cbf548b786d3eb9a1661b, type: 3}
   m_PrefabInstance: {fileID: 2954413796153675857}
   m_PrefabAsset: {fileID: 0}
+--- !u!54 &4410384726415707511
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3577535349843543165}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!65 &6934066727197702028
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1842,6 +1859,67 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.11, y: 0.17706105, z: 0.09255912}
   m_Center: {x: 0, y: 0.2675222, z: 0.009493128}
+--- !u!95 &1770529526155433121
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3577535349843543165}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!195 &1027485546343956117
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3577535349843543165}
+  m_Enabled: 1
+  m_AgentTypeID: -1372625422
+  m_Radius: 0.1
+  m_Speed: 0
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 0
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &2884475175217513183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3577535349843543165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b33ef67cd311686439b0f8353edde393, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rigidbodys:
+  - {fileID: 4410384726415707511}
+  _regdollMaterial: {fileID: 2100000, guid: 7c764377d898ee9429853758a6449ae5, type: 2}
+  _renderers:
+  - {fileID: 4386261292166193307}
+  - {fileID: 36638098634784420}
+  _timeDestroy: 3
 --- !u!4 &4246373136895024839 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1436096804899999382, guid: b000618db18cbf548b786d3eb9a1661b, type: 3}
@@ -1944,18 +2022,8 @@ MonoBehaviour:
   SearchRadius: 5
   _healthViewer: {fileID: 0}
   _damage: 1
---- !u!137 &5849670839702291054 stripped
-SkinnedMeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 3730915656419865751, guid: 843647645589880469a3f4126cebdcb4, type: 3}
-  m_PrefabInstance: {fileID: 7127180226029942521}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7362120076353930262 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 343212088579781359, guid: 843647645589880469a3f4126cebdcb4, type: 3}
-  m_PrefabInstance: {fileID: 7127180226029942521}
-  m_PrefabAsset: {fileID: 0}
---- !u!137 &7886717660412058705 stripped
-SkinnedMeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 1124751236195347112, guid: 843647645589880469a3f4126cebdcb4, type: 3}
   m_PrefabInstance: {fileID: 7127180226029942521}
   m_PrefabAsset: {fileID: 0}

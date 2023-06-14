@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Yandex.unity
+    guid: 4a0e461d04e7af847a0a0c7992b528d2
+  - enabled: 1
     path: Assets/Scenes/LanguageScene.unity
     guid: e9a135edc97e5bd47839d8e4769b1ff1
   - enabled: 1

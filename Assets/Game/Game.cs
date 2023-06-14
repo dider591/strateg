@@ -1,10 +1,7 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.Events;
+using Agava.YandexGames;
+using Agava.WebUtility;
 
 public class Game : MonoBehaviour
 {
@@ -14,14 +11,15 @@ public class Game : MonoBehaviour
     [SerializeField] private GameScreen _gameScreen;
     [SerializeField] private SettingsScreen _settigsScreen;
     [SerializeField] private Spawner[] _spawners;
-    [SerializeField] private float _delayStart;
+    [SerializeField] private float _delayStartInit;
 
     private bool _isAllInit;
     private bool _isStartMenu;
     private bool _isWin;
+    private bool _isAllStartWaws;
     private int _currentLevel;
-    private int _currentWave;
     private int _canvasMax = 1;
+    private string _scenes = "scenes";
 
     private void OnEnable()
     {
@@ -32,6 +30,7 @@ public class Game : MonoBehaviour
         _currentLevel = SceneManager.GetActiveScene().buildIndex;
         _mainTarget.Defeat += OnGameOver;
         _mainTarget.Win += OnWin;
+        WebApplication.InBackgroundChangeEvent += OnInBackgroundChange;
     }
 
     private void OnGameOver()
@@ -42,6 +41,7 @@ public class Game : MonoBehaviour
 
     private void OnWin()
     {
+        InterstitialAd.Show();
         UnLockLevel();
         _winScreen.Open();
         Time.timeScale = 0;
@@ -50,6 +50,8 @@ public class Game : MonoBehaviour
     private void OnDisable()
     {
         _mainTarget.Defeat -= OnGameOver;
+        _mainTarget.Win -= OnWin;
+        WebApplication.InBackgroundChangeEvent -= OnInBackgroundChange;
     }
 
     private void OnMenuButtonClick()
@@ -61,12 +63,11 @@ public class Game : MonoBehaviour
     private void StartGame()
     {
         Time.timeScale = 1;
-        _currentWave = 1;
 
         if (!_isAllInit)
         {
             _isAllInit = true;
-            Invoke(nameof(Init), _delayStart);
+            Invoke(nameof(Init), _delayStartInit);
         }
     }
 
@@ -80,9 +81,15 @@ public class Game : MonoBehaviour
 
     private void UnLockLevel()
     {
-        if (_currentLevel >= PlayerPrefs.GetInt("scenes")) ;
+        if (_currentLevel >= PlayerPrefs.GetInt(_scenes)) ;
         {
-            PlayerPrefs.SetInt("scenes", _currentLevel + 1);
+            PlayerPrefs.SetInt(_scenes, _currentLevel + 1);
         }
+    }
+
+    private void OnInBackgroundChange(bool inBackground)
+    {
+        AudioListener.pause = inBackground;
+        AudioListener.volume = inBackground ? 0f : 1f;
     }
 }

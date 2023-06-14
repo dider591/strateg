@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.AI;
-using BehaviorDesigner;
 using BehaviorDesigner.Runtime;
 
 public class Ragdoll : MonoBehaviour
@@ -39,7 +38,11 @@ public class Ragdoll : MonoBehaviour
 
         _animator.enabled = false;
         _agent.enabled = false;
-        _behaviorDesigner.enabled = false;
+
+        if (_behaviorDesigner != null)
+        {
+            _behaviorDesigner.enabled = false;
+        }
 
         foreach (var renderer in _renderers)
         {

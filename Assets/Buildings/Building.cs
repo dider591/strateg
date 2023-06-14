@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.UI;
 
 public class Building : MonoBehaviour
 {
@@ -12,13 +11,13 @@ public class Building : MonoBehaviour
     public UnityAction Dead;
     public UnityAction ChangeHealth;
     public int CurrentHealth => _health;
-    private bool isHealthViewer => _healthViewer != null;
+    private bool _isHealthViewer => _healthViewer != null;
 
-    private bool isDead;
+    private bool _isDead;
 
     private void Awake()
     {
-        if (isHealthViewer)
+        if (_isHealthViewer)
         {
             _healthViewer.SetSizeHealth(_health);
         }
@@ -30,18 +29,18 @@ public class Building : MonoBehaviour
         _health -= damage;
         ChangeHealth?.Invoke();
 
-        if (isHealthViewer)
+        if (_isHealthViewer)
         {
             _healthViewer.HealthChange(_health);
         }
 
         if (_health <= 0)
         {
-            if (isDead != true)
+            if (_isDead != true)
             {
                 Dead?.Invoke();
                 Destruct();
-                isDead = true;
+                _isDead = true;
             }
         }
     }

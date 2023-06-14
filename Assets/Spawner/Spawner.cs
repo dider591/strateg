@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Spawner : MonoBehaviour
@@ -10,6 +9,7 @@ public class Spawner : MonoBehaviour
     [SerializeField] private int _countWaves;
     [SerializeField] private float _stepSpawn;
     [SerializeField] private bool _isReady;
+    [SerializeField] private float _delayStartSpawn;
 
     private Transform _transform;
 
@@ -20,7 +20,7 @@ public class Spawner : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (_targetPoint != null)
+        if (_targetPoint != null || _isReady == true)
         {
             if (other.TryGetComponent<ISetTargetPoint>(out ISetTargetPoint isetTargetPoint))
             {
@@ -35,6 +35,7 @@ public class Spawner : MonoBehaviour
         {
             if (_isReady)
             {
+                _isReady = false;
                 StartCoroutine(InstantiateUnits());
             }
         }
@@ -47,12 +48,12 @@ public class Spawner : MonoBehaviour
     public void SetReady(bool isReady)
     {
         _isReady = isReady;
-
     }
 
     private IEnumerator InstantiateUnits()
     {
         _isReady = false;
+        yield return new WaitForSeconds(_delayStartSpawn);
 
         for (int i = 0; i < _countWaves; i++)
         {

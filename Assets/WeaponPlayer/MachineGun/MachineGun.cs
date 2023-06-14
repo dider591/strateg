@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MachineGun : Weapon
@@ -7,11 +6,8 @@ public class MachineGun : Weapon
     [SerializeField] private float _randomStepPoint;
     [SerializeField] private float _delayShoot;
 
-    public override void Shoot(/*Vector3 shootPoint*/)
+    public override void Shoot()
     {
-        //_shootPoint = shootPoint;
-        //LookAim(shootPoint);
-        //FindAim();
         StartCoroutine(Shooting());
     }
 

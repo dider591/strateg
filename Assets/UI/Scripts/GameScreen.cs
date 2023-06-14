@@ -1,11 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 using DG.Tweening;
-using System;
-using TMPro;
 
 public class GameScreen : Screen
 {
