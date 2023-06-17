@@ -9,7 +9,6 @@ public class Building : MonoBehaviour
 
 
     public UnityAction Dead;
-    public UnityAction ChangeHealth;
     public int CurrentHealth => _health;
     private bool _isHealthViewer => _healthViewer != null;
 
@@ -27,7 +26,6 @@ public class Building : MonoBehaviour
     public void TakeDamage(int damage)
     {
         _health -= damage;
-        ChangeHealth?.Invoke();
 
         if (_isHealthViewer)
         {

@@ -1,6 +1,5 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Building))]
 public class Wall : MonoBehaviour, ITakeDamage
 {
     private Building _destructor;
