@@ -20,6 +20,8 @@ public class Game : MonoBehaviour
     private int _currentLevel;
     private int _canvasMax = 1;
     private string _scenes = "scenes";
+    private float _runningValue = 1f;
+    private float _stoppedValue = 0f;
 
     private void OnEnable()
     {
@@ -90,6 +92,7 @@ public class Game : MonoBehaviour
     private void OnInBackgroundChange(bool inBackground)
     {
         AudioListener.pause = inBackground;
-        AudioListener.volume = inBackground ? 0f : 1f;
+        AudioListener.volume = inBackground ? _stoppedValue : _runningValue;
+        Time.timeScale = inBackground ? _stoppedValue : _runningValue;
     }
 }
