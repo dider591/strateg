@@ -6,13 +6,13 @@ public class Flag : MainTarget
 {
     [SerializeField] private Transform _flagEnemy;
     [SerializeField] private Transform _flagUSA;
-    [SerializeField] private Bunkers _bunkers;
+    [SerializeField] private MainTarget _mainTarget;
     [SerializeField] private Bar _flagBar;
     [SerializeField] private Slider _sliderFlag;
     [SerializeField] private Timer _timer;
 
     private Coroutine _ñhangeFlagCoroutine;
-    private bool _isAllBunkersAlive = true;
+    private bool _isDiedMainTarget = false;
     private int _countRussianSoldiers;
     private int _countUSASoldiers;
     private float _minFlagValue = -4.3f;
@@ -22,20 +22,20 @@ public class Flag : MainTarget
     private void OnEnable()
     {
         _sliderFlag.value = _maxFlagValue;
-        _bunkers.AllDestroyed += OnAllDestroedBuildings;
+        _mainTarget.Die += OnDiedMainTarget;
         _timer.TimesUp += OnTimesUp;
         _timer.gameObject.SetActive(true);
     }
 
     private void OnDisable()
     {
-        _bunkers.AllDestroyed -= OnAllDestroedBuildings;
+        _mainTarget.Die -= OnDiedMainTarget;
         _timer.TimesUp -= OnTimesUp;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!_isAllBunkersAlive)
+        if (_isDiedMainTarget)
         {
             if (other.TryGetComponent<SoldierUSA>(out SoldierUSA soldierUSA))
             {
@@ -62,7 +62,7 @@ public class Flag : MainTarget
 
     private void OnTriggerExit(Collider other)
     {
-        if (!_isAllBunkersAlive)
+        if (_isDiedMainTarget)
         {
             if (other.TryGetComponent<SoldierUSA>(out SoldierUSA soldierUSA))
             {
@@ -136,11 +136,11 @@ public class Flag : MainTarget
         }
     }
 
-    private void OnAllDestroedBuildings()
+    private void OnDiedMainTarget()
     {
         _taskMessage.Open();
         _flagBar.gameObject.SetActive(true);
-        _isAllBunkersAlive = false;
+        _isDiedMainTarget = true;
     }
 
     private void OnTimesUp()

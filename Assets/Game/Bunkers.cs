@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -48,7 +46,7 @@ public class Bunkers : MainTarget
 
         if (_countBuildings <= 0)
         {
-            AllDestroyed?.Invoke();
+            Die?.Invoke();
             _bunkersBar.gameObject.SetActive(false);
         }
     }
