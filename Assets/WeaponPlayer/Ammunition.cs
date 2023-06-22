@@ -11,7 +11,7 @@ public class Ammunition : MonoBehaviour
 
     private bool _isExplosion = false;
     private Transform _transform;
-    private float _timeLife = 3f;
+    private float _timeLife = 4f;
 
     private void Start()
     {
