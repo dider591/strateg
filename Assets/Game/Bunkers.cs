@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class Bunkers : MainTarget
+public class Bunkers : Mission
 {
     [SerializeField] private Building[] _buildings;
     [SerializeField] private Text _textCountBunkers;
@@ -17,16 +17,10 @@ public class Bunkers : MainTarget
 
     private void OnEnable()
     {
-        _countBuildings = _buildings.Length;
-        _currentFillSize = 1f;
-        _textCountBunkers.text = _countBuildings.ToString();
-
         foreach (var building in _buildings)
         {
             building.Dead += OnChangeCountBuildings;
         }
-
-        Invoke(nameof(StartTaskMessage), _timeDelayTask);
     }
 
     private void OnDisable()
@@ -35,6 +29,14 @@ public class Bunkers : MainTarget
         {
             building.Dead -= OnChangeCountBuildings;
         }
+    }
+
+    public override void Init()
+    {
+        _countBuildings = _buildings.Length;
+        _currentFillSize = 1f;
+        _textCountBunkers.text = _countBuildings.ToString();
+        Invoke(nameof(StartTaskMessage), _timeDelayTask);
     }
 
     private void OnChangeCountBuildings()
@@ -46,7 +48,7 @@ public class Bunkers : MainTarget
 
         if (_countBuildings <= 0)
         {
-            Die?.Invoke();
+            Win?.Invoke();
             _bunkersBar.gameObject.SetActive(false);
         }
     }
@@ -55,4 +57,5 @@ public class Bunkers : MainTarget
     {
         _taskMessage.Open();
     }
+
 }

@@ -1,18 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class Mission : MonoBehaviour
+public abstract class Mission : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] protected TaskMessageScreen _taskMessage;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public UnityAction<float> ProgressChanged;
+    public UnityAction Win;
+    public UnityAction Defeat;
+
+    public abstract void Init();
 }

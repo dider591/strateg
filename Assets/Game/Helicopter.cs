@@ -1,4 +1,4 @@
-public class Helicopter : MainTarget, ITakeDamage
+public class Helicopter : Mission, ITakeDamage
 {
     private float _health = 1f;
     private float _maxHealth = 1f;
@@ -9,10 +9,11 @@ public class Helicopter : MainTarget, ITakeDamage
     public float Health => _health;
     public float MaxHealth => _maxHealth;
 
-    private void Start()
+    public override void Init()
     {
         Invoke(nameof(StartTaskMessage), _timeDelayTask);
     }
+
     public void TakeDamage(int damage)
     {
         _health -= (float)damage / 1500f;
@@ -41,4 +42,5 @@ public class Helicopter : MainTarget, ITakeDamage
     {
         _taskMessage.Open();
     }
+
 }

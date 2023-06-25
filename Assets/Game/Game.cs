@@ -7,7 +7,7 @@ public class Game : MonoBehaviour
 {
     [SerializeField] private Screen _winScreen;
     [SerializeField] private GameOverScreen _gameOverScreen;
-    [SerializeField] private MainTarget _mainTarget;
+    [SerializeField] private Mission[] _missions;
     [SerializeField] private GameScreen _gameScreen;
     [SerializeField] private SettingsScreen _settigsScreen;
     [SerializeField] private Spawner[] _spawners;
@@ -17,8 +17,10 @@ public class Game : MonoBehaviour
     private bool _isStartMenu;
     private bool _isWin;
     private bool _isAllStartWaws;
+    private bool _isNextMission = true;
     private int _currentLevel;
     private int _canvasMax = 1;
+    private int _currentIndexMission = 0;
     private string _scenes = "scenes";
     private float _runningValue = 1f;
     private float _stoppedValue = 0f;
@@ -30,8 +32,13 @@ public class Game : MonoBehaviour
         _gameOverScreen.Close();
         _settigsScreen.Close();
         _currentLevel = SceneManager.GetActiveScene().buildIndex;
-        _mainTarget.Defeat += OnGameOver;
-        _mainTarget.Win += OnWin;
+        foreach (var mission in _missions)
+        {
+            mission.Defeat += OnGameOver;
+            mission.Win += OnWin;
+        }
+        InitMission();
+
         WebApplication.InBackgroundChangeEvent += OnInBackgroundChange;
     }
 
@@ -43,16 +50,26 @@ public class Game : MonoBehaviour
 
     private void OnWin()
     {
-        InterstitialAd.Show();
-        UnLockLevel();
-        _winScreen.Open();
-        Time.timeScale = 0;
+        if (_missions.Length > _currentIndexMission)
+        {
+            InitMission();
+        }
+        else
+        {
+            InterstitialAd.Show();
+            UnLockLevel();
+            _winScreen.Open();
+            Time.timeScale = 0;
+        }
     }
 
     private void OnDisable()
     {
-        _mainTarget.Defeat -= OnGameOver;
-        _mainTarget.Win -= OnWin;
+        foreach (var mission in _missions)
+        {
+            mission.Defeat -= OnGameOver;
+            mission.Win -= OnWin;
+        }
         WebApplication.InBackgroundChangeEvent -= OnInBackgroundChange;
     }
 
@@ -94,5 +111,11 @@ public class Game : MonoBehaviour
         AudioListener.pause = inBackground;
         AudioListener.volume = inBackground ? _stoppedValue : _runningValue;
         Time.timeScale = inBackground ? _stoppedValue : _runningValue;
+    }
+
+    private void InitMission()
+    {
+        _missions[_currentIndexMission].Init();
+        _currentIndexMission++;
     }
 }

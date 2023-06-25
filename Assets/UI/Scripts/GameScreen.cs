@@ -4,7 +4,7 @@ using DG.Tweening;
 
 public class GameScreen : Screen
 {
-    [SerializeField] private MainTarget _mainTarget;
+    [SerializeField] private Mission _mainTarget;
     [SerializeField] private Button _settigsButton;
     [SerializeField] private Button _machineGun;
     [SerializeField] private Button _zoomIn;
