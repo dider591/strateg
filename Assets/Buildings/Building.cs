@@ -25,20 +25,23 @@ public class Building : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        _health -= damage;
-
-        if (_isHealthViewer)
+        if (CurrentHealth > 0)
         {
-            _healthViewer.HealthChange(_health);
-        }
+            _health -= damage;
 
-        if (_health <= 0)
-        {
-            if (_isDead != true)
+            if (_isHealthViewer)
             {
-                Dead?.Invoke();
-                Destruct();
-                _isDead = true;
+                _healthViewer.HealthChange(_health);
+            }
+
+            if (_health <= 0)
+            {
+                if (_isDead != true)
+                {
+                    Dead?.Invoke();
+                    Destruct();
+                    _isDead = true;
+                }
             }
         }
     }

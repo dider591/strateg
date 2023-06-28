@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Car : Unit, ITakeDamage, ISetTargetPoint
 {
@@ -12,6 +13,9 @@ public class Car : Unit, ITakeDamage, ISetTargetPoint
     protected bool _isDeath;
 
     private int _force = 2000;
+    private bool _isDead;
+
+    public UnityAction Dead;
 
     public void SetTargetPoint(Vector3 point)
     {
@@ -20,16 +24,24 @@ public class Car : Unit, ITakeDamage, ISetTargetPoint
 
     public void TakeDamage(int damage)
     {
-        Health -= damage;
-
-        if (isHealthViewer)
+        if (Health > 0)
         {
-            _healthViewer.SetSizeHealth(CurrentHealth);
-        }
+            Health -= damage;
 
-        if (Health <= 0)
-        {
-            Death();
+            if (isHealthViewer)
+            {
+                _healthViewer.HealthChange(Health);
+            }
+
+            if (Health <= 0)
+            {
+                if (_isDead != true)
+                {
+                    Dead?.Invoke();
+                    Death();
+                    _isDead = true;
+                }
+            }
         }
     }
 

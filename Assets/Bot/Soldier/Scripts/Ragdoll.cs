@@ -8,6 +8,7 @@ public class Ragdoll : MonoBehaviour
     [SerializeField] private Material _regdollMaterial;
     [SerializeField] private Renderer[] _renderers;
     [SerializeField] private float _timeDestroy;
+    [SerializeField] private float _drag = 0f;
 
     private Animator _animator;
     private NavMeshAgent _agent;
@@ -34,6 +35,7 @@ public class Ragdoll : MonoBehaviour
         foreach (var rigidbody in _rigidbodys)
         {
             rigidbody.isKinematic = false;
+            rigidbody.drag = _drag;
         }
 
         _animator.enabled = false;

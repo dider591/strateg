@@ -6,7 +6,6 @@ public class HealthViewer : MonoBehaviour, ISelectable
 {
     [SerializeField] private Slider _slider;
 
-    private TargetHeathView _targetLookPoint;
     private CanvasGroup _canvasGroup;
     private float _maxActivCanvas = 1f;
     private float _minActivCanvas = 0.2f;
@@ -16,12 +15,6 @@ public class HealthViewer : MonoBehaviour, ISelectable
     {
         _canvasGroup = GetComponent<CanvasGroup>();
         _canvasGroup.alpha = _minActivCanvas;
-        _targetLookPoint = FindObjectOfType<TargetHeathView>();
-    }
-
-    private void Update()
-    {
-        transform.LookAt(_targetLookPoint.transform.position);
     }
 
     public void SetSizeHealth(int maxHealth)

@@ -7,8 +7,8 @@ public abstract class Unit : MonoBehaviour
     [SerializeField] protected int Reward;
     [SerializeField] protected float SearchRadius;
     [SerializeField] protected HealthViewer _healthViewer;
+    [SerializeField] protected Vector3 TargetPoint;
 
-    protected Vector3 TargetPoint;
     protected Rigidbody Rigidbody;
     protected Unit Target;
     protected Ragdoll Ragdoll;
