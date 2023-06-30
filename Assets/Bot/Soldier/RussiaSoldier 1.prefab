@@ -979,11 +979,11 @@ MonoBehaviour:
       parentIndex: 
       startIndex: 
       variableStartIndex: 
-      JSONSerialization: '{"EntryTask":{"Type":"BehaviorDesigner.Runtime.Tasks.EntryTask","NodeData":{"Offset":"(-53195.54,-53608.5547)"},"ID":0,"Name":"Entry","Instant":true},"RootTask":{"Type":"BehaviorDesigner.Runtime.Tasks.Repeater","NodeData":{"Offset":"(-1.5703125,120.34375)"},"ID":1,"Name":"Repeater","Instant":true,"SharedIntcount":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":null,"Int32mValue":0},"SharedBoolrepeatForever":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"SharedBoolendOnFailure":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(2.0078125,148.6557)"},"ID":2,"Name":"Selector","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-820.8718,297.142883)"},"ID":3,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"MoveTargetUnitTransition","NodeData":{"Offset":"(-121.949219,126.828125)"},"ID":4,"Name":"Move
-        Target Unit Transition","Instant":true,"Single_transitionRange":2},{"Type":"MoveTargetUnitState","NodeData":{"Offset":"(74.46875,126.84375)"},"ID":5,"Name":"Move
-        Target Unit State","Instant":true}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-470.7987,310.529968)"},"ID":6,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"AttackTransition","NodeData":{"Offset":"(-141.050781,121.320313)"},"ID":7,"Name":"Attack
-        Transition","Instant":true,"Single_transitionRange":2},{"Type":"SoldierAttackState","NodeData":{"Offset":"(-9.8203125,143.613281)"},"ID":8,"Name":"Soldier
-        Attack State","Instant":true,"Ammunition_ammunition":0,"Transform_shootPoint":1,"Single_range":0},{"Type":"BehaviorDesigner.Runtime.Tasks.Wait","NodeData":{"Offset":"(121.836777,122.941208)"},"ID":9,"Name":"Wait","Instant":true,"SharedFloatwaitTime":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"SharedBoolrandomWait":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedFloatrandomWaitMin":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"SharedFloatrandomWaitMax":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1}}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(67.44052,313.045349)"},"ID":10,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"MoveTargetPointTransition","NodeData":{"Offset":"(-152.562927,144.679688)"},"ID":11,"Name":"Move
+      JSONSerialization: '{"EntryTask":{"Type":"BehaviorDesigner.Runtime.Tasks.EntryTask","NodeData":{"Offset":"(-53195.54,-53608.5547)"},"ID":0,"Name":"Entry","Instant":true},"RootTask":{"Type":"BehaviorDesigner.Runtime.Tasks.Repeater","NodeData":{"Offset":"(-1.5703125,120.34375)"},"ID":1,"Name":"Repeater","Instant":true,"SharedIntcount":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":null,"Int32mValue":0},"SharedBoolrepeatForever":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"SharedBoolendOnFailure":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(2.0078125,148.6557)"},"ID":2,"Name":"Selector","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-816.9521,310.529968)"},"ID":3,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"AttackTransition","NodeData":{"Offset":"(-141.050781,121.320313)"},"ID":4,"Name":"Attack
+        Transition","Instant":true,"Single_transitionRange":2},{"Type":"SoldierAttackState","NodeData":{"Offset":"(-9.8203125,143.613281)"},"ID":5,"Name":"Soldier
+        Attack State","Instant":true,"Ammunition_ammunition":0,"Transform_shootPoint":1,"Single_range":0},{"Type":"BehaviorDesigner.Runtime.Tasks.Wait","NodeData":{"Offset":"(121.836777,122.941208)"},"ID":6,"Name":"Wait","Instant":true,"SharedFloatwaitTime":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"SharedBoolrandomWait":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedFloatrandomWaitMin":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"SharedFloatrandomWaitMax":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1}}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-397.795471,297.142883)"},"ID":7,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"MoveTargetUnitTransition","NodeData":{"Offset":"(-121.949219,126.828125)"},"ID":8,"Name":"Move
+        Target Unit Transition","Instant":true,"Single_transitionRange":2},{"Type":"MoveTargetUnitState","NodeData":{"Offset":"(74.46875,126.84375)"},"ID":9,"Name":"Move
+        Target Unit State","Instant":true}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(67.44052,313.045349)"},"ID":10,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"MoveTargetPointTransition","NodeData":{"Offset":"(-152.562927,144.679688)"},"ID":11,"Name":"Move
         Target Point Transition","Instant":true,"Single_transitionRange":1},{"Type":"MoveTargetPointState","NodeData":{"Offset":"(39.4921875,144.679688)"},"ID":12,"Name":"Move
         Target Point State","Instant":true}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(302.036224,283.492157)"},"ID":13,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"IdleTransition","NodeData":{"Offset":"(-18.1601563,173.535156)"},"ID":14,"Name":"Idle
         Transition","Instant":true,"Single_transitionRange":1},{"Type":"IdleState","NodeData":{"Offset":"(112.289063,173.535156)"},"ID":15,"Name":"Idle
@@ -1030,6 +1030,7 @@ MonoBehaviour:
   _renderers:
   - {fileID: 1354277207040016201}
   _timeDestroy: 10
+  _drag: 0
 --- !u!65 &3935586512595656855
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1155,6 +1156,7 @@ MonoBehaviour:
   Reward: 10
   SearchRadius: 5
   _healthViewer: {fileID: 0}
+  TargetPoint: {x: 0, y: 0, z: 0}
   _damage: 1
 --- !u!1 &2393277705942222757
 GameObject:

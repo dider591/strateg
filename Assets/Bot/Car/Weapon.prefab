@@ -228,7 +228,7 @@ Transform:
   m_GameObject: {fileID: 5122464716293154822}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 886692425631429299}
@@ -255,6 +255,7 @@ MonoBehaviour:
   Reward: 10
   SearchRadius: 5
   _healthViewer: {fileID: 0}
+  TargetPoint: {x: 0, y: 0, z: 0}
   _damage: 1
 --- !u!114 &2742399226552648841
 MonoBehaviour:
@@ -333,6 +334,7 @@ MonoBehaviour:
   - {fileID: 3746825828865054647}
   - {fileID: 2527208449239378548}
   _timeDestroy: 5
+  _drag: 0
 --- !u!95 &5490684560015814735
 Animator:
   serializedVersion: 4

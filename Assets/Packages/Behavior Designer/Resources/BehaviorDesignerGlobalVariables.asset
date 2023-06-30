@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mVariableData:
     variableStartIndex: 
-    JSONSerialization: '{"Variables":[{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"Damage","IsShared":true,"IsGlobal":true,"Int32mValue":1},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"Bullet","IsShared":true,"IsGlobal":true,"GameObjectmValue":0}]}'
+    JSONSerialization: '{"Variables":[{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"Damage","IsShared":true,"IsGlobal":true,"Int32mValue":1},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"Bullet","IsShared":true,"IsGlobal":true,"GameObjectmValue":0},{"Type":"BehaviorDesigner.Runtime.SharedTransform","Name":"NewHelicopterTargetPoint","IsShared":true,"IsGlobal":true}]}'
     fieldSerializationData:
       typeName: []
       fieldNameHash: 

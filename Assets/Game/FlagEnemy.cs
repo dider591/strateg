@@ -16,10 +16,12 @@ public class FlagEnemy : Mission
     private int _countUSASoldiers;
     private float _minFlagValue = -4.3f;
     private float _maxFlagValue = 4.3f;
+    private bool _isMissionStart = false;
 
     public override void Init()
     {
         _taskMessage.Open();
+        _isMissionStart = true;
         _flagBar.gameObject.SetActive(true);
     }
 
@@ -37,24 +39,27 @@ public class FlagEnemy : Mission
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent<SoldierUSA>(out SoldierUSA soldierUSA))
+        if (_isMissionStart == true)
         {
-            soldierUSA.Dead += OnDiedSoldier;
-            _countUSASoldiers++;
-
-            if (_ñhangeFlagCoroutine == null)
+            if (other.TryGetComponent<SoldierUSA>(out SoldierUSA soldierUSA))
             {
-                _ñhangeFlagCoroutine = StartCoroutine(ChangeFlag());
+                soldierUSA.Dead += OnDiedSoldier;
+                _countUSASoldiers++;
+
+                if (_ñhangeFlagCoroutine == null)
+                {
+                    _ñhangeFlagCoroutine = StartCoroutine(ChangeFlag());
+                }
             }
-        }
-        if (other.TryGetComponent<SoldierRussia>(out SoldierRussia soldierRussia))
-        {
-            soldierRussia.Dead += OnDiedSoldier;
-            _countRussianSoldiers++;
-
-            if (_ñhangeFlagCoroutine == null)
+            if (other.TryGetComponent<SoldierRussia>(out SoldierRussia soldierRussia))
             {
-                _ñhangeFlagCoroutine = StartCoroutine(ChangeFlag());
+                soldierRussia.Dead += OnDiedSoldier;
+                _countRussianSoldiers++;
+
+                if (_ñhangeFlagCoroutine == null)
+                {
+                    _ñhangeFlagCoroutine = StartCoroutine(ChangeFlag());
+                }
             }
         }
     }
