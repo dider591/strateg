@@ -63,19 +63,7 @@ public class GameOverScreen : Screen
     {
         _rewardButton.interactable = false;
         _imageReward.gameObject.SetActive(false);
-        VideoAd.Show(OnOpenVideoAd, null, OnCloseVideoAd);
-
-        if (_isAddFirstReward == false)
-        {
-            _player.AddManey(_firstRrewardCountCoins);
-            _isAddFirstReward = true;
-        }
-        else
-        {
-            _player.AddManey(_baseRewardCoins);
-        }
-
-        Invoke(nameof(ActivateRewardButton), _activateRewardButtonTime);
+        VideoAd.Show(OnOpenVideoAd, AddReward, OnCloseVideoAd);
     }
 
     private void ActivateRewardButton()
@@ -100,5 +88,20 @@ public class GameOverScreen : Screen
     {
         AudioListener.volume = 1;
         AudioListener.pause = false;
+    }
+
+    private void AddReward()
+    {
+        if (_isAddFirstReward == false)
+        {
+            _player.AddManey(_firstRrewardCountCoins);
+            _isAddFirstReward = true;
+        }
+        else
+        {
+            _player.AddManey(_baseRewardCoins);
+        }
+
+        Invoke(nameof(ActivateRewardButton), _activateRewardButtonTime);
     }
 }

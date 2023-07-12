@@ -68,7 +68,6 @@ public class Game : MonoBehaviour
             Time.timeScale = 0;
             UnLockLevel();
             _winScreen.Open();
-            Invoke(nameof(DelayShowAd), _delayAd);
         }
     }
 
@@ -122,10 +121,5 @@ public class Game : MonoBehaviour
     {
         _missions[_currentIndexMission].Init();
         _currentIndexMission++;
-    }
-
-    private void DelayShowAd()
-    {
-        InterstitialAd.Show();
     }
 }

@@ -19,7 +19,7 @@ public class StartMenu : MonoBehaviour
 
     private void OnEnable()
     {
-        Invoke(nameof(DelayShowAd), _delayAd);
+        InterstitialAd.Show();
         _startButton.onClick.AddListener(OnPlayButtonClick);
         _continueButton.onClick.AddListener(OnContinueButtonClick);
         _selectlanguageButton.onClick.AddListener(OnSelectLanguageButtonClick);
@@ -54,10 +54,5 @@ public class StartMenu : MonoBehaviour
     private void OnSelectLanguageButtonClick()
     {
         _selectLanguageScreen.Open();
-    }
-
-    private void DelayShowAd()
-    {
-        InterstitialAd.Show();
     }
 }
