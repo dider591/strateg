@@ -15,10 +15,6 @@ public class Yandex : MonoBehaviour
     private const string Turkish = "turkish";
     private const string English = "english";
 
-    private const string EnglishCode = "en";
-    private const string RussianCode = "ru";
-    private const string TurkishCode = "tr";
-
     private string _languageCode;
 
     private void Awake()
@@ -45,24 +41,6 @@ public class Yandex : MonoBehaviour
         yield return YandexGamesSdk.Initialize();
 
         if (YandexGamesSdk.IsInitialized)
-
-        _languageCode = YandexGamesSdk.Environment.i18n.lang;
-
-        switch (_languageCode)
-        {
-            case EnglishCode:
-                SetLanguage(English);
-                break;
-            case RussianCode:
-                SetLanguage(Russian);
-                break;
-            case TurkishCode:
-                SetLanguage(Turkish);
-                break;
-            default:
-                SetLanguage(English);
-                break;
-        }
 
         SceneManager.LoadScene(_startSceneIndex);
     }

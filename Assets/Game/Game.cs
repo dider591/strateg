@@ -1,6 +1,7 @@
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using Agava.WebUtility;
+using Agava.YandexGames;
 
 public class Game : MonoBehaviour
 {
@@ -25,6 +26,7 @@ public class Game : MonoBehaviour
     private string _scenes = "scenes";
     private float _runningValue = 1f;
     private float _stoppedValue = 0f;
+    private float _delayAd = 1f;
 
     private void OnEnable()
     {
@@ -65,7 +67,8 @@ public class Game : MonoBehaviour
         {
             Time.timeScale = 0;
             UnLockLevel();
-            _winScreen.Open();             
+            _winScreen.Open();
+            Invoke(nameof(DelayShowAd), _delayAd);
         }
     }
 
@@ -119,5 +122,10 @@ public class Game : MonoBehaviour
     {
         _missions[_currentIndexMission].Init();
         _currentIndexMission++;
+    }
+
+    private void DelayShowAd()
+    {
+        InterstitialAd.Show();
     }
 }

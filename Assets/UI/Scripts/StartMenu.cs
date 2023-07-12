@@ -15,10 +15,11 @@ public class StartMenu : MonoBehaviour
     private string Mute = "Mute";
     private string _score = "_score";
     private int _mainMenuIndex = 2;
+    private float _delayAd = 1f;
 
     private void OnEnable()
     {
-        //InterstitialAd.Show();
+        Invoke(nameof(DelayShowAd), _delayAd);
         _startButton.onClick.AddListener(OnPlayButtonClick);
         _continueButton.onClick.AddListener(OnContinueButtonClick);
         _selectlanguageButton.onClick.AddListener(OnSelectLanguageButtonClick);
@@ -53,5 +54,10 @@ public class StartMenu : MonoBehaviour
     private void OnSelectLanguageButtonClick()
     {
         _selectLanguageScreen.Open();
+    }
+
+    private void DelayShowAd()
+    {
+        InterstitialAd.Show();
     }
 }
