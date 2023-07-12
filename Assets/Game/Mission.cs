@@ -9,5 +9,7 @@ public abstract class Mission : MonoBehaviour
     public UnityAction Win;
     public UnityAction Defeat;
 
+    protected bool _isWin = false;
+
     public abstract void Init();
 }

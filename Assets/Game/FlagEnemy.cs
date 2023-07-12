@@ -92,8 +92,9 @@ public class FlagEnemy : Mission
                     _flagEnemy.Translate(0, -_stepFlagCapture, 0);
                     _flagUSA.Translate(0, _stepFlagCapture, 0);
                 }
-                else if (currentFlagValue <= _minFlagValue)
+                else if (currentFlagValue <= _minFlagValue && _isWin == false)
                 {
+                    _isWin = true;
                     Win?.Invoke();
                 }
             }

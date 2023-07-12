@@ -46,8 +46,9 @@ public class Bunkers : Mission
         _currentFillSize -= _sizeBuilding;
         ProgressChanged?.Invoke(_currentFillSize);
 
-        if (_countBuildings <= 0)
+        if (_countBuildings <= 0 && _isWin == false)
         {
+            _isWin = true;
             Win?.Invoke();
             _bunkersBar.gameObject.SetActive(false);
         }
@@ -55,6 +56,7 @@ public class Bunkers : Mission
 
     private void StartTaskMessage()
     {
+
         _taskMessage.Open();
     }
 

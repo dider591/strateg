@@ -8,8 +8,7 @@ public class WinLastScreen : Screen
     [SerializeField] private Button _mainMenuButton;
     [SerializeField] private Text _maneyCount;
 
-    private int _lastScene = 4;
-    private int _mainMenu = 1;
+    private int _mainMenu = 2;
 
     private void OnEnable()
     {
@@ -35,11 +34,6 @@ public class WinLastScreen : Screen
         _canvas.alpha = 1;
         _canvas.interactable = true;
         _canvas.blocksRaycasts = true;
-    }
-
-    public void OnNextLevelButtonClick()
-    {
-        SceneManager.LoadScene(_lastScene);
     }
 
     public void OnSelectButtonClick()

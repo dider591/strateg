@@ -13,10 +13,5 @@ public abstract class Weapon : MonoBehaviour
         _transform = GetComponent<Transform>();
     }
 
-    private void Update()
-    {
-        Debug.DrawRay(transform.position, transform.forward * 100, Color.green);
-    }
-
     public abstract void Shoot();
 }

@@ -89,7 +89,6 @@ public class Player : MonoBehaviour
     private void AimSelect()
     {
         Ray ray = new Ray(transform.position, transform.forward);
-        Debug.DrawRay(transform.position, transform.forward * 100, Color.red);
 
         if (Physics.Raycast(ray, out _hit))
         {

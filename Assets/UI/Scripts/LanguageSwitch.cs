@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,7 +15,7 @@ public class LanguageSwitch : MonoBehaviour
     private Text _text;
     private string _language;
 
-    private void Start()
+    public void Start()
     {
         _text = GetComponent<Text>();
         _language = PlayerPrefs.GetString(Language);

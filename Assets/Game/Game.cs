@@ -1,6 +1,5 @@
 using UnityEngine.SceneManagement;
 using UnityEngine;
-using Agava.YandexGames;
 using Agava.WebUtility;
 
 public class Game : MonoBehaviour
@@ -18,9 +17,11 @@ public class Game : MonoBehaviour
     private bool _isWin;
     private bool _isAllStartWaws;
     private bool _isNextMission = true;
-    private int _currentLevel;
+    private bool _isUnlockLevel = false;
+    private int _currentSceneIndex;
     private int _canvasMax = 1;
     private int _currentIndexMission = 0;
+    private int _lastSceneIndex = 6;
     private string _scenes = "scenes";
     private float _runningValue = 1f;
     private float _stoppedValue = 0f;
@@ -31,7 +32,8 @@ public class Game : MonoBehaviour
         _winScreen.Close();
         _gameOverScreen.Close();
         _settigsScreen.Close();
-        _currentLevel = SceneManager.GetActiveScene().buildIndex;
+        _currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+
         foreach (var mission in _missions)
         {
             mission.Defeat += OnGameOver;
@@ -40,6 +42,11 @@ public class Game : MonoBehaviour
         InitMission();
 
         WebApplication.InBackgroundChangeEvent += OnInBackgroundChange;
+    }
+
+    private void OnApplicationFocus(bool hasFocus)
+    {
+        OnInBackgroundChange(!hasFocus);
     }
 
     private void OnGameOver()
@@ -56,10 +63,9 @@ public class Game : MonoBehaviour
         }
         else
         {
-            InterstitialAd.Show();
-            UnLockLevel();
-            _winScreen.Open();
             Time.timeScale = 0;
+            UnLockLevel();
+            _winScreen.Open();             
         }
     }
 
@@ -71,12 +77,6 @@ public class Game : MonoBehaviour
             mission.Win -= OnWin;
         }
         WebApplication.InBackgroundChangeEvent -= OnInBackgroundChange;
-    }
-
-    private void OnMenuButtonClick()
-    {
-        _gameScreen.Close();
-        Time.timeScale = 0;
     }
 
     private void StartGame()
@@ -100,9 +100,11 @@ public class Game : MonoBehaviour
 
     private void UnLockLevel()
     {
-        if (_currentLevel >= PlayerPrefs.GetInt(_scenes)) ;
+        if (_currentSceneIndex < _lastSceneIndex && _isUnlockLevel == false)
         {
-            PlayerPrefs.SetInt(_scenes, _currentLevel + 1);
+            int countOpenLevel = PlayerPrefs.GetInt(_scenes) + 1;
+            PlayerPrefs.SetInt(_scenes, countOpenLevel);
+            _isUnlockLevel = true;
         }
     }
 

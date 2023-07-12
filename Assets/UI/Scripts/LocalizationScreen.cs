@@ -1,9 +1,8 @@
-using Agava.YandexGames;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class Localization : MonoBehaviour
+public class LocalizationScreen : Screen
 {
     [SerializeField] private Button _englishButton;
     [SerializeField] private Button _rissianButton;
@@ -14,18 +13,25 @@ public class Localization : MonoBehaviour
     private string _russian = "russian";
     private string _turkish = "turkish";
     private string _english = "english";
-    private int _mainMenuIndex = 2;
 
-    private void OnEnable()
+    public UnityAction ChangeLanguage;
+
+    private void Awake()
     {
-        InterstitialAd.Show();
+        Close();
+    }
+
+    public override void Open()
+    {
+        _canvas.alpha = 1;
         _englishButton.onClick.AddListener(OnEnglishButtonClick);
         _rissianButton.onClick.AddListener(OnRussianButtonClick);
         _turkishButton.onClick.AddListener(OnTurkishButtonClick);
     }
 
-    private void OnDisable()
+    public override void Close()
     {
+        _canvas.alpha = 0;
         _englishButton.onClick.RemoveListener(OnEnglishButtonClick);
         _rissianButton.onClick.RemoveListener(OnRussianButtonClick);
         _turkishButton.onClick.RemoveListener(OnTurkishButtonClick);
@@ -34,28 +40,24 @@ public class Localization : MonoBehaviour
     private void OnEnglishButtonClick()
     {
         SetLanguage(_english);
-        LoadLevel();
+        Close();
     }
 
     private void OnRussianButtonClick()
     {
         SetLanguage(_russian);
-        LoadLevel();
+        Close();
     }
 
     private void OnTurkishButtonClick()
     {
         SetLanguage(_turkish);
-        LoadLevel();
+        Close();
     }
 
     private void SetLanguage(string language)
     {
         PlayerPrefs.SetString(Language, language);
-    }
-
-    public void LoadLevel()
-    {
-        SceneManager.LoadScene(_mainMenuIndex);
+        ChangeLanguage?.Invoke();
     }
 }

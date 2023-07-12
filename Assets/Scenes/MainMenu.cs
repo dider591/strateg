@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,26 +8,30 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private Button[] _buttons;
 
     private int _levelInLock;
-    private int _currentOpenLevels = 1;
     private int _oneLevelIndex = 3;
     private int _twolevelIndex = 4;
+    private int _threeLevelIndex = 5;
+    private int _fourLevelIndex = 6;
     private string _scenes = "scenes";
 
     private void OnEnable()
     {
         _menuScreen.OneLevelButtonClick += OnOneLevel;
         _menuScreen.TwoLevelButtonClick += OnTwoLevel;
+        _menuScreen.ThreeLevelButtonClick += OnThreeLevel;
+        _menuScreen.FourLevelButtonClick += OnFourLevel;
     }
 
     private void OnDisable()
     {
         _menuScreen.OneLevelButtonClick -= OnOneLevel;
         _menuScreen.TwoLevelButtonClick -= OnTwoLevel;
+        _menuScreen.ThreeLevelButtonClick -= OnThreeLevel;
+        _menuScreen.FourLevelButtonClick -= OnFourLevel;
     }
 
     private void Start()
     {
-        PlayerPrefs.SetInt(_scenes, _currentOpenLevels);
         _levelInLock = PlayerPrefs.GetInt(_scenes);
         StartMenu();
         LevelLock();
@@ -50,7 +52,7 @@ public class MainMenu : MonoBehaviour
 
     private void LevelOpen()
     {
-        for (int i = 0; i < _levelInLock; i++)
+        for (int i = 0; i <= _levelInLock; i++)
         {
             _buttons[i].interactable = true;
         }
@@ -71,4 +73,13 @@ public class MainMenu : MonoBehaviour
         LoadLevel(_twolevelIndex);
     }
 
+    private void OnThreeLevel()
+    {
+        LoadLevel(_threeLevelIndex);
+    }
+
+    private void OnFourLevel()
+    {
+        LoadLevel(_fourLevelIndex);
+    }
 }

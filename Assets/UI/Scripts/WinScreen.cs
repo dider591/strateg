@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Agava.YandexGames;
 
 public class WinScreen : Screen
 {
@@ -9,8 +10,7 @@ public class WinScreen : Screen
     [SerializeField] private Button _mainMenuButton;
     [SerializeField] private Text _maneyCount;
 
-    private int _nextScene = 4;
-    private int _mainMenu = 1;
+    private int _mainMenuIndex = 2;
 
     private void OnEnable()
     {
@@ -42,12 +42,13 @@ public class WinScreen : Screen
 
     public void OnNextLevelButtonClick()
     {
-        SceneManager.LoadScene(_nextScene);
+        int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
+        SceneManager.LoadScene(nextSceneIndex);
     }
 
     public void OnSelectButtonClick()
     {
-        SceneManager.LoadScene(_mainMenu);
+        SceneManager.LoadScene(_mainMenuIndex);
     }
 
     private void OnChangedManeyCount(int maneyCount)

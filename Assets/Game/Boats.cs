@@ -46,8 +46,9 @@ public class Boats : Mission
         _currentFillSize -= _sizeFillBoat;
         ProgressChanged?.Invoke(_currentFillSize);
 
-        if (_countBoats <= 0)
+        if (_countBoats <= 0 && _isWin == false)
         {
+            _isWin = true;
             Win?.Invoke();
             _boatsBar.gameObject.SetActive(false);
         }

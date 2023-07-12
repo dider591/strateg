@@ -63,7 +63,7 @@ public class GameOverScreen : Screen
     {
         _rewardButton.interactable = false;
         _imageReward.gameObject.SetActive(false);
-        VideoAd.Show();
+        VideoAd.Show(OnOpenVideoAd, null, OnCloseVideoAd);
 
         if (_isAddFirstReward == false)
         {
@@ -88,5 +88,17 @@ public class GameOverScreen : Screen
     private void OnChangedManeyCount(int maneyCount)
     {
         _maneyCount.text = maneyCount.ToString();
+    }
+
+    private void OnOpenVideoAd()
+    {
+        AudioListener.volume = 0;
+        AudioListener.pause = true;
+    }
+
+    private void OnCloseVideoAd()
+    {
+        AudioListener.volume = 1;
+        AudioListener.pause = false;
     }
 }
