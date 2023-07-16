@@ -1,7 +1,6 @@
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using Agava.WebUtility;
-using Agava.YandexGames;
 
 public class Game : MonoBehaviour
 {
