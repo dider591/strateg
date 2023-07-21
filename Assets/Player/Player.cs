@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Button _artStrikeButton;
 
     private int _maney;
-    private int _startCountManey = 100;
+    private int _startCountManey = 0;
     private Weapon _currentWeapon;
     private RaycastHit _hit;
     private ISelectable _currentISelectable;

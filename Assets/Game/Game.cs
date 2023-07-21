@@ -52,8 +52,8 @@ public class Game : MonoBehaviour
 
     private void OnGameOver()
     {
-        _gameOverScreen.Open();
         Time.timeScale = 0;
+        _gameOverScreen.Open();
     }
 
     private void OnWin()

@@ -12,10 +12,8 @@ public class GameOverScreen : Screen
     [SerializeField] private Image _imageReward;
     [SerializeField] private Text _maneyCount;
 
-    private int _firstRrewardCountCoins = 200;
-    private int _baseRewardCoins = 50;
-    private int _activateRewardButtonTime = 300;
-    private bool _isAddFirstReward = false;
+    private int _rewardCountCoins = 200;
+    private int _activateRewardButtonTime = 500;
     private int _mainMenuIndex = 2;
 
     private void OnEnable()
@@ -70,7 +68,6 @@ public class GameOverScreen : Screen
     {
         _rewardButton.interactable = true;
         _imageReward.gameObject.SetActive(true);
-        _isAddFirstReward = false;
     }
 
     private void OnChangedManeyCount(int maneyCount)
@@ -80,27 +77,21 @@ public class GameOverScreen : Screen
 
     private void OnOpenVideoAd()
     {
+        Time.timeScale = 0;
         AudioListener.volume = 0;
         AudioListener.pause = true;
     }
 
     private void OnCloseVideoAd()
     {
+        Time.timeScale = 0;
         AudioListener.volume = 1;
         AudioListener.pause = false;
     }
 
     private void AddReward()
     {
-        if (_isAddFirstReward == false)
-        {
-            _player.AddManey(_firstRrewardCountCoins);
-            _isAddFirstReward = true;
-        }
-        else
-        {
-            _player.AddManey(_baseRewardCoins);
-        }
+        _player.AddManey(_rewardCountCoins);
 
         Invoke(nameof(ActivateRewardButton), _activateRewardButtonTime);
     }
