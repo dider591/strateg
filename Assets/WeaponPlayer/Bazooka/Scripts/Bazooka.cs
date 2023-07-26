@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class Bazooka : Weapon
 {
     public override void Shoot()

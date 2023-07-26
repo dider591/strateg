@@ -45,11 +45,6 @@ public class Game : MonoBehaviour
         WebApplication.InBackgroundChangeEvent += OnInBackgroundChange;
     }
 
-    private void OnApplicationFocus(bool hasFocus)
-    {
-        OnInBackgroundChange(!hasFocus);
-    }
-
     private void OnGameOver()
     {
         Time.timeScale = 0;
