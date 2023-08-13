@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Agava.YandexGames;
+using UnityEngine.Events;
 
 public class GameOverScreen : Screen
 {
@@ -11,10 +12,14 @@ public class GameOverScreen : Screen
     [SerializeField] private Button _rewardButton;
     [SerializeField] private Image _imageReward;
     [SerializeField] private Text _maneyCount;
+    [SerializeField] private AudioSource _music;
+
+    public event UnityAction<bool> Paused;
 
     private int _rewardCountCoins = 200;
     private int _activateRewardButtonTime = 500;
     private int _mainMenuIndex = 2;
+
 
     private void OnEnable()
     {
@@ -61,7 +66,7 @@ public class GameOverScreen : Screen
     {
         _rewardButton.interactable = false;
         _imageReward.gameObject.SetActive(false);
-        ShowVideoAd();
+        VideoAd.Show(null, AddReward);
     }
 
     private void ActivateRewardButton()
@@ -75,30 +80,9 @@ public class GameOverScreen : Screen
         _maneyCount.text = maneyCount.ToString();
     }
 
-    private void OnOpenVideoAd()
-    {
-        Time.timeScale = 0;
-        AudioListener.volume = 0;
-        AudioListener.pause = true;
-    }
-
-    private void OnCloseVideoAd()
-    {
-        Time.timeScale = 0;
-        AudioListener.volume = 1;
-        AudioListener.pause = false;
-    }
-
     private void AddReward()
     {
         _player.AddManey(_rewardCountCoins);
-
         Invoke(nameof(ActivateRewardButton), _activateRewardButtonTime);
-    }
-
-    private void ShowVideoAd()
-    {
-        Time.timeScale = 0;
-        VideoAd.Show(OnOpenVideoAd, AddReward, OnCloseVideoAd);
     }
 }

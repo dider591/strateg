@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,6 +13,17 @@ public class SpriteChanger : MonoBehaviour
     private void OnEnable()
     {
         button.onClick.AddListener(OnChangeImage);
+
+        if (GameMute.instance.IsMute == true)
+        {
+            SetImage(_offSprite);
+            _isChange = true;
+        }
+        else
+        {
+            SetImage(_onSprite);
+            _isChange = false;
+        }
     }
 
     private void OnDisable()
@@ -26,13 +35,18 @@ public class SpriteChanger : MonoBehaviour
     {
         if (_isChange == false)
         {
-            Image.sprite = _offSprite;
+            SetImage(_offSprite);
             _isChange = true;
         }
         else
         {
-            Image.sprite = _onSprite;
+            SetImage(_onSprite);
             _isChange = false;
         }
+    }
+
+    private void SetImage(Sprite image)
+    {
+        Image.sprite = image;
     }
 }

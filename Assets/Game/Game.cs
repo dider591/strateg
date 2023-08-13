@@ -1,6 +1,7 @@
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using Agava.WebUtility;
+using UnityEngine.Events;
 
 public class Game : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class Game : MonoBehaviour
     [SerializeField] private SettingsScreen _settigsScreen;
     [SerializeField] private Spawner[] _spawners;
     [SerializeField] private float _delayStartInit;
+
+    public event UnityAction<bool> StoppedGame;
 
     private bool _isAllInit;
     private bool _isStartMenu;
@@ -23,16 +26,14 @@ public class Game : MonoBehaviour
     private int _currentIndexMission = 0;
     private int _lastSceneIndex = 6;
     private string _scenes = "scenes";
+    private string _ispause = "isPause";
     private float _runningValue = 1f;
     private float _stoppedValue = 0f;
     private float _delayAd = 1f;
 
     private void OnEnable()
     {
-        StartGame();
-        _winScreen.Close();
-        _gameOverScreen.Close();
-        _settigsScreen.Close();
+
         _currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
 
         foreach (var mission in _missions)
@@ -41,14 +42,17 @@ public class Game : MonoBehaviour
             mission.Win += OnWin;
         }
         InitMission();
-
-        WebApplication.InBackgroundChangeEvent += OnInBackgroundChange;
+        _winScreen.Close();
+        _gameOverScreen.Close();
+        _settigsScreen.Close();
+        StartGame();
     }
 
     private void OnGameOver()
     {
-        Time.timeScale = 0;
+        StoppedGame?.Invoke(true);
         _gameOverScreen.Open();
+        GamePause.instance.SetPause(true);
     }
 
     private void OnWin()
@@ -59,7 +63,7 @@ public class Game : MonoBehaviour
         }
         else
         {
-            Time.timeScale = 0;
+            GamePause.instance.SetPause(true);
             UnLockLevel();
             _winScreen.Open();
         }
@@ -72,12 +76,11 @@ public class Game : MonoBehaviour
             mission.Defeat -= OnGameOver;
             mission.Win -= OnWin;
         }
-        WebApplication.InBackgroundChangeEvent -= OnInBackgroundChange;
     }
 
     private void StartGame()
     {
-        Time.timeScale = 1;
+        GamePause.instance.SetPause(false);
 
         if (!_isAllInit)
         {
@@ -102,13 +105,6 @@ public class Game : MonoBehaviour
             PlayerPrefs.SetInt(_scenes, countOpenLevel);
             _isUnlockLevel = true;
         }
-    }
-
-    private void OnInBackgroundChange(bool inBackground)
-    {
-        AudioListener.pause = inBackground;
-        AudioListener.volume = inBackground ? _stoppedValue : _runningValue;
-        Time.timeScale = inBackground ? _stoppedValue : _runningValue;
     }
 
     private void InitMission()

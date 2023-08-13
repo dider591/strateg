@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using UnityEngine.Events;
+using System.Threading;
 
 public class GameScreen : Screen
 {
@@ -31,6 +33,7 @@ public class GameScreen : Screen
     private float _canvasAlphaMin = 0f;
     private int _priceMessile = 100;
     private bool _isOpenSettings = false;
+    private const string Mute = "Mute";
 
     private void Awake()
     {

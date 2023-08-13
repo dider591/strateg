@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class Helicopter : Mission, ITakeDamage
 {
     private float _health = 1f;

@@ -9,6 +9,8 @@ public class Yandex : MonoBehaviour
 {
     public static Yandex Instance;
     private int _startSceneIndex = 1;
+    private string _mute = "Mute";
+    private string _pause = "Pause";
     private const string Language = "language";
 
     private const string Russian = "russian";
@@ -34,6 +36,8 @@ public class Yandex : MonoBehaviour
         }
 
         YandexGamesSdk.CallbackLogging = true;
+        PlayerPrefs.SetInt(_mute, 0);
+        PlayerPrefs.SetInt(_pause, 0);
     }
 
     private IEnumerator Start()

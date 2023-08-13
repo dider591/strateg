@@ -10,7 +10,6 @@ public class WinScreen : Screen
     [SerializeField] private Button _mainMenuButton;
     [SerializeField] private Text _maneyCount;
 
-    private float _delayStartAd = 1f;
     private int _mainMenuIndex = 2;
 
     private void OnEnable()
@@ -43,7 +42,7 @@ public class WinScreen : Screen
 
     public void OnNextLevelButtonClick()
     {
-        ShowAd();
+        InterstitialAd.Show(null, OnCloseInterstitialAd);
     }
 
     public void OnSelectButtonClick()
@@ -56,27 +55,12 @@ public class WinScreen : Screen
         _maneyCount.text = maneyCount.ToString();
     }
 
-    private void ShowAd()
-    {
-        InterstitialAd.Show(OnOpenInterstitialAd, OnCloseInterstitialAd);
-    }
-
-    private void OnOpenInterstitialAd()
-    {
-        Time.timeScale = 0;
-        AudioListener.volume = 0;
-        AudioListener.pause = true;
-    }
-
     private void OnCloseInterstitialAd(bool close)
     {
         int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
 
         if (close == true)
         {
-            Time.timeScale = 0;
-            AudioListener.volume = 1;
-            AudioListener.pause = !close;
             SceneManager.LoadScene(nextSceneIndex);
         }
     }
