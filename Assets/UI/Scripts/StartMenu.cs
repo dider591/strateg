@@ -18,7 +18,6 @@ public class StartMenu : MonoBehaviour
 
     private void OnEnable()
     {
-        InterstitialAd.Show();
         _startButton.onClick.AddListener(OnPlayButtonClick);
         _continueButton.onClick.AddListener(OnContinueButtonClick);
         _selectlanguageButton.onClick.AddListener(OnSelectLanguageButtonClick);

@@ -3,15 +3,15 @@ using Agava.WebUtility;
 
 public class GamePause : MonoBehaviour
 {
-    public bool IsPause => _isPause;
+    private bool _isPause = true;
+    private bool _isFocus = true;
+    private bool _isInBackground = false;
 
     public static GamePause instance;
 
-    private bool _isPause = true;
 
     private void Awake()
     {
-        Debug.Log("GamePause._isPause = " + _isPause);
         WebApplication.InBackgroundChangeEvent += OnBackgroundChangeEvent;
 
         if (instance == null)
@@ -40,34 +40,30 @@ public class GamePause : MonoBehaviour
 
     private void OnBackgroundChangeEvent(bool inBackground)
     {
-        if (_isPause == true)
+        if (_isPause == false && _isFocus == true)
         {
-            return;
+            _isInBackground = inBackground;
+            OnStopGame(inBackground);
         }
-
-        OnStopGame(inBackground);
     }
 
     private void OnApplicationFocus(bool hasFocus)
     {
-        if (_isPause == true)
+        if (_isPause == false && _isInBackground == false)
         {
-            return;
+            _isFocus = hasFocus;
+            OnStopGame(!hasFocus);
         }
-
-        OnStopGame(!hasFocus);
     }
 
     public void OnStopGame(bool isStopGame)
     {
         Time.timeScale = isStopGame ? 0 : 1;
 
-        if (GameMute.instance.IsMute == true)
+        if (GameMute.instance.IsMute == false)
         {
-            return;
+            GameMute.instance.SetVolume(isStopGame);
         }
-
-        GameMute.instance.SetVolume(isStopGame);
     }
 
     public void SetPause(bool pause)

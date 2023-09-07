@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Agava.YandexGames;
+using System;
 
 public class WinScreen : Screen
 {
@@ -11,6 +12,7 @@ public class WinScreen : Screen
     [SerializeField] private Text _maneyCount;
 
     private int _mainMenuIndex = 2;
+    private bool _isOpenAd = false;
 
     private void OnEnable()
     {
@@ -42,7 +44,7 @@ public class WinScreen : Screen
 
     public void OnNextLevelButtonClick()
     {
-        InterstitialAd.Show(null, OnCloseInterstitialAd);
+        ShowAd();     
     }
 
     public void OnSelectButtonClick()
@@ -57,11 +59,30 @@ public class WinScreen : Screen
 
     private void OnCloseInterstitialAd(bool close)
     {
-        int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
+        Debug.Log("CloseAd = " + close);
+        LoadNextLevel();
+    }
 
-        if (close == true)
-        {
-            SceneManager.LoadScene(nextSceneIndex);
-        }
+    private void OnOfflineInterstitialAd()
+    {
+        Debug.Log("AdOffline");
+        LoadNextLevel();
+    }
+
+    private void OnErrorInterstitialAd(string errorMessage)
+    {
+        Debug.Log(errorMessage);
+        LoadNextLevel();
+    }
+
+    private void ShowAd()
+    {
+        InterstitialAd.Show(null, OnCloseInterstitialAd, OnErrorInterstitialAd, OnOfflineInterstitialAd);
+    }
+
+    private void LoadNextLevel()
+    {
+        int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
+        SceneManager.LoadScene(nextSceneIndex);
     }
 }

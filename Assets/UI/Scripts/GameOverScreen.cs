@@ -66,7 +66,7 @@ public class GameOverScreen : Screen
     {
         _rewardButton.interactable = false;
         _imageReward.gameObject.SetActive(false);
-        VideoAd.Show(null, AddReward);
+        VideoAd.Show(null, AddReward, null, OnErrorInterstitialAd);
     }
 
     private void ActivateRewardButton()
@@ -84,5 +84,10 @@ public class GameOverScreen : Screen
     {
         _player.AddManey(_rewardCountCoins);
         Invoke(nameof(ActivateRewardButton), _activateRewardButtonTime);
+    }
+
+    private void OnErrorInterstitialAd(string errorMessage)
+    {
+        Debug.Log(errorMessage);
     }
 }

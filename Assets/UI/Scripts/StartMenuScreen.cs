@@ -1,3 +1,4 @@
+using Agava.YandexGames;
 using UnityEngine;
 
 public class StartMenuScreen : MonoBehaviour
@@ -23,5 +24,17 @@ public class StartMenuScreen : MonoBehaviour
         {
             _startMenuNew.gameObject.SetActive(true);
         }
+
+        InterstitialAd.Show(null, null, OnErrorInterstitialAd, OnOfflineInterstitialAd);
+    }
+
+    private void OnErrorInterstitialAd(string errorMessage)
+    {
+        Debug.Log(errorMessage);
+    }
+
+    private void OnOfflineInterstitialAd()
+    {
+        Debug.Log("AdOffline");
     }
 }
